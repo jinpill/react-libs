@@ -1,5 +1,1 @@
-import useStateRef from "./hooks/useStateRef";
-
-export default {
-  useStateRef,
-};
+export { default as useStateRef } from "./hooks/useStateRef";
