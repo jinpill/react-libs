@@ -8,6 +8,7 @@
     "emitDeclarationOnly": true,
     "rootDir": "./src",
     "strict": true,
+    "strictNullChecks": true,
     "declaration": true,
     "esModuleInterop": true
   },
