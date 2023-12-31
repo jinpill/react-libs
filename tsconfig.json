@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "commonjs",
+    "jsx": "react",
+    "skipLibCheck": true,
+    "declarationDir": "dist",
+    "emitDeclarationOnly": true,
+    "rootDir": "./src",
+    "strict": true,
+    "declaration": true,
+    "esModuleInterop": true
+  },
+  "exclude": ["node_modules", "build"]
+}
