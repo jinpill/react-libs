@@ -2,7 +2,7 @@
   "env": {
     "browser": true
   },
-  "extends": ["plugin:react/recommended", "plugin:prettier/recommended"],
+  "extends": ["plugin:react/recommended", "prettier"],
   "plugins": ["jsx-a11y", "import", "react-hooks"],
   "settings": {
     "react": {
@@ -23,25 +23,6 @@
     "no-unused-vars": "warn",
     "no-console": "warn",
     "react-hooks/rules-of-hooks": "warn",
-    "react-hooks/exhaustive-deps": "warn",
-    "prettier/prettier": [
-      "error",
-      {
-        "endOfLine": "auto",
-        "arrowParens": "always",
-        "bracketSpacing": true,
-        "singleAttributePerLine": false,
-        "bracketSameLine": false,
-        "jsxBracketSameLine": false,
-        "jsxSingleQuote": false,
-        "printWidth": 80,
-        "quoteProps": "consistent",
-        "semi": true,
-        "singleQuote": false,
-        "tabWidth": 2,
-        "trailingComma": "es5",
-        "useTabs": false
-      }
-    ]
+    "react-hooks/exhaustive-deps": "warn"
   }
 }
