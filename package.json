@@ -9,17 +9,16 @@
   "scripts": {
     "lint": "eslint src/*",
     "prettier": "prettier --write '{src}/*.tsx'",
-    "prepublish": "npm run push:version && npm run build",
-    "publish:patch": "npm run version:patch && npm publish",
-    "publish:minor": "npm run version:minor && npm publish",
-    "publish:major": "npm run version:major && npm publish",
+    "publish:patch": "npm run version:patch && npm run build && npm publish",
+    "publish:minor": "npm run version:minor && npm run build && npm publish",
+    "publish:major": "npm run version:major && npm run build && npm publish",
     "build:rollup": "rollup -c rollup.config.js",
     "build:declaration": "tsc",
     "build": "rm -rf dist && npm-run-all build:*",
-    "version:patch": "npm version patch",
-    "version:minor": "npm version minor",
-    "version:major": "npm version major",
-    "push:version": "git push && git push --tags"
+    "push:version": "git push && git push --tags",
+    "version:patch": "npm version patch && npm run push:version",
+    "version:minor": "npm version minor && npm run push:version",
+    "version:major": "npm version major && npm run push:version"
   },
   "files": [
     "dist",
