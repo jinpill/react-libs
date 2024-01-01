@@ -1,6 +1,122 @@
 import { Meta } from "@storybook/blocks";
-import Github from "./assets/github.svg";
+import GithubIcon from "./assets/github.svg";
+import NpmIcon from "./assets/npm.svg";
+
+export const AnchorChip = (props) => (
+  <a className="anchor-chip" href={props.href} target="_blank">
+    <img className="anchor-chip__icon" src={props.src} alt={props.name} />
+    <span className="anchor-chip__name">{props.name}</span>
+  </a>
+);
+
+export const HookCard = (props) => (
+  <div className="hook-card">
+    <h4 className="hook-card__name">{props.name}</h4>
+    <div className="hook-card__description">{props.children}</div>
+  </div>
+);
 
 <Meta title="Introduction" />
 
-<style>{``}</style>
+# @jinpill/react-libs
+
+<AnchorChip
+  name="Github"
+  src={GithubIcon}
+  href="https://github.com/jinpill/react-libs"
+/>
+
+<AnchorChip
+  name="NPM"
+  src={NpmIcon}
+  href="https://www.npmjs.com/package/@jinpill/react-libs?activeTab=readme"
+/>
+
+Jinpill's personal react libraries.
+
+## Installation
+
+```bash
+# npm
+npm i -D @jinpill/react-libs
+
+# yarn
+yarn add -D @jinpill/react-libs
+
+# pnpm
+pnpm add -D @jinpill/react-libs
+```
+
+## Usage
+
+Import and use the components or hooks in your project.
+
+## Components
+
+See the **COMPONENTS** directory.
+
+## Hooks
+
+<HookCard name="useStateRef">
+  This hook return the ref object.
+  <br /> The current of ref object changes when the state changes.
+</HookCard>
+
+<style>
+  {`
+  h1, h2, h3, h4, h5, h6, strong {
+    color: #ff6b6b !important;
+  }
+
+  .anchor-chip {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.375rem 0.5rem;
+
+    border-radius: 0.25rem;
+    border: 1px solid rgba(38, 85, 115, 0.15);
+    background-color: #ffffff;
+    box-shadow: rgba(0, 0, 0, 0.1) 0 0.0625rem 0.1875rem 0;
+  }
+
+  .anchor-chip__icon {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  .anchor-chip__name {
+    margin-left: 0.375rem;
+    transform: translateY(0.0625rem);
+
+    text-decoration: none;
+    color: #404040;
+    font-size: 0.875rem;
+  }
+
+  .hook-card {
+    padding: 1.25rem;
+    border-radius: 0.25rem;
+    border: 1px solid rgba(38, 85, 115, 0.15);
+    background-color: #ffffff;
+    box-shadow: rgba(0, 0, 0, 0.1) 0 0.0625rem 0.1875rem 0;
+  }
+
+  .hook-card + .hook-card {
+    margin-top: 1rem;
+  }
+
+  .hook-card__name {
+    margin: 0;
+    font-size: 1rem;
+  }
+
+  .hook-card__description {
+    margin-top: 0.25rem;
+    font-size: 0.875rem;
+  }
+
+  .hook-card__description p {
+    margin: 0;
+  }
+  `}
+</style>
