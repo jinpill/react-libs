@@ -2,8 +2,12 @@
   "env": {
     "browser": true
   },
-  "extends": ["plugin:react/recommended", "prettier"],
-  "plugins": ["jsx-a11y", "import", "react-hooks"],
+  "extends": [
+    "plugin:react/recommended",
+    "prettier",
+    "plugin:@typescript-eslint/recommended"
+  ],
+  "plugins": ["jsx-a11y", "import", "react-hooks", "@typescript-eslint"],
   "settings": {
     "react": {
       "version": "detect"
@@ -20,9 +24,10 @@
   "rules": {
     "no-unused-expressions": "warn",
     "no-unused-labels": "warn",
-    "no-unused-vars": "warn",
+    "no-unused-vars": "off",
     "no-console": "warn",
     "react-hooks/rules-of-hooks": "warn",
-    "react-hooks/exhaustive-deps": "warn"
+    "react-hooks/exhaustive-deps": "warn",
+    "@typescript-eslint/no-unused-vars": "warn"
   }
 }
