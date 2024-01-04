@@ -1,0 +1,23 @@
+{
+  "New Component Template": {
+    "prefix": "new-component",
+    "body": [
+      "import React from \"react\";",
+      "import classNames from \"classnames\";",
+      "import style from \"./style.module.scss\";",
+      "",
+      "type ${1:${TM_FILENAME_BASE}}Props = {",
+      "  ${2}",
+      "}",
+      "",
+      "const ${1:${TM_FILENAME_BASE}} = (props: ${1:${TM_FILENAME_BASE}}Props) => {",
+      "  ${3}",
+      "  return null;",
+      "};",
+      "",
+      "export default ${1:${TM_FILENAME_BASE}};",
+      ""
+    ],
+    "description": "컴포넌트 템플릿을 작성합니다."
+  }
+}
