@@ -12,5 +12,5 @@
     "declaration": true,
     "esModuleInterop": true
   },
-  "exclude": ["node_modules", "build", "src/stories/**"]
+  "exclude": ["node_modules", "dist", "src/stories/**"]
 }
