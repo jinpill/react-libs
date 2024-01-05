@@ -1,7 +1,9 @@
 import fs from "fs";
 import babel from "@rollup/plugin-babel";
+import commonjs from "@rollup/plugin-commonjs";
 import { nodeResolve } from "@rollup/plugin-node-resolve";
 import { terser } from "rollup-plugin-terser";
+import postcss from "rollup-plugin-postcss";
 
 const pkg = JSON.parse(
   fs.readFileSync("./package.json", { encoding: "utf-8" }),
@@ -15,10 +17,26 @@ export default {
     nodeResolve({
       extensions,
     }),
+    commonjs({
+      include: /node_modules/,
+      requireReturnsDefault: "auto",
+    }),
     babel({
       extensions,
       babelHelpers: "bundled",
       exclude: "node_modules/**",
+    }),
+    postcss({
+      extensions: [".scss", ".sass"],
+      modules: true,
+      use: [
+        [
+          "sass",
+          {
+            includePaths: ["./node_modules"],
+          },
+        ],
+      ],
     }),
     terser(),
   ],
