@@ -1,8 +1,10 @@
 import fs from "fs";
+import path from "path";
 import babel from "@rollup/plugin-babel";
+import terser from "@rollup/plugin-terser";
 import commonjs from "@rollup/plugin-commonjs";
+import alias from "@rollup/plugin-alias";
 import { nodeResolve } from "@rollup/plugin-node-resolve";
-import { terser } from "rollup-plugin-terser";
 import postcss from "rollup-plugin-postcss";
 
 const pkg = JSON.parse(
@@ -14,6 +16,9 @@ export default {
   input: "src/index.tsx",
   external: ["react"],
   plugins: [
+    alias({
+      entries: [{ find: "@", replacement: path.resolve(__dirname, "src") }],
+    }),
     nodeResolve({
       extensions,
     }),
