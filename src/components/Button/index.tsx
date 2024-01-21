@@ -17,6 +17,8 @@ export type ButtonProps = {
   onPointerLeave?: (event: React.PointerEvent<HTMLButtonElement>) => void;
   onPointerDown?: (event: React.PointerEvent<HTMLButtonElement>) => void;
   onPointerUp?: (event: React.PointerEvent<HTMLButtonElement>) => void;
+  onFocus?: (event: React.FocusEvent<HTMLButtonElement>) => void;
+  onBlur?: (event: React.FocusEvent<HTMLButtonElement>) => void;
 
   className?: string;
   children?: React.ReactNode;
@@ -25,13 +27,9 @@ export type ButtonProps = {
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   (props, ref) => {
     const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-      if (props.href) {
-        window.location.href = props.href;
-      }
-
-      if (props.onClick) {
-        props.onClick(event);
-      }
+      props.onClick?.(event);
+      if (!props.href) return;
+      window.location.href = props.href;
     };
 
     return (
@@ -49,7 +47,10 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         onPointerLeave={props.onPointerLeave}
         onPointerDown={props.onPointerDown}
         onPointerUp={props.onPointerUp}
+        onFocus={props.onFocus}
+        onBlur={props.onBlur}
       >
+        <div className={style.focusAnimation} />
         {props.children}
         {props.text}
       </button>
