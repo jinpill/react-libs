@@ -7,14 +7,37 @@
   position: relative;
 
   border-radius: 0.25rem;
-  border: 1px solid #d3d3d3;
-  background-color: white;
+  border: 1px solid;
 
-  color: #303030;
   user-select: none;
 
   cursor: pointer;
   overflow: hidden;
+  transition: filter 0.2s ease-in-out;
+
+  &.primary {
+    border-color: #208efc;
+    background-color: #208efc;
+    color: #ffffff;
+  }
+
+  &.secondary {
+    border-color: #d3d3d3;
+    background-color: #ffffff;
+    color: #303030;
+  }
+
+  &.tertiary {
+    border-color: #d3d3d3;
+    background-color: #d3d3d3;
+    color: #303030;
+  }
+
+  &.danger {
+    border-color: #ff4040;
+    background-color: #ff4040;
+    color: #ffffff;
+  }
 
   &.small {
     min-width: 4.625rem;
@@ -48,6 +71,18 @@
       height: 5rem;
     }
   }
+
+  &:hover {
+    filter: brightness(1.2);
+  }
+
+  &:active {
+    filter: brightness(0.9);
+  }
+
+  > * {
+    pointer-events: none;
+  }
 }
 
 .focusAnimation {
@@ -74,7 +109,8 @@
 
   animation: fadeIn 0.2s ease-in-out forwards;
 
-  .button:not(:focus) & {
+  .button:not(:focus) &,
+  .button:active & {
     animation: fadeOut 0.2s ease-in-out forwards;
   }
 
@@ -97,9 +133,13 @@
     left: 50%;
 
     border-radius: 50%;
-    background-color: rgba(black, 0.075);
+    background-color: rgba(black, 0.1);
 
-    pointer-events: none;
     animation: scaleCircle 1.5s ease-in-out infinite alternate;
   }
+}
+
+.content {
+  position: relative;
+  z-index: 1;
 }
