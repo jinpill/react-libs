@@ -13,30 +13,59 @@
 
   cursor: pointer;
   overflow: hidden;
-  transition: filter 0.2s ease-in-out;
+  transition: 0.2s ease-in-out;
+  transition-property: filter, color, background-color, border-color;
 
   &.primary {
     border-color: #208efc;
     background-color: #208efc;
     color: #ffffff;
+
+    &:disabled {
+      border-color: #9bc5f8;
+      background-color: #9bc5f8;
+      color: #ffffff;
+    }
   }
 
   &.secondary {
     border-color: #d3d3d3;
     background-color: #ffffff;
-    color: #303030;
+    color: #404040;
+
+    &:disabled {
+      border-color: #f0f0f0;
+      background-color: #ffffff;
+      color: #acacac;
+    }
   }
 
   &.tertiary {
     border-color: #d3d3d3;
     background-color: #d3d3d3;
-    color: #303030;
+    color: #404040;
+
+    &:disabled {
+      border-color: #f0f0f0;
+      background-color: #f0f0f0;
+      color: #acacac;
+    }
   }
 
   &.danger {
     border-color: #ff4040;
     background-color: #ff4040;
     color: #ffffff;
+
+    &:disabled {
+      border-color: #f2a3a1;
+      background-color: #f2a3a1;
+      color: #ffffff;
+    }
+  }
+
+  &:disabled {
+    cursor: not-allowed;
   }
 
   &.small {
@@ -72,11 +101,11 @@
     }
   }
 
-  &:hover {
-    filter: brightness(1.2);
+  &:not(:disabled):hover {
+    filter: brightness(1.05);
   }
 
-  &:active {
+  &:not(:disabled):active {
     filter: brightness(0.9);
   }
 
@@ -107,11 +136,13 @@
     }
   }
 
-  animation: fadeIn 0.2s ease-in-out forwards;
+  animation: fadeIn 0.4s ease-in-out forwards;
 
   .button:not(:focus) &,
-  .button:active & {
-    animation: fadeOut 0.2s ease-in-out forwards;
+  .button:active &,
+  .button:hover &,
+  .button:disabled & {
+    animation: fadeOut 0.4s ease-in-out forwards;
   }
 
   @keyframes scaleCircle {
