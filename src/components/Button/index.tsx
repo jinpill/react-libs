@@ -11,6 +11,8 @@ export type ButtonProps = {
   text?: string;
   href?: string;
   isDisabled?: boolean;
+  isFullWidth?: boolean;
+  isProcessing?: boolean;
 
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
   onPointerEnter?: (event: React.PointerEvent<HTMLButtonElement>) => void;
@@ -40,6 +42,10 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
           props.className,
           style[props.role ?? "primary"],
           style[props.size ?? "medium"],
+          {
+            [style.fullWidth]: props.isFullWidth,
+            [style.processing]: props.isProcessing,
+          },
         )}
         disabled={props.isDisabled}
         onClick={handleClick}
