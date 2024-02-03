@@ -8,13 +8,14 @@
 
   border-radius: 0.25rem;
   border: 1px solid;
+  outline: 0.1875rem solid transparent;
 
   user-select: none;
 
   cursor: pointer;
   overflow: hidden;
   transition: 0.2s ease-in-out;
-  transition-property: filter, color, background-color, border-color;
+  transition-property: filter, color, background-color, border-color, outline;
 
   &.primary {
     border-color: #208efc;
@@ -25,6 +26,10 @@
       border-color: #9bc5f8;
       background-color: #9bc5f8;
       color: #ffffff;
+    }
+
+    &:focus {
+      outline: 0.1875rem solid rgba(#208efc, 0.33);
     }
   }
 
@@ -38,6 +43,10 @@
       background-color: #ffffff;
       color: #acacac;
     }
+
+    &:focus {
+      outline: 0.1875rem solid rgba(#d3d3d3, 0.33);
+    }
   }
 
   &.tertiary {
@@ -49,6 +58,10 @@
       border-color: #f0f0f0;
       background-color: #f0f0f0;
       color: #acacac;
+    }
+
+    &:focus {
+      outline: 0.1875rem solid rgba(#d3d3d3, 0.33);
     }
   }
 
@@ -62,6 +75,10 @@
       background-color: #f2a3a1;
       color: #ffffff;
     }
+
+    &:focus {
+      outline: 0.1875rem solid rgba(#ff4040, 0.33);
+    }
   }
 
   &:disabled {
@@ -72,33 +89,18 @@
     min-width: 4.625rem;
     height: 1.75rem;
     font-size: 0.75rem;
-
-    .focusAnimation::after {
-      width: 3rem;
-      height: 3rem;
-    }
   }
 
   &.medium {
     min-width: 5.625rem;
     height: 2.25rem;
     font-size: 0.875rem;
-
-    .focusAnimation::after {
-      width: 4rem;
-      height: 4rem;
-    }
   }
 
   &.large {
     min-width: 6.875rem;
     height: 3.125rem;
     font-size: 1rem;
-
-    .focusAnimation::after {
-      width: 5rem;
-      height: 5rem;
-    }
   }
 
   &:not(:disabled):hover {
@@ -114,63 +116,51 @@
   }
 }
 
-.focusAnimation {
-  @keyframes fadeIn {
-    0% {
-      opacity: 0;
-    }
+.content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-    100% {
-      opacity: 1;
-    }
-  }
+  position: absolute;
+  inset: 0;
+  z-index: 1;
 
-  @keyframes fadeOut {
-    0% {
-      opacity: 1;
-    }
-
-    100% {
-      opacity: 0;
-      display: none;
-    }
-  }
-
-  animation: fadeIn 0.4s ease-in-out forwards;
-
-  .button:not(:focus) &,
-  .button:active &,
-  .button:hover &,
-  .button:disabled & {
-    animation: fadeOut 0.4s ease-in-out forwards;
-  }
-
-  @keyframes scaleCircle {
-    0% {
-      transform: translate(-50%, -50%) scale(1);
-    }
-
-    100% {
-      transform: translate(-50%, -50%) scale(1.25);
-    }
-  }
-
-  &::after {
-    display: block;
-    content: "";
-
-    position: absolute;
-    top: 50%;
-    left: 50%;
-
-    border-radius: 50%;
-    background-color: rgba(black, 0.1);
-
-    animation: scaleCircle 1.5s ease-in-out infinite alternate;
+  .processing & {
+    display: none;
   }
 }
 
-.content {
-  position: relative;
-  z-index: 1;
+.processingAnimation {
+  width: 1.5rem;
+  height: 1.5rem;
+
+  display: none;
+  content: "";
+  box-sizing: border-box;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  border-radius: 50%;
+  border: 0.25rem solid rgba(#ffffff, 0.5);
+  border-right-color: rgba(#ffffff, 0.15);
+  border-bottom-color: rgba(#ffffff, 0.15);
+
+  @keyframes spin {
+    0% {
+      transform: translate(-50%, -50%) rotate(45deg);
+    }
+
+    100% {
+      transform: translate(-50%, -50%) rotate(405deg);
+    }
+  }
+
+  animation: spin 1s ease-in-out infinite;
+
+  .processing & {
+    display: block;
+  }
 }

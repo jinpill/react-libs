@@ -57,6 +57,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         onBlur={props.onBlur}
       >
         <div className={style.focusAnimation} />
+        <div className={style.processingAnimation} />
         <div className={style.content}>
           {props.children}
           {props.text}
