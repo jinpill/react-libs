@@ -116,6 +116,34 @@
   }
 }
 
+@mixin padeIn {
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+
+    100% {
+      opacity: 1;
+    }
+  }
+
+  animation: fadeIn 0.2s ease-in-out forwards;
+}
+
+@mixin fadeOut {
+  @keyframes fadeOut {
+    0% {
+      opacity: 1;
+    }
+
+    100% {
+      opacity: 0;
+    }
+  }
+
+  animation: fadeOut 0.2s ease-in-out forwards;
+}
+
 .content {
   display: flex;
   justify-content: center;
@@ -125,42 +153,47 @@
   inset: 0;
   z-index: 1;
 
+  @include padeIn;
+
   .processing & {
-    display: none;
+    @include fadeOut;
   }
 }
 
 .processingAnimation {
-  width: 1.5rem;
-  height: 1.5rem;
+  @include padeIn;
 
-  display: none;
-  content: "";
-  box-sizing: border-box;
-
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-
-  border-radius: 50%;
-  border: 0.25rem solid rgba(#ffffff, 0.5);
-  border-right-color: rgba(#ffffff, 0.15);
-  border-bottom-color: rgba(#ffffff, 0.15);
-
-  @keyframes spin {
-    0% {
-      transform: translate(-50%, -50%) rotate(45deg);
-    }
-
-    100% {
-      transform: translate(-50%, -50%) rotate(405deg);
-    }
+  .button:not(.processing) & {
+    @include fadeOut;
   }
 
-  animation: spin 1s ease-in-out infinite;
+  &::after {
+    width: 1.5rem;
+    height: 1.5rem;
 
-  .processing & {
-    display: block;
+    content: "";
+    box-sizing: border-box;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    border-radius: 50%;
+    border: 0.25rem solid rgba(#ffffff, 0.5);
+    border-right-color: rgba(#ffffff, 0.15);
+    border-bottom-color: rgba(#ffffff, 0.15);
+
+    @keyframes spin {
+      0% {
+        transform: translate(-50%, -50%) rotate(45deg);
+      }
+
+      100% {
+        transform: translate(-50%, -50%) rotate(405deg);
+      }
+    }
+
+    animation: spin 1s ease-in-out infinite;
   }
 }
