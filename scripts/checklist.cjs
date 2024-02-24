@@ -1,54 +1,68 @@
 const clc = require("cli-color");
 const inquirer = require("inquirer");
+const checklist = require("./checklist.json");
 
-function* getQuestion() {
-  yield {
-    name: "version",
-    question: {
-      type: "confirm",
-      message: "Did you update the package version?",
-      default: false,
-    },
-    feedback: "You need to update the package version",
-  };
+(async function repeatAsking(i) {
+  if (!Array.isArray(checklist)) {
+    throwError("INVALID", "Checklist is not an array");
+    return;
+  }
 
-  yield {
-    name: "readme",
-    question: {
-      type: "confirm",
-      message: "Did you update the README.md file?",
-      default: false,
-    },
-    feedback: "You need to update the README.md file",
-  };
+  if (hasInvalidOption()) {
+    throwError("INVALID", "Checklist has invalid option");
+    return;
+  }
 
-  yield {
-    name: "storybook",
-    question: {
-      type: "confirm",
-      message: "Did you update the Introduction.mdx file?",
-      default: false,
-    },
-    feedback: "You need to update the Introduction.mdx file",
-  };
-}
-
-const question = getQuestion();
-(async function repeatAsking() {
-  const { value, done } = question.next();
-  if (done) return;
+  const NAME = "__answer";
+  const option = checklist[i];
+  if (!option) {
+    showMessage("completed", "Checklist is completed");
+    return;
+  }
 
   const answers = await inquirer.prompt([
     {
-      name: value.name,
-      ...value.question,
+      type: "confirm",
+      message: option.question,
+      default: false,
+      name: NAME,
     },
   ]);
 
-  if (!answers[value.name]) {
-    console.log(`${clc.bgRed(" ABORTED ")} ${clc.red(value.feedback)}`);
-    throw new Error("Aborted by some checklist anwser");
+  if (!answers[NAME]) {
+    throwError("ABORTED", option.feedback);
+    return;
   }
 
-  repeatAsking();
-})();
+  repeatAsking(++i);
+})(0);
+
+/**
+ * @param {string} _heading
+ * @param {string} _message
+ */
+function showMessage(_heading, _message) {
+  const heading = clc.bgGreen(` ${_heading.toUpperCase()} `);
+  const message = clc.green(_message);
+  console.log(`${heading} ${message}`);
+}
+
+/**
+ * @param {string} _heading
+ * @param {string} _message
+ */
+function throwError(_heading, _message) {
+  const heading = clc.bgRed(` ${_heading.toUpperCase()} `);
+  const message = clc.red(_message);
+
+  console.log(`${heading} ${message}`);
+  throw new Error("Aborted checking checklist");
+}
+
+function hasInvalidOption() {
+  return checklist.some((item) => {
+    if (typeof item.question !== "string") return true;
+    if (typeof item.feedback !== "string") return true;
+    return false;
+  });
+}

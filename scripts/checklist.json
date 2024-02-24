@@ -1,0 +1,14 @@
+[
+  {
+    "question": "Did you update the package version?",
+    "feedback": "You need to update the package version"
+  },
+  {
+    "question": "Did you update the README.md file?",
+    "feedback": "You need to update the README.md file"
+  },
+  {
+    "question": "Did you update the Introduction.mdx file?",
+    "feedback": "You need to update the Introduction.mdx file"
+  }
+]
