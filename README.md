@@ -21,12 +21,12 @@ Import and use the components or hooks in your project.
 
 ## Components
 
-| Name       | Usage              |
-| :--------- | :----------------- |
-| **Button** | A button component |
+| Name       | Usage                     |
+| :--------- | :------------------------ |
+| **Button** | A button typed component. |
 
 ## Hooks
 
-| Name            | Usage                                                |
-| :-------------- | :--------------------------------------------------- |
-| **useStateRef** | This hook return a ref object refering to the state. |
+| Name            | Usage                                                 |
+| :-------------- | :---------------------------------------------------- |
+| **useStateRef** | This hook returns a ref object refering to the state. |

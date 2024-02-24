@@ -1,7 +1,7 @@
 import { useRef, useEffect } from "react";
 
 /**
- * A hook that returns a ref object with the state as its current value.
+ * This hook returns a ref object refering to the state.
  *
  * When the state changes, the ref object will be updated with the new state.
  * @param state The state to be defined as a ref object.

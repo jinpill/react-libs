@@ -9,13 +9,6 @@ export const AnchorChip = (props) => (
   </a>
 );
 
-export const HookCard = (props) => (
-  <div className="hook-card">
-    <h4 className="hook-card__name">{props.name}</h4>
-    <div className="hook-card__description">{props.children}</div>
-  </div>
-);
-
 <Meta title="Introduction" />
 
 # @jinpill/react-libs
@@ -57,10 +50,7 @@ See the **COMPONENTS** directory.
 
 ## Hooks
 
-<HookCard name="useStateRef">
-  This hook return the ref object.
-  <br /> The current of ref object changes when the state changes.
-</HookCard>
+See the **HOOKS** directory.
 
 <style>
   {`
@@ -93,30 +83,16 @@ See the **COMPONENTS** directory.
     font-size: 0.875rem;
   }
 
-  .hook-card {
-    padding: 1.25rem;
-    border-radius: 0.25rem;
-    border: 1px solid rgba(38, 85, 115, 0.15);
-    background-color: #ffffff;
+  pre {
+    padding: 1rem 0.75rem 1.25rem !important;
+
+    border-radius: 0.25rem !important;
+    border: 1px solid rgba(38, 85, 115, 0.15) !important;
+    background-color: #ffffff !important;
     box-shadow: rgba(0, 0, 0, 0.1) 0 0.0625rem 0.1875rem 0;
-  }
 
-  .hook-card + .hook-card {
-    margin-top: 1rem;
-  }
-
-  .hook-card__name {
-    margin: 0;
-    font-size: 1rem;
-  }
-
-  .hook-card__description {
-    margin-top: 0.25rem;
-    font-size: 0.875rem;
-  }
-
-  .hook-card__description p {
-    margin: 0;
+    color: #404040 !important;
+    font-size: 0.875rem !important;
   }
   `}
 </style>
