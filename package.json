@@ -13,7 +13,7 @@
     "prettier": "prettier --write '{src}/*.tsx'",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "prepublish": "pnpm build",
+    "prepublish": "node scripts/scripts.cjs && pnpm build",
     "postpublish": "git push && git push --tags",
     "publish:patch": "pnpm version patch && pnpm publish",
     "publish:minor": "pnpm version minor && pnpm publish",
