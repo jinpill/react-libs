@@ -21,8 +21,12 @@ Import and use the components or hooks in your project.
 
 ## Components
 
+| Name       | Usage              |
+| :--------- | :----------------- |
+| **Button** | A button component |
+
 ## Hooks
 
-| Name            | Parameter  | Return                      |
-| :-------------- | :--------- | :-------------------------- |
-| **useStateRef** | `state: T` | `React.MutableRefObject<T>` |
+| Name            | Usage                                                |
+| :-------------- | :--------------------------------------------------- |
+| **useStateRef** | This hook return a ref object refering to the state. |
