@@ -1,5 +1,6 @@
 import React from "react";
 import classNames from "classnames";
+import Icon from "@/components/Icon";
 import style from "./style.module.scss";
 
 export type DropdownSize = "small" | "medium" | "large";
@@ -20,6 +21,7 @@ const Dropdown = (props: DropdownProps) => {
       )}
     >
       선택하세요
+      <Icon preset="expand-more" />
     </button>
   );
 };
