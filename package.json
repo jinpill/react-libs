@@ -6,7 +6,7 @@
   "module": "dist/index.es.js",
   "types": "dist/index.d.ts",
   "umd": "dist/index.umd.js",
-  "packageManager": "pnpm@8.14.1",
+  "packageManager": "pnpm@8.15.4",
   "scripts": {
     "ci": "pnpm i --frozen-lockfile",
     "lint": "eslint src/*",
@@ -85,5 +85,8 @@
   "peerDependencies": {
     "react": "^18.0.0",
     "react-dom": "^18.0.0"
+  },
+  "dependencies": {
+    "react-svg": "^16.1.33"
   }
 }

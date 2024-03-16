@@ -1,0 +1,14 @@
+.icon {
+  height: fit-content;
+  width: fit-content;
+
+  div {
+    width: inherit;
+    height: inherit;
+    pointer-events: none;
+  }
+
+  svg {
+    display: block;
+  }
+}
