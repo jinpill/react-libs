@@ -16,14 +16,14 @@
       "};",
       "",
       "export default ${1:${TM_FILENAME_BASE}};",
-      ""
+      "",
     ],
-    "description": "컴포넌트 템플릿을 작성합니다."
+    "description": "컴포넌트 템플릿을 작성합니다.",
   },
   "New Stories": {
     "prefix": "new-stories",
     "body": [
-      "import ${1:Component} from \"../components/${1:Component}\";",
+      "import ${1:Component} from \"../../components/${1:Component}\";",
       "import type { Meta, StoryObj } from \"@storybook/react\";",
       "",
       "const meta: Meta<typeof ${1:Component}> = {",
@@ -46,8 +46,8 @@
       "    ${5}",
       "  },",
       "};",
-      ""
+      "",
     ],
-    "description": "스토리북 템플릿을 작성합니다."
-  }
+    "description": "스토리북 템플릿을 작성합니다.",
+  },
 }
