@@ -12,8 +12,14 @@ const meta: Meta<typeof Icon> = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {
+export const SourceType: Story = {
   args: {
     src: "https://fonts.gstatic.com/s/i/short-term/release/materialsymbolsoutlined/login/default/24px.svg",
+  },
+};
+
+export const PresetType: Story = {
+  args: {
+    preset: "expand-more",
   },
 };
