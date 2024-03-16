@@ -24,8 +24,11 @@ const Icon = React.forwardRef<HTMLDivElement, IconProps>((props, ref) => {
 
   return (
     <div ref={ref} className={classNames(style.icon, props.className)}>
-      {props.src && <IconFromSource src={props.src} />}
-      {props.preset && <IconFromPreset preset={props.preset} />}
+      {props.src ? (
+        <IconFromSource src={props.src} />
+      ) : props.preset ? (
+        <IconFromPreset preset={props.preset} />
+      ) : null}
     </div>
   );
 });
