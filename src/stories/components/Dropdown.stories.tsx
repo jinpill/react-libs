@@ -1,6 +1,9 @@
 import Dropdown from "../../components/Dropdown";
 import type { Meta, StoryObj } from "@storybook/react";
 
+/**
+ * A simple dropdown component for user interaction.
+ */
 const meta: Meta<typeof Dropdown> = {
   title: "Components/Dropdown",
   component: Dropdown,

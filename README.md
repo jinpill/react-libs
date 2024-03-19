@@ -21,9 +21,12 @@ Import and use the components or hooks in your project.
 
 ## Components
 
-| Name       | Usage                     |
-| :--------- | :------------------------ |
-| **Button** | A button typed component. |
+| Name         | Usage                                                                       |
+| :----------- | :-------------------------------------------------------------------------- |
+| **Button**   | A simple button component for user interaction.                             |
+| **Dropdown** | A simple dropdown component for user interaction.                           |
+| **Icon**     | A component that displays an icon from source or preset name.               |
+| **Ellipsis** | A component that displays its children with an ellipsis when they overflow. |
 
 ## Hooks
 

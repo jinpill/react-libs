@@ -26,9 +26,6 @@ export type ButtonProps = {
   children?: React.ReactNode;
 };
 
-/**
- * A button typed component.
- */
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   (props, ref) => {
     const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
