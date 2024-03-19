@@ -1,6 +1,9 @@
 import React from "react";
 import classNames from "classnames";
+
+import Ellipsis from "@/components/Ellipsis";
 import Icon from "@/components/Icon";
+
 import style from "./style.module.scss";
 
 export type DropdownSize = "small" | "medium" | "large";
@@ -20,8 +23,8 @@ const Dropdown = (props: DropdownProps) => {
         style[props.size ?? "medium"],
       )}
     >
-      선택하세요
-      <Icon preset="expand-more" />
+      <Ellipsis className={style.text}>선택하세요</Ellipsis>
+      <Icon className={style.icon} preset="expand-more" />
     </button>
   );
 };

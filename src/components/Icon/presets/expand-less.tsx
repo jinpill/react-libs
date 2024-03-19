@@ -1,6 +1,6 @@
 import React from "react";
 
-const ExpandMore = () => (
+const ExpandLess = () => (
   <svg
     width="24"
     height="24"
@@ -9,7 +9,7 @@ const ExpandMore = () => (
     xmlns="http://www.w3.org/2000/svg"
   >
     <path
-      d="M6 9L12 16L18 9"
+      d="M18 15L12 8L6 15"
       stroke="currentColor"
       stroke-width="1.5"
       stroke-linecap="round"
@@ -18,4 +18,4 @@ const ExpandMore = () => (
   </svg>
 );
 
-export default ExpandMore;
+export default ExpandLess;
