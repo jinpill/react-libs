@@ -16,6 +16,7 @@ export type ScrollbarProps = {
   margin: number | `${number}`;
 
   className?: string;
+  style?: React.CSSProperties;
   children?: React.ReactNode;
 };
 
@@ -101,7 +102,10 @@ const Scrollbar = (props: ScrollbarProps) => {
     });
   };
 
-  const handleScroll = () => {
+  const handleScroll = (event: React.UIEvent) => {
+    event.stopPropagation();
+    event.preventDefault();
+
     updateScrollbar();
     setIsScrolling(true);
     timeout.set(() => setIsScrolling(false), 1000);
@@ -186,7 +190,7 @@ const Scrollbar = (props: ScrollbarProps) => {
       if (event.deltaY === 0) return;
       event.preventDefault();
 
-      const $target = event.target as HTMLElement;
+      const $target = event.currentTarget as HTMLElement;
       const nextScrollLeft = $contents.scrollLeft + event.deltaY;
       $target.scrollLeft = nextScrollLeft;
     };
@@ -197,6 +201,7 @@ const Scrollbar = (props: ScrollbarProps) => {
 
   return (
     <div
+      style={props.style}
       className={classNames(
         style.scrollbar,
         props.className,

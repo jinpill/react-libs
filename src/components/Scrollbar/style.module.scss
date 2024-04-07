@@ -23,19 +23,15 @@ $scrollbar-width: 0.25rem;
 }
 
 .contents {
-  display: flex;
-
   &::-webkit-scrollbar {
     display: none;
   }
 
   .vertical > & {
-    flex-direction: column;
     overflow-y: auto;
   }
 
   .horizontal > & {
-    flex-direction: row;
     overflow-x: auto;
   }
 }
