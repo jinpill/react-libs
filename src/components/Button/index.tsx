@@ -47,7 +47,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
             [style.processing]: props.isProcessing,
           },
         )}
-        disabled={props.isDisabled}
+        disabled={props.isDisabled || props.isProcessing}
         onClick={handleClick}
         onPointerEnter={props.onPointerEnter}
         onPointerLeave={props.onPointerLeave}
@@ -56,7 +56,6 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         onFocus={props.onFocus}
         onBlur={props.onBlur}
       >
-        <div className={style.focusAnimation} />
         <div className={style.processingAnimation} />
         <div className={style.content}>
           {props.children}
