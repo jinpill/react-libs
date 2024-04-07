@@ -1,0 +1,98 @@
+@use "sass:math";
+
+$scrollbar-width: 0.25rem;
+
+.scrollbar {
+  display: flex;
+  position: relative;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  &.vertical {
+    height: fit-content;
+    flex-direction: column;
+    overflow-y: auto;
+  }
+
+  &.horizontal {
+    flex-direction: row;
+    overflow-x: auto;
+  }
+}
+
+.contents {
+  display: flex;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  .vertical > & {
+    flex-direction: column;
+    overflow-y: auto;
+  }
+
+  .horizontal > & {
+    flex-direction: row;
+    overflow-x: auto;
+  }
+}
+
+.scrollbarTrack {
+  position: absolute;
+  transition: opacity 0.2s ease-in-out;
+
+  &.disabled {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .vertical > & {
+    width: $scrollbar-width;
+    right: 0;
+  }
+
+  .horizontal > & {
+    height: $scrollbar-width;
+    bottom: 0;
+  }
+}
+
+.scrollbarThumb {
+  $active-width: 0.5rem;
+
+  position: absolute;
+
+  border-radius: math.div($scrollbar-width, 2);
+  background-color: var(--gray-600);
+
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
+  transition-property: opacity, width, height, border-radius, transform;
+
+  &:active {
+    border-radius: math.div($active-width, 2);
+  }
+
+  .vertical > .scrollbarTrack > & {
+    width: $scrollbar-width;
+    right: 0;
+
+    &:active {
+      width: $active-width;
+      transform: translateX(math.div(($active-width - $scrollbar-width), 2));
+    }
+  }
+
+  .horizontal > .scrollbarTrack > & {
+    height: $scrollbar-width;
+    bottom: 0;
+
+    &:active {
+      height: $active-width;
+      transform: translateY(math.div(($active-width - $scrollbar-width), 2));
+    }
+  }
+}

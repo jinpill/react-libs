@@ -3,11 +3,7 @@ $medium-option-height: 2.125rem;
 $small-option-height: 1.5rem;
 $transition: 0.2s ease-in-out;
 
-.options {
-  padding-left: 0;
-  list-style: none;
-  overflow: auto;
-
+.optionsWrapper {
   border-radius: var(--radius-medium);
   border: 1px solid var(--border-primary);
   background-color: var(--bg-white);
@@ -30,6 +26,12 @@ $transition: 0.2s ease-in-out;
     min-width: 8.75rem;
     @include setMaxHeight($small-option-height);
   }
+}
+
+.options {
+  margin: 0;
+  padding-left: 0;
+  list-style: none;
 }
 
 .option {

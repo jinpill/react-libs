@@ -1,4 +1,10 @@
 {
+  "Import A Component": {
+    "prefix": "import-component",
+    "body": "import ${2:${1:Component}} from \"@/components/${1:Component}\";",
+    "description": "컴포넌트를 불러옵니다.",
+    "scope": "javascriptreact,typescriptreact",
+  },
   "New Component Template": {
     "prefix": "new-component",
     "body": [

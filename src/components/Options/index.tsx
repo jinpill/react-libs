@@ -1,5 +1,6 @@
 import React from "react";
 import classNames from "classnames";
+import Scrollbar from "@/components/Scrollbar";
 import Ellipsis from "@/components/Ellipsis";
 import style from "./style.module.scss";
 
@@ -21,22 +22,26 @@ export type OptionsProps = {
 
 export const Options = (props: OptionsProps) => {
   return (
-    <ul
+    <Scrollbar
       className={classNames(
-        style.options,
+        style.optionsWrapper,
         props.className,
         style[props.size ?? "medium"],
       )}
+      direction="vertical"
+      margin="4"
     >
-      {props.options.map((option) => (
-        <li key={option.value} className={style.option}>
-          <Ellipsis className={style.label}>{option.label}</Ellipsis>
-          {option.description && (
-            <div className={style.description}>{option.description}</div>
-          )}
-        </li>
-      ))}
-    </ul>
+      <ul className={style.options}>
+        {props.options.map((option) => (
+          <li key={option.value} className={style.option}>
+            <Ellipsis className={style.label}>{option.label}</Ellipsis>
+            {option.description && (
+              <div className={style.description}>{option.description}</div>
+            )}
+          </li>
+        ))}
+      </ul>
+    </Scrollbar>
   );
 };
 
