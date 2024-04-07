@@ -22,12 +22,12 @@
   &.primary {
     border-color: var(--primary-1);
     background-color: var(--primary-1);
-    color: #ffffff;
+    color: var(--gray-white);
 
     &:disabled {
-      border-color: #9bc5f8;
-      background-color: #9bc5f8;
-      color: #ffffff;
+      border-color: var(--primary-3);
+      background-color: var(--primary-3);
+      color: var(--gray-white);
     }
 
     &:focus {
@@ -36,50 +36,50 @@
   }
 
   &.secondary {
-    border-color: #d3d3d3;
-    background-color: #ffffff;
-    color: #404040;
+    border-color: var(--border-primary);
+    background-color: var(--bg-white);
+    color: var(--text-secondary);
 
     &:disabled {
-      border-color: #f0f0f0;
-      background-color: #ffffff;
-      color: #acacac;
+      border-color: var(--border-disabled);
+      background-color: var(--bg-white);
+      color: var(--text-disabled);
     }
 
     &:focus {
-      outline: 0.1875rem solid rgba(#d3d3d3, 0.33);
+      outline: 0.1875rem solid rgba($border-primary, 0.33);
     }
   }
 
   &.tertiary {
-    border-color: #d3d3d3;
-    background-color: #d3d3d3;
-    color: #404040;
+    border-color: var(--border-primary);
+    background-color: var(--border-primary);
+    color: var(--text-secondary);
 
     &:disabled {
-      border-color: #f0f0f0;
-      background-color: #f0f0f0;
-      color: #acacac;
+      border-color: var(--border-disabled);
+      background-color: var(--border-disabled);
+      color: var(--text-disabled);
     }
 
     &:focus {
-      outline: 0.1875rem solid rgba(#d3d3d3, 0.33);
+      outline: 0.1875rem solid rgba($border-primary, 0.33);
     }
   }
 
   &.danger {
-    border-color: #ff4040;
-    background-color: #ff4040;
-    color: #ffffff;
+    border-color: var(--status-red-1);
+    background-color: var(--status-red-1);
+    color: var(--gray-white);
 
     &:disabled {
-      border-color: #f2a3a1;
-      background-color: #f2a3a1;
-      color: #ffffff;
+      border-color: var(--status-red-3);
+      background-color: var(--status-red-3);
+      color: var(--gray-white);
     }
 
     &:focus {
-      outline: 0.1875rem solid rgba(#ff4040, 0.33);
+      outline: 0.1875rem solid rgba($status-red-1, 0.33);
     }
   }
 
@@ -182,9 +182,9 @@
     transform: translate(-50%, -50%);
 
     border-radius: 50%;
-    border: 0.25rem solid rgba(#ffffff, 0.5);
-    border-right-color: rgba(#ffffff, 0.15);
-    border-bottom-color: rgba(#ffffff, 0.15);
+    border: 0.25rem solid rgba($border-white, 0.5);
+    border-right-color: rgba($border-white, 0.15);
+    border-bottom-color: rgba($border-white, 0.15);
 
     @keyframes spin {
       0% {
