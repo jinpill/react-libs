@@ -1,3 +1,5 @@
+@import "../../styles//variables.scss";
+
 .button {
   width: fit-content;
 
@@ -18,8 +20,8 @@
   transition-property: filter, color, background-color, border-color, outline;
 
   &.primary {
-    border-color: #208efc;
-    background-color: #208efc;
+    border-color: var(--primary-1);
+    background-color: var(--primary-1);
     color: #ffffff;
 
     &:disabled {
@@ -29,7 +31,7 @@
     }
 
     &:focus {
-      outline: 0.1875rem solid rgba(#208efc, 0.33);
+      outline: 0.1875rem solid rgba($primary-1, 0.33);
     }
   }
 

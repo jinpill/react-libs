@@ -1,11 +1,13 @@
 import fs from "fs";
 import path from "path";
+
 import babel from "@rollup/plugin-babel";
 import terser from "@rollup/plugin-terser";
 import commonjs from "@rollup/plugin-commonjs";
 import alias from "@rollup/plugin-alias";
 import { nodeResolve } from "@rollup/plugin-node-resolve";
 import postcss from "rollup-plugin-postcss";
+import copy from "rollup-plugin-copy";
 
 const pkg = JSON.parse(
   fs.readFileSync("./package.json", { encoding: "utf-8" }),
@@ -44,6 +46,9 @@ export default {
       ],
     }),
     terser(),
+    copy({
+      targets: [{ src: "src/styles/variables.*", dest: "dist" }],
+    }),
   ],
   output: [
     {

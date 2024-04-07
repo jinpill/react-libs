@@ -1,0 +1,19 @@
+{
+  "Set CSS Snippet": {
+    "prefix": "setvar",
+    "body": [
+      "\"${1:${TM_SELECTED_TEXT}}\": {",
+      "  \"prefix\": \"${1:${TM_SELECTED_TEXT}}\",",
+      "  \"body\": \"var(${1:${TM_SELECTED_TEXT}})\",",
+      "  \"scope\": \"css,scss\",",
+      "  \"description\": \"${2}\",",
+      "},",
+    ],
+  },
+  "--primary-1": {
+    "prefix": "--primary-1",
+    "body": "var(--primary-1)",
+    "scope": "css,scss",
+    "description": "#208efc",
+  },
+}
