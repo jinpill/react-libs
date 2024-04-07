@@ -27,7 +27,7 @@
       "import type { Meta, StoryObj } from \"@storybook/react\";",
       "",
       "const meta: Meta<typeof ${1:Component}> = {",
-      "  title: \"Example/${1:Component}\",",
+      "  title: \"Components/${1:Component}\",",
       "  component: ${1:Component},",
       "  parameters: {",
       "    ${3}",

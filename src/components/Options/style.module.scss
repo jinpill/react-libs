@@ -1,0 +1,81 @@
+$large-option-height: 2.375rem;
+$medium-option-height: 2.125rem;
+$small-option-height: 1.5rem;
+$transition: 0.2s ease-in-out;
+
+.options {
+  padding-left: 0;
+  list-style: none;
+  overflow: auto;
+
+  border-radius: var(--radius-medium);
+  border: 1px solid var(--border-primary);
+  background-color: var(--bg-white);
+
+  @mixin setMaxHeight($option-height) {
+    max-height: calc(#{$option-height * 5} + 2px);
+  }
+
+  &.large {
+    min-width: 15rem;
+    @include setMaxHeight($large-option-height);
+  }
+
+  &.medium {
+    min-width: 12.5rem;
+    @include setMaxHeight($medium-option-height);
+  }
+
+  &.small {
+    min-width: 8.75rem;
+    @include setMaxHeight($small-option-height);
+  }
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  background-color: var(--bg-white);
+  user-select: none;
+  transition: filter $transition;
+  cursor: pointer;
+
+  .large & {
+    height: $large-option-height;
+    gap: 1rem;
+    padding: 0 0.75rem;
+    font-size: var(--text-large);
+  }
+
+  .medium & {
+    height: $medium-option-height;
+    gap: 0.75rem;
+    padding: 0 0.75rem;
+    font-size: var(--text-medium);
+  }
+
+  .small & {
+    height: $small-option-height;
+    gap: 0.5rem;
+    padding: 0 0.5rem;
+    font-size: var(--text-small);
+  }
+
+  &:hover {
+    filter: brightness(0.9);
+  }
+}
+
+.label {
+  width: 0;
+  flex: 1 1 0;
+  color: var(--text-primary);
+}
+
+.description {
+  flex: none;
+  color: var(--text-tertiary);
+  font-size: 0.875em;
+}

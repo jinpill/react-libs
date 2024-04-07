@@ -251,10 +251,54 @@
     "scope": "css,scss",
     "description": "#495057",
   },
+  "--text-tertiary": {
+    "prefix": "--text-tertiary",
+    "body": "var(--text-tertiary)",
+    "scope": "css,scss",
+    "description": "#868e96",
+  },
   "--text-disabled": {
     "prefix": "--text-disabled",
     "body": "var(--text-disabled)",
     "scope": "css,scss",
     "description": "#adb5bd",
+  },
+
+  "--text-large": {
+    "prefix": "--text-large",
+    "body": "var(--text-large)",
+    "scope": "css,scss",
+    "description": "1rem (16px)",
+  },
+  "--text-medium": {
+    "prefix": "--text-medium",
+    "body": "var(--text-medium)",
+    "scope": "css,scss",
+    "description": "0.875rem (14px)",
+  },
+  "--text-small": {
+    "prefix": "--text-small",
+    "body": "var(--text-small)",
+    "scope": "css,scss",
+    "description": "0.75rem (12px)",
+  },
+
+  "--radius-large": {
+    "prefix": "--radius-large",
+    "body": "var(--radius-large)",
+    "scope": "css,scss",
+    "description": "0.5rem (8px)",
+  },
+  "--radius-medium": {
+    "prefix": "--radius-medium",
+    "body": "var(--radius-medium)",
+    "scope": "css,scss",
+    "description": "0.25rem (4px)",
+  },
+  "--radius-small": {
+    "prefix": "--radius-small",
+    "body": "var(--radius-small)",
+    "scope": "css,scss",
+    "description": "0.125rem (2px)",
   },
 }

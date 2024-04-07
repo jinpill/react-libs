@@ -96,19 +96,19 @@ $transition: 0.2s ease-in-out;
   &.small {
     min-width: 4.625rem;
     height: 1.75rem;
-    font-size: 0.75rem;
+    font-size: var(--text-small);
   }
 
   &.medium {
     min-width: 5.625rem;
     height: 2.25rem;
-    font-size: 0.875rem;
+    font-size: var(--text-medium);
   }
 
   &.large {
     min-width: 6.875rem;
     height: 3.125rem;
-    font-size: 1rem;
+    font-size: var(--text-large);
   }
 
   &:not(:disabled):hover {

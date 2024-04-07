@@ -45,5 +45,14 @@
   --text-white: var(--gray-white);
   --text-primary: var(--gray-900);
   --text-secondary: var(--gray-700);
+  --text-tertiary: var(--gray-600);
   --text-disabled: var(--gray-500);
+
+  --text-large: 1rem;
+  --text-medium: 0.875rem;
+  --text-small: 0.75rem;
+
+  --radius-large: 0.5rem;
+  --radius-medium: 0.25rem;
+  --radius-small: 0.125rem;
 }
