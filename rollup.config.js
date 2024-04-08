@@ -16,7 +16,7 @@ const extensions = [".ts", ".tsx"];
 
 export default {
   input: "src/index.tsx",
-  external: ["react"],
+  external: ["react", "content-type", "object-assign"],
   plugins: [
     alias({
       entries: [{ find: "@", replacement: path.resolve(__dirname, "src") }],
@@ -68,7 +68,9 @@ export default {
       format: "umd",
       sourcemap: true,
       globals: {
-        react: "react",
+        "react": "react",
+        "content-type": "contentType",
+        "object-assign": "require$$1",
       },
     },
   ],
