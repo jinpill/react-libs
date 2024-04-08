@@ -2,7 +2,7 @@ import Icon from "../../components/Icon";
 import type { Meta, StoryObj } from "@storybook/react";
 
 /**
- * A component that displays an icon from source or preset name.
+ * This component displays SVG icons based on the inputted source or preset name.
  */
 const meta: Meta<typeof Icon> = {
   title: "Components/Icon",

@@ -1,5 +1,12 @@
 import { useEffect, useMemo, useRef } from "react";
 
+/**
+ * This hook helps manage setTimeout easily in React.
+ *
+ * When the component is unmounted, the timeout will be cleared.
+ * Also, the timeout will be cleared when the set function is called.
+ * @returns An object with clear and set functions.
+ */
 const useTimeout = () => {
   const timeoutIdRef = useRef<NodeJS.Timeout | null>(null);
 

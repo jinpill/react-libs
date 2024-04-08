@@ -1,0 +1,114 @@
+import { Meta } from "@storybook/blocks";
+
+<Meta title="Hooks/useTimeout" />
+
+# useTimeout
+
+This hook helps manage setTimeout easily in React.
+
+## Usage
+
+You have to clear the timeout when the component is unmounted. This hook will handle that for you.
+
+Just pass the timeout duration and the callback function. You don't have to worry about clearing the timeout.
+
+### Bad example
+
+This is a bad example because the timeout is not cleared when the component is unmounted.
+
+The alert message will be displayed regardless of whether the component is unmounted or not.
+
+```tsx
+const SomeComponent = () => {
+  useEffect(() => {
+    setTimeout(() => {
+      alert("Hello, world!");
+    }, 1000 * 10);
+  }, []);
+};
+
+export default SomeComponent;
+```
+
+So you have to clear the timeout when the component is unmounted.
+
+```tsx
+const SomeComponent = () => {
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      alert("Hello, world!");
+    }, 1000 * 10);
+
+    return () => {
+      clearTimeout(timeoutId);
+    };
+  }, []);
+};
+
+export default SomeComponent;
+```
+
+### Good example
+
+This hook helps manage the timeout easily. You don't have to worry about clearing the timeout.
+
+```tsx
+import { useTimeout } from "@jinpill/react-libs";
+
+const SomeComponent = () => {
+  const timeout = useTimeout();
+
+  useEffect(() => {
+    timeout.set(() => {
+      alert("Hello, world!");
+    }, 1000 * 10);
+  }, [timeout]); // this `timeout` never changes.
+};
+
+export default SomeComponent;
+```
+
+<style>
+  {`
+  h1, h2, h3, h4, h5, h6, strong {
+    color: #ff6b6b !important;
+  }
+
+  .anchor-chip {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.375rem 0.5rem;
+
+    border-radius: 0.25rem;
+    border: 1px solid rgba(38, 85, 115, 0.15);
+    background-color: #ffffff;
+    box-shadow: rgba(0, 0, 0, 0.1) 0 0.0625rem 0.1875rem 0;
+  }
+
+  .anchor-chip__icon {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  .anchor-chip__name {
+    margin-left: 0.375rem;
+    transform: translateY(0.0625rem);
+
+    text-decoration: none;
+    color: #404040;
+    font-size: 0.875rem;
+  }
+
+  pre {
+    padding: 1rem 0.75rem 1.25rem !important;
+
+    border-radius: 0.25rem !important;
+    border: 1px solid rgba(38, 85, 115, 0.15) !important;
+    background-color: #ffffff !important;
+    box-shadow: rgba(0, 0, 0, 0.1) 0 0.0625rem 0.1875rem 0;
+
+    color: #404040 !important;
+    font-size: 0.875rem !important;
+  }
+  `}
+</style>

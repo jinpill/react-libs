@@ -3,7 +3,7 @@ import Ellipsis from "../../components/Ellipsis";
 import type { Meta, StoryObj } from "@storybook/react";
 
 /**
- * A component that displays its children with an ellipsis when they overflow.
+ * This component truncates and displays content based on the length of the child text.
  */
 const meta: Meta<typeof Ellipsis> = {
   title: "Components/Ellipsis",

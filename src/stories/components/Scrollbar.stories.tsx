@@ -7,39 +7,40 @@ type ScrollbarStoryProps = {
   margin: ScrollbarProps["margin"];
 };
 
-const ScrollbarStory = (props: ScrollbarStoryProps) => {
-  return (
-    <Scrollbar
-      {...props}
+const ScrollbarStory = (props: ScrollbarStoryProps) => (
+  <Scrollbar
+    {...props}
+    style={
+      props.direction === "vertical"
+        ? {
+            width: "16rem",
+            height: "16rem",
+          }
+        : {
+            width: "16rem",
+          }
+    }
+  >
+    <p
       style={
         props.direction === "vertical"
           ? {
-              width: "16rem",
-              height: "16rem",
+              margin: 0,
             }
           : {
-              width: "16rem",
+              width: "32rem",
+              margin: 0,
             }
       }
     >
-      <p
-        style={
-          props.direction === "vertical"
-            ? {
-                margin: 0,
-              }
-            : {
-                width: "32rem",
-                margin: 0,
-              }
-        }
-      >
-        {LOREM_IPSUM}
-      </p>
-    </Scrollbar>
-  );
-};
+      {LOREM_IPSUM}
+    </p>
+  </Scrollbar>
+);
 
+/**
+ * This component displays the same appearance of scrollbar regardless of the browser and OS.
+ */
 const meta: Meta<typeof Scrollbar> = {
   title: "Components/Scrollbar",
   component: ScrollbarStory,

@@ -2,6 +2,9 @@ import React from "react";
 import Options, { Option, OptionsArea } from "../../components/Options";
 import type { Meta, StoryObj } from "@storybook/react";
 
+/**
+ * This component displays a selectable options list at the top of the screen.
+ */
 const meta: Meta<typeof Options> = {
   title: "Components/Options",
   component: Options,

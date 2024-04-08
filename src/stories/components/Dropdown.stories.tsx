@@ -4,7 +4,7 @@ import { OptionsArea, Option } from "../../components/Options";
 import type { Meta, StoryObj } from "@storybook/react";
 
 /**
- * A simple dropdown component for user interaction.
+ * This component is a simple dropdown UI.
  */
 const meta: Meta<typeof Dropdown> = {
   title: "Components/Dropdown",
