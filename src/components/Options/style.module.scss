@@ -6,6 +6,8 @@ $transition: 0.2s ease-in-out;
 .optionsWrapper {
   width: fit-content;
 
+  box-sizing: border-box;
+
   border-radius: var(--radius-medium);
   border: 1px solid var(--border-primary);
   background-color: var(--bg-white);
@@ -75,6 +77,10 @@ $transition: 0.2s ease-in-out;
 
   &:hover {
     filter: brightness(0.9);
+  }
+
+  &.active {
+    background-color: var(--bg-secondary);
   }
 }
 

@@ -1,4 +1,4 @@
-import React, { useLayoutEffect } from "react";
+import React, { useEffect, useLayoutEffect, useRef } from "react";
 import classNames from "classnames";
 
 import Scrollbar, {
@@ -7,7 +7,9 @@ import Scrollbar, {
 } from "@/components/Scrollbar";
 import Ellipsis from "@/components/Ellipsis";
 
+import useStateRef from "@/hooks/useStateRef";
 import { OPTIONS_AREA_ID } from "./OptionsArea";
+
 import style from "./style.module.scss";
 
 export type OptionsSize = "small" | "medium" | "large";
@@ -24,17 +26,27 @@ export type OptionsProps = {
   options: Option[];
   isVisible: boolean;
   className?: string;
+  value?: string;
+  onClick?: (value: string) => void;
+  onChange?: (value: string) => void;
+  onClickAway?: () => void;
 };
 
 export const Options = (props: OptionsProps) => {
-  const scrollbarRef = React.useRef<HTMLDivElement>(null);
-  const optionsRef = React.useRef<HTMLUListElement>(null);
+  const scrollbarRef = useRef<HTMLDivElement>(null);
+  const listRef = useRef<HTMLUListElement>(null);
+
+  const valueRef = useStateRef(props.value);
+  const optionsRef = useStateRef(props.options);
+  const onClickRef = useStateRef(props.onClick);
+  const onChangeRef = useStateRef(props.onChange);
+  const onClickAwayRef = useStateRef(props.onClickAway);
 
   useLayoutEffect(() => {
     if (!props.isVisible) return;
 
     const $scollbar = scrollbarRef.current;
-    const $clone = optionsRef.current?.cloneNode(true) as HTMLDivElement;
+    const $clone = listRef.current?.cloneNode(true) as HTMLDivElement;
     const $area = document.getElementById(OPTIONS_AREA_ID);
     if (!$scollbar || !$clone || !$area) return;
 
@@ -64,6 +76,22 @@ export const Options = (props: OptionsProps) => {
     $areaScrollbar.style.top = `${top}px`;
     $areaScrollbar.style.width = `${scrollbarRect.width}px`;
 
+    // Add event listeners to the clone.
+    for (let i = 0; i < $clone.children.length; i++) {
+      const $child = $clone.children[i];
+      const option = optionsRef.current[i];
+
+      $child.addEventListener("click", (event) => {
+        const value = option?.value ?? "";
+        onClickRef.current?.(value);
+        event.stopPropagation();
+
+        if (valueRef.current !== value) {
+          onChangeRef.current?.(value);
+        }
+      });
+    }
+
     // Append the clone to the area.
     $areaScrollbarContents.appendChild($clone);
 
@@ -76,7 +104,42 @@ export const Options = (props: OptionsProps) => {
       // Remove the clone from the area.
       setTimeout(() => $areaScrollbarContents.removeChild($clone), 200);
     };
-  }, [props.isVisible, props.size]);
+  }, [
+    props.isVisible,
+    props.size,
+    valueRef,
+    optionsRef,
+    onClickRef,
+    onChangeRef,
+  ]);
+
+  useEffect(() => {
+    if (!props.isVisible) return;
+
+    const $area = document.getElementById(OPTIONS_AREA_ID);
+    const $areaScrollbar = $area?.querySelector(
+      `.${SCROLLBAR_CLASSNAME}`,
+    ) as HTMLElement;
+    if (!$areaScrollbar) return;
+
+    const handleClick = (event: MouseEvent) => {
+      event.stopPropagation();
+    };
+
+    const handleClickAway = () => {
+      onClickAwayRef.current?.();
+    };
+
+    setTimeout(() => {
+      document.addEventListener("click", handleClickAway);
+      $areaScrollbar.addEventListener("click", handleClick);
+    }, 0);
+
+    return () => {
+      document.removeEventListener("click", handleClickAway);
+      $areaScrollbar.removeEventListener("click", handleClick);
+    };
+  }, [props.isVisible, onClickAwayRef]);
 
   return (
     <Scrollbar
@@ -89,9 +152,14 @@ export const Options = (props: OptionsProps) => {
       direction="vertical"
       margin="4"
     >
-      <ul ref={optionsRef} className={style.options}>
+      <ul ref={listRef} className={style.options}>
         {props.options.map((option) => (
-          <li key={option.value} className={style.option}>
+          <li
+            key={option.value}
+            className={classNames(style.option, {
+              [style.active]: option.value === props.value,
+            })}
+          >
             <Ellipsis className={style.label}>{option.label}</Ellipsis>
             {option.description && (
               <div className={style.description}>{option.description}</div>

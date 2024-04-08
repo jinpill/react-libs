@@ -1,13 +1,38 @@
 $transition: 0.2s ease-in-out;
 
 .dropdown {
-  padding: 0;
+  height: fit-content;
+  position: relative;
+
+  .button {
+    padding: 0;
+  }
 
   .display {
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    &.placeholder {
+      color: var(--text-tertiary);
+    }
+  }
+
+  .options {
+    height: 0;
+
+    position: absolute;
+    top: calc(100% + 0.5rem);
+    right: 0;
+    left: 0;
+
+    pointer-events: none;
+    overflow: hidden;
+  }
+
+  &.fullWidth {
+    width: 100%;
   }
 
   &.large {
