@@ -15,7 +15,7 @@ const OptionsArea = (props: OptionsAreaProps) => (
     className={classNames(style.optionsArea, props.className)}
   >
     <Scrollbar
-      className={classNames(style.optionsWrapper, props.className)}
+      className={classNames(style.optionsWrapper)}
       direction="vertical"
       margin="4"
     />

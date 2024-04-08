@@ -146,6 +146,7 @@ export const Options = (props: OptionsProps) => {
       ref={scrollbarRef}
       className={classNames(
         style.optionsWrapper,
+        style.dummy,
         props.className,
         style[props.size ?? "medium"],
       )}

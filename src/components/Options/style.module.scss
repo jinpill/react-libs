@@ -18,6 +18,10 @@ $transition: 0.2s ease-in-out;
   transition: $transition;
   transition-property: transform, opacity;
 
+  &.dummy {
+    height: 0;
+  }
+
   @mixin setMaxHeight($option-height) {
     max-height: $option-height * 5;
   }
@@ -106,6 +110,7 @@ $transition: 0.2s ease-in-out;
   }
 
   .optionsWrapper {
+    height: auto;
     pointer-events: all;
 
     &.fadeIn {

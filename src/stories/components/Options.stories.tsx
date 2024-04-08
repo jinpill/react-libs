@@ -21,12 +21,21 @@ const meta: Meta<typeof Options> = {
         <div
           style={{
             display: "flex",
+            flexDirection: "column",
             alignItems: "center",
-            justifyContent: "center",
+            gap: "1rem",
             position: "absolute",
             inset: 0,
           }}
         >
+          <p
+            style={{
+              margin: 0,
+              fontSize: "0.875rem",
+            }}
+          >
+            Try to set the 'isVisible' prop to 'true' in the controls panel.
+          </p>
           <Story />
         </div>
       </div>
