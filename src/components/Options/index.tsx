@@ -46,27 +46,35 @@ export const Options = (props: OptionsProps) => {
     );
     if (!$areaScrollbar || !$areaScrollbarContents) return;
 
+    // Initialize class names.
     $area.classList.add(style.active);
     $areaScrollbar.classList.remove(style.fadeOut);
     $areaScrollbar.classList.add(style.fadeIn);
     $areaScrollbar.classList.remove(style.large, style.medium, style.small);
     $areaScrollbar.classList.add(style[props.size ?? "medium"]);
 
+    // Get the position of the scrollbar.
     const areaRect = $area.getBoundingClientRect();
     const scrollbarRect = $scollbar.getBoundingClientRect();
     const top = scrollbarRect.top - areaRect.top;
     const left = scrollbarRect.left - areaRect.left;
 
+    // Set the position of the scrollbar.
     $areaScrollbar.style.left = `${left}px`;
     $areaScrollbar.style.top = `${top}px`;
     $areaScrollbar.style.width = `${scrollbarRect.width}px`;
+
+    // Append the clone to the area.
     $areaScrollbarContents.appendChild($clone);
 
     return () => {
+      // Reset the class names.
       $area.classList.remove(style.active);
       $areaScrollbar.classList.remove(style.fadeIn);
       $areaScrollbar.classList.add(style.fadeOut);
-      setTimeout(() => $areaScrollbarContents.removeChild($clone), 300);
+
+      // Remove the clone from the area.
+      setTimeout(() => $areaScrollbarContents.removeChild($clone), 200);
     };
   }, [props.isVisible, props.size]);
 
