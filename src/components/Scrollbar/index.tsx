@@ -9,6 +9,10 @@ import classNames from "classnames";
 import useTimeout from "@/hooks/useTimeout";
 import style from "./style.module.scss";
 
+export const SCROLLBAR_CLASSNAME = "__jinpill-react-libs--scrollbar";
+export const SCROLLBAR_CONTENTS_CLASSNAME =
+  "__jinpill-react-libs--scrollbar__contents";
+
 export type ScrollbarDirection = "vertical" | "horizontal";
 
 export type ScrollbarProps = {
@@ -214,11 +218,12 @@ const Scrollbar = React.forwardRef<HTMLDivElement, ScrollbarProps>(
           style.scrollbar,
           props.className,
           style[props.direction],
+          SCROLLBAR_CLASSNAME,
         )}
       >
         <div
           ref={contentsRef}
-          className={style.contents}
+          className={classNames(style.contents, SCROLLBAR_CONTENTS_CLASSNAME)}
           onScroll={handleScroll}
         >
           {props.children}

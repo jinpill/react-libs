@@ -1,7 +1,10 @@
 import React, { useLayoutEffect } from "react";
 import classNames from "classnames";
 
-import Scrollbar from "@/components/Scrollbar";
+import Scrollbar, {
+  SCROLLBAR_CLASSNAME,
+  SCROLLBAR_CONTENTS_CLASSNAME,
+} from "@/components/Scrollbar";
 import Ellipsis from "@/components/Ellipsis";
 
 import { OPTIONS_AREA_ID } from "./OptionsArea";
@@ -25,30 +28,47 @@ export type OptionsProps = {
 
 export const Options = (props: OptionsProps) => {
   const scrollbarRef = React.useRef<HTMLDivElement>(null);
+  const optionsRef = React.useRef<HTMLUListElement>(null);
 
   useLayoutEffect(() => {
     if (!props.isVisible) return;
 
     const $scollbar = scrollbarRef.current;
-    const $clone = $scollbar?.cloneNode(true) as HTMLDivElement;
-    const $optionsArea = document.getElementById(OPTIONS_AREA_ID);
-    if (!$scollbar || !$clone || !$optionsArea) return;
+    const $clone = optionsRef.current?.cloneNode(true) as HTMLDivElement;
+    const $area = document.getElementById(OPTIONS_AREA_ID);
+    if (!$scollbar || !$clone || !$area) return;
 
-    const areaRect = $optionsArea.getBoundingClientRect();
+    const $areaScrollbar = $area.querySelector(
+      `.${SCROLLBAR_CLASSNAME}`,
+    ) as HTMLElement;
+    const $areaScrollbarContents = $area.querySelector(
+      `.${SCROLLBAR_CONTENTS_CLASSNAME}`,
+    );
+    if (!$areaScrollbar || !$areaScrollbarContents) return;
+
+    $area.classList.add(style.active);
+    $areaScrollbar.classList.remove(style.fadeOut);
+    $areaScrollbar.classList.add(style.fadeIn);
+    $areaScrollbar.classList.remove(style.large, style.medium, style.small);
+    $areaScrollbar.classList.add(style[props.size ?? "medium"]);
+
+    const areaRect = $area.getBoundingClientRect();
     const scrollbarRect = $scollbar.getBoundingClientRect();
     const top = scrollbarRect.top - areaRect.top;
     const left = scrollbarRect.left - areaRect.left;
 
-    $clone.style.left = `${left}px`;
-    $clone.style.top = `${top}px`;
-    $clone.style.width = `${scrollbarRect.width}px`;
-    $optionsArea.appendChild($clone);
+    $areaScrollbar.style.left = `${left}px`;
+    $areaScrollbar.style.top = `${top}px`;
+    $areaScrollbar.style.width = `${scrollbarRect.width}px`;
+    $areaScrollbarContents.appendChild($clone);
 
     return () => {
-      $clone.classList.add(style.fadeOut);
-      setTimeout(() => $optionsArea.removeChild($clone), 300);
+      $area.classList.remove(style.active);
+      $areaScrollbar.classList.remove(style.fadeIn);
+      $areaScrollbar.classList.add(style.fadeOut);
+      setTimeout(() => $areaScrollbarContents.removeChild($clone), 300);
     };
-  }, [props.isVisible]);
+  }, [props.isVisible, props.size]);
 
   return (
     <Scrollbar
@@ -61,7 +81,7 @@ export const Options = (props: OptionsProps) => {
       direction="vertical"
       margin="4"
     >
-      <ul className={style.options}>
+      <ul ref={optionsRef} className={style.options}>
         {props.options.map((option) => (
           <li key={option.value} className={style.option}>
             <Ellipsis className={style.label}>{option.label}</Ellipsis>

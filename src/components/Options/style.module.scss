@@ -95,22 +95,28 @@ $transition: 0.2s ease-in-out;
   inset: 0;
   z-index: 1000;
 
+  &:not(.active) {
+    pointer-events: none;
+  }
+
   .optionsWrapper {
     pointer-events: all;
 
-    @keyframes fadeIn {
-      from {
-        transform: translateY(-0.5rem);
-        opacity: 0;
+    &.fadeIn {
+      @keyframes fadeIn {
+        from {
+          transform: translateY(-0.5rem);
+          opacity: 0;
+        }
+
+        to {
+          transform: translateY(0);
+          opacity: 1;
+        }
       }
 
-      to {
-        transform: translateY(0);
-        opacity: 1;
-      }
+      animation: fadeIn $transition forwards;
     }
-
-    animation: fadeIn $transition forwards;
 
     &.fadeOut {
       @keyframes fadeOut {
