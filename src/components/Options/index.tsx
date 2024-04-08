@@ -173,4 +173,3 @@ export const Options = (props: OptionsProps) => {
 };
 
 export default Options;
-export { default as OptionsArea } from "./OptionsArea";
