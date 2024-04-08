@@ -1,3 +1,4 @@
+import React from "react";
 import Options, { Option, OptionsArea } from "../../components/Options";
 import type { Meta, StoryObj } from "@storybook/react";
 
@@ -7,6 +8,30 @@ const meta: Meta<typeof Options> = {
   parameters: {},
   tags: ["autodocs"],
   argTypes: {},
+  decorators: [
+    (Story) => (
+      <div
+        style={{
+          width: 900,
+          height: 250,
+          position: "relative",
+        }}
+      >
+        <OptionsArea />
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            position: "absolute",
+            inset: 0,
+          }}
+        >
+          <Story />
+        </div>
+      </div>
+    ),
+  ],
 };
 
 export default meta;

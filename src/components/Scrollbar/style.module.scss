@@ -13,12 +13,10 @@ $scrollbar-width: 0.25rem;
   &.vertical {
     height: fit-content;
     flex-direction: column;
-    overflow-y: auto;
   }
 
   &.horizontal {
     flex-direction: row;
-    overflow-x: auto;
   }
 }
 

@@ -4,12 +4,20 @@ $small-option-height: 1.5rem;
 $transition: 0.2s ease-in-out;
 
 .optionsWrapper {
+  width: fit-content;
+
   border-radius: var(--radius-medium);
   border: 1px solid var(--border-primary);
   background-color: var(--bg-white);
+  overflow: hidden;
+
+  opacity: 0;
+  pointer-events: none;
+  transition: $transition;
+  transition-property: transform, opacity;
 
   @mixin setMaxHeight($option-height) {
-    max-height: calc(#{$option-height * 5} + 2px);
+    max-height: $option-height * 5;
   }
 
   &.large {
@@ -80,4 +88,44 @@ $transition: 0.2s ease-in-out;
   flex: none;
   color: var(--text-tertiary);
   font-size: 0.875em;
+}
+
+.optionsArea {
+  position: absolute;
+  inset: 0;
+  z-index: 1000;
+
+  .optionsWrapper {
+    pointer-events: all;
+
+    @keyframes fadeIn {
+      from {
+        transform: translateY(-0.5rem);
+        opacity: 0;
+      }
+
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    animation: fadeIn $transition forwards;
+
+    &.fadeOut {
+      @keyframes fadeOut {
+        from {
+          transform: translateY(0);
+          opacity: 1;
+        }
+
+        to {
+          transform: translateY(-0.5rem);
+          opacity: 0;
+        }
+      }
+
+      animation: fadeOut $transition forwards;
+    }
+  }
 }
