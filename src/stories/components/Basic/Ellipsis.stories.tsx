@@ -1,5 +1,5 @@
 import React from "react";
-import Ellipsis from "../../components/Ellipsis";
+import Ellipsis from "../../../components/Ellipsis";
 import type { Meta, StoryObj } from "@storybook/react";
 
 /**

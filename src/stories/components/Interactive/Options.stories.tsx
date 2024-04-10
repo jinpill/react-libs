@@ -1,15 +1,14 @@
 import React from "react";
-import Dropdown from "../../components/Dropdown";
-import { Option } from "../../components/Options";
-import OptionsArea from "../../components/Options/OptionsArea";
+import Options, { Option } from "../../../components/Options";
+import OptionsArea from "../../../components/Options/OptionsArea";
 import type { Meta, StoryObj } from "@storybook/react";
 
 /**
- * This component is a simple dropdown UI.
+ * This component displays a selectable options list at the top of the screen.
  */
-const meta: Meta<typeof Dropdown> = {
-  title: "Components/Interactive/Dropdown",
-  component: Dropdown,
+const meta: Meta<typeof Options> = {
+  title: "Components/Interactive/Options",
+  component: Options,
   parameters: {},
   tags: ["autodocs"],
   argTypes: {},
@@ -26,11 +25,21 @@ const meta: Meta<typeof Dropdown> = {
         <div
           style={{
             display: "flex",
-            justifyContent: "center",
+            flexDirection: "column",
+            alignItems: "center",
+            gap: "1rem",
             position: "absolute",
             inset: 0,
           }}
         >
+          <p
+            style={{
+              margin: 0,
+              fontSize: "0.875rem",
+            }}
+          >
+            Try to set the 'isVisible' prop to 'true' in the controls panel.
+          </p>
           <Story />
         </div>
       </div>
@@ -81,6 +90,7 @@ export const Large: Story = {
   args: {
     size: "large",
     options: OPTIONS,
+    isVisible: false,
   },
 };
 
@@ -88,6 +98,7 @@ export const Medium: Story = {
   args: {
     size: "medium",
     options: OPTIONS,
+    isVisible: false,
   },
 };
 
@@ -95,5 +106,6 @@ export const Small: Story = {
   args: {
     size: "small",
     options: OPTIONS,
+    isVisible: false,
   },
 };

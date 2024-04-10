@@ -1,4 +1,4 @@
-import Chip from "../../components/Chip";
+import Chip from "../../../components/Chip";
 import type { Meta, StoryObj } from "@storybook/react";
 
 /**
