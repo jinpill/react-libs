@@ -42,7 +42,7 @@ const ScrollbarStory = (props: ScrollbarStoryProps) => (
  * This component displays the same appearance of scrollbar regardless of the browser and OS.
  */
 const meta: Meta<typeof Scrollbar> = {
-  title: "Components/Scrollbar",
+  title: "Components/Interactive/Scrollbar",
   component: ScrollbarStory,
   parameters: {},
   tags: ["autodocs"],

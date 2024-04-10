@@ -8,7 +8,7 @@ import type { Meta, StoryObj } from "@storybook/react";
  * This component is a simple dropdown UI.
  */
 const meta: Meta<typeof Dropdown> = {
-  title: "Components/Dropdown",
+  title: "Components/Interactive/Dropdown",
   component: Dropdown,
   parameters: {},
   tags: ["autodocs"],

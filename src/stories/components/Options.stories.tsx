@@ -7,7 +7,7 @@ import type { Meta, StoryObj } from "@storybook/react";
  * This component displays a selectable options list at the top of the screen.
  */
 const meta: Meta<typeof Options> = {
-  title: "Components/Options",
+  title: "Components/Interactive/Options",
   component: Options,
   parameters: {},
   tags: ["autodocs"],

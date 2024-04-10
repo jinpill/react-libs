@@ -5,7 +5,7 @@ import type { Meta, StoryObj } from "@storybook/react";
  * This component is a simple chip UI.
  */
 const meta: Meta<typeof Chip> = {
-  title: "Components/Chip",
+  title: "Components/Basic/Chip",
   component: Chip,
   parameters: {},
   tags: ["autodocs"],

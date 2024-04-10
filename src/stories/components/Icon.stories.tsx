@@ -5,7 +5,7 @@ import type { Meta, StoryObj } from "@storybook/react";
  * This component displays SVG icons based on the inputted source or preset name.
  */
 const meta: Meta<typeof Icon> = {
-  title: "Components/Icon",
+  title: "Components/Basic/Icon",
   component: Icon,
   parameters: {},
   tags: ["autodocs"],

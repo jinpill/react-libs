@@ -6,7 +6,7 @@ import type { Meta, StoryObj } from "@storybook/react";
  * This component truncates and displays content based on the length of the child text.
  */
 const meta: Meta<typeof Ellipsis> = {
-  title: "Components/Ellipsis",
+  title: "Components/Basic/Ellipsis",
   component: Ellipsis,
   parameters: {},
   tags: ["autodocs"],

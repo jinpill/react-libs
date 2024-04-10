@@ -5,7 +5,7 @@ import type { Meta, StoryObj } from "@storybook/react";
  * This component is a simple button UI.
  */
 const meta: Meta<typeof Button> = {
-  title: "Components/Button",
+  title: "Components/Interactive/Button",
   component: Button,
   parameters: {},
   tags: ["autodocs"],
