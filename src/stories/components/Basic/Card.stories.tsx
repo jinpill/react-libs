@@ -1,4 +1,4 @@
-import Card from "../../../components/Card";
+import Card from "@/components/Card";
 import type { Meta, StoryObj } from "@storybook/react";
 
 /** This component is a simple card UI. */

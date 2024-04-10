@@ -19,7 +19,7 @@
     "publish:minor": "pnpm version minor && pnpm publish",
     "publish:major": "pnpm version major && pnpm publish",
     "build:rollup": "rollup -c rollup.config.js",
-    "build:declaration": "tsc && tsc-alias",
+    "build:declaration": "tsc && tsc-alias && rm -rf dist/stories",
     "build": "rm -rf dist && npm-run-all build:*"
   },
   "files": [

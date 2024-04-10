@@ -1,11 +1,11 @@
-import Chip from "../../../components/Chip";
+import Chip from "@/components/Chip";
 import type { Meta, StoryObj } from "@storybook/react";
 
 /**
  * This component is a simple chip UI.
  */
 const meta: Meta<typeof Chip> = {
-  title: "Components/Basic/Chip",
+  title: "Components/Interactive/Chip",
   component: Chip,
   parameters: {},
   tags: ["autodocs"],
@@ -21,6 +21,7 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   args: {
     label: "Chip",
+    onClear: undefined,
   },
 };
 
@@ -31,6 +32,7 @@ export const Ellipsis: Story = {
   args: {
     label:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
+    onClear: undefined,
   },
 };
 
@@ -41,6 +43,7 @@ export const Clickable: Story = {
   args: {
     label: "Chip",
     onClick: console.log,
+    onClear: undefined,
   },
 };
 

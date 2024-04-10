@@ -1,5 +1,5 @@
 import React from "react";
-import Scrollbar, { ScrollbarProps } from "../../../components/Scrollbar";
+import Scrollbar, { ScrollbarProps } from "@/components/Scrollbar";
 import type { Meta, StoryObj } from "@storybook/react";
 
 type ScrollbarStoryProps = {

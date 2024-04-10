@@ -1,6 +1,6 @@
 import React from "react";
-import Options, { Option } from "../../../components/Options";
-import OptionsArea from "../../../components/Options/OptionsArea";
+import Options, { Option } from "@/components/Options";
+import OptionsArea from "@/components/Options/OptionsArea";
 import type { Meta, StoryObj } from "@storybook/react";
 
 /**
