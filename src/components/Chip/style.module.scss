@@ -1,0 +1,70 @@
+$transition: 0.2s ease-in-out;
+
+.chip {
+  width: fit-content;
+  max-width: 12.5rem;
+  height: 1.375rem;
+
+  display: flex;
+  align-items: center;
+  padding: 0 0.625rem;
+  box-sizing: border-box;
+
+  border-radius: var(--radius-medium);
+  border: 1px solid var(--border-primary);
+  background-color: var(--bg-primary);
+
+  transition: filter $transition;
+
+  &.clickable {
+    cursor: pointer;
+
+    &:hover {
+      filter: brightness(0.95);
+    }
+
+    &:active {
+      filter: brightness(0.9);
+    }
+  }
+
+  &.clearable {
+    padding-right: 0;
+  }
+
+  .label {
+    flex: 1 1 auto;
+
+    position: relative;
+    top: -0.0625rem;
+    color: var(--text-primary);
+    font-size: var(--text-extrasmall);
+    user-select: none;
+  }
+
+  .clearButton {
+    width: 1.25rem;
+    height: 1.25rem;
+
+    flex: none;
+    padding: 0;
+
+    border-radius: 0;
+    border: none;
+    background: none;
+
+    color: var(--text-tertiary);
+
+    cursor: pointer;
+    transition: color $transition;
+
+    &:hover {
+      color: var(--text-secondary);
+    }
+
+    .icon {
+      width: 1.0625rem;
+      height: 1.0625rem;
+    }
+  }
+}

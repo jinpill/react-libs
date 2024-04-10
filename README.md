@@ -1,6 +1,6 @@
 # @jinpill/react-libs
 
-Jinpill's personal react libraries.
+My personal react libraries.
 
 ## Installation
 
@@ -24,6 +24,7 @@ Import and use the components or hooks in your project.
 | Name          | Usage                                                                                      |
 | :------------ | :----------------------------------------------------------------------------------------- |
 | **Card**      | This component is a simple card UI.                                                        |
+| **Chip**      | This component is a simple chip UI.                                                        |
 | **Button**    | This component is a simple button UI.                                                      |
 | **Dropdown**  | This component is a simple dropdown UI.                                                    |
 | **Icon**      | This component displays SVG icons based on the inputted source or preset name.             |

@@ -7,7 +7,7 @@ import IconFromPreset from "./IconFromPreset";
 import * as logger from "@/utils/logger";
 import style from "./style.module.scss";
 
-export type IconPreset = "expand-more" | "expand-less";
+export type IconPreset = "expand-more" | "expand-less" | "close";
 
 export type IconProps = {
   src?: string;
