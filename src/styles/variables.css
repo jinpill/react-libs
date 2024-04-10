@@ -48,6 +48,11 @@
   --text-tertiary: var(--gray-600);
   --text-disabled: var(--gray-500);
 
+  --elevation-1: 0 0.125rem 0.125rem 0 rgba(0, 0, 0, 0.1);
+  --elevation-2: 0 0.125rem 0.1875rem 0.0625rem rgba(0, 0, 0, 0.1);
+  --elevation-3: 0 0.125rem 0.25rem 0.0625rem rgba(0, 0, 0, 0.1);
+  --elevation-4: 0 0.125rem 0.375rem 0.125rem rgba(0, 0, 0, 0.1);
+
   --text-large: 1rem;
   --text-medium: 0.875rem;
   --text-small: 0.75rem;
