@@ -89,6 +89,7 @@
     "react-dom": "^18.0.0"
   },
   "dependencies": {
+    "material-icons": "^1.13.12",
     "react-svg": "^16.1.33"
   }
 }

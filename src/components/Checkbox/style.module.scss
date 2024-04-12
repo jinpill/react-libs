@@ -9,18 +9,30 @@ $transition: 0.2s ease-in-out;
       $checkbox-size: calc(1.5rem + 2px);
       width: $checkbox-size;
       height: $checkbox-size;
+
+      .icon {
+        --icon-size: 1.25rem;
+      }
     }
 
     &.medium {
       $checkbox-size: calc(1.25rem + 2px);
       width: $checkbox-size;
       height: $checkbox-size;
+
+      .icon {
+        --icon-size: 1rem;
+      }
     }
 
     &.small {
       $checkbox-size: calc(1rem + 2px);
       width: $checkbox-size;
       height: $checkbox-size;
+
+      .icon {
+        --icon-size: 0.75rem;
+      }
     }
 
     .icon {

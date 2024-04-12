@@ -23,6 +23,6 @@ export const SourceType: Story = {
 
 export const PresetType: Story = {
   args: {
-    preset: "expand-more",
+    preset: "expand_more",
   },
 };

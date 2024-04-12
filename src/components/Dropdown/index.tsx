@@ -97,7 +97,10 @@ const Dropdown = (props: DropdownProps) => {
           <Ellipsis className={style.text}>
             {option?.label ?? placeholder}
           </Ellipsis>
-          <Icon className={style.icon} preset="expand-more" />
+          <Icon
+            className={style.icon}
+            preset={isExpanded ? "expand_less" : "expand_more"}
+          />
         </div>
       </Button>
 

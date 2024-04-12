@@ -5,13 +5,13 @@ import IconFromSource from "./IconFromSource";
 import IconFromPreset from "./IconFromPreset";
 
 import * as logger from "@/utils/logger";
-import style from "./style.module.scss";
 
-export type IconPreset = "expand-more" | "expand-less" | "close" | "check";
+import type { MaterialIcon } from "material-icons";
+import style from "./style.module.scss";
 
 export type IconProps = {
   src?: string;
-  preset?: IconPreset;
+  preset?: MaterialIcon;
   className?: string;
 };
 

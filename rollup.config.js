@@ -47,10 +47,7 @@ export default {
     }),
     terser(),
     copy({
-      targets: [
-        { src: "src/styles/variables.*", dest: "dist" },
-        { src: "public/**/*", dest: "dist" },
-      ],
+      targets: [{ src: "src/styles/variables.*", dest: "dist" }],
     }),
   ],
   output: [

@@ -1,13 +1,16 @@
 import React from "react";
-import { ReactSVG } from "react-svg";
-import type { IconPreset } from ".";
+import classNames from "classnames";
+import type { MaterialIcon } from "material-icons";
+import style from "./style.module.scss";
 
 type IconFromPresetProps = {
-  preset: IconPreset;
+  preset: MaterialIcon;
 };
 
 const IconFromPreset = (props: IconFromPresetProps) => (
-  <ReactSVG src={`svg/${props.preset}.svg`} wrapper="div" />
+  <div className={classNames(style.materialIcons, "material-icons-round")}>
+    {props.preset}
+  </div>
 );
 
 export default IconFromPreset;
