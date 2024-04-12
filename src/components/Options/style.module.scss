@@ -28,16 +28,19 @@ $transition: 0.2s ease-in-out;
 
   &.large {
     min-width: 15rem;
+    box-shadow: var(--elevation-3);
     @include setMaxHeight($large-option-height);
   }
 
   &.medium {
     min-width: 12.5rem;
+    box-shadow: var(--elevation-2);
     @include setMaxHeight($medium-option-height);
   }
 
   &.small {
     min-width: 8.75rem;
+    box-shadow: var(--elevation-1);
     @include setMaxHeight($small-option-height);
   }
 }
