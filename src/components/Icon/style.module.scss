@@ -16,8 +16,8 @@
     height: inherit;
 
     svg {
-      width: --icon-size;
-      height: --icon-size;
+      width: var(--icon-size);
+      height: var(--icon-size);
       display: block;
       pointer-events: none;
     }
