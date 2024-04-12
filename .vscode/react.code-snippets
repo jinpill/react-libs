@@ -33,7 +33,7 @@
       "import type { Meta, StoryObj } from \"@storybook/react\";",
       "",
       "const meta: Meta<typeof ${1:Component}> = {",
-      "  title: \"Components/${2:Base}/${1:Component}\",",
+      "  title: \"Components/${2:Basic}/${1:Component}\",",
       "  component: ${1:Component},",
       "  parameters: {",
       "    ${4}",

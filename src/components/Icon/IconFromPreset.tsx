@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import type { IconPreset } from ".";
 
 type IconFromPresetProps = {
@@ -6,7 +6,7 @@ type IconFromPresetProps = {
 };
 
 const IconFromPreset = (props: IconFromPresetProps) => {
-  const [SVG, setSVG] = React.useState<React.FC | null>(null);
+  const [SVG, setSVG] = useState<React.FC | null>(null);
 
   useEffect(() => {
     (async () => {
