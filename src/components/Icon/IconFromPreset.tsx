@@ -1,21 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
+import { ReactSVG } from "react-svg";
 import type { IconPreset } from ".";
 
 type IconFromPresetProps = {
   preset: IconPreset;
 };
 
-const IconFromPreset = (props: IconFromPresetProps) => {
-  const [SVG, setSVG] = useState<React.FC | null>(null);
-
-  useEffect(() => {
-    (async () => {
-      const SVG = React.lazy(() => import(`./presets/${props.preset}.tsx`));
-      setSVG(SVG);
-    })();
-  }, [props.preset]);
-
-  return <div>{SVG && <SVG />}</div>;
-};
+const IconFromPreset = (props: IconFromPresetProps) => (
+  <ReactSVG src={`svg/${props.preset}.svg`} wrapper="div" />
+);
 
 export default IconFromPreset;

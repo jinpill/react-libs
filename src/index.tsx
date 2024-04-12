@@ -1,6 +1,7 @@
 // Components
 export { default as Button } from "@/components/Button";
 export { default as Dropdown } from "@/components/Dropdown";
+export { default as Checkbox } from "@/components/Checkbox";
 export { default as Ellipsis } from "@/components/Ellipsis";
 export { default as Icon } from "@/components/Icon";
 export { default as Options } from "@/components/Options";
