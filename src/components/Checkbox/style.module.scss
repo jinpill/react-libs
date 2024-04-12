@@ -1,0 +1,38 @@
+$transition: 0.2s ease-in-out;
+
+.checkbox {
+  &.button {
+    min-width: auto;
+    padding: 0;
+
+    &.large {
+      $checkbox-size: calc(1.5rem + 2px);
+      width: $checkbox-size;
+      height: $checkbox-size;
+    }
+
+    &.medium {
+      $checkbox-size: calc(1.25rem + 2px);
+      width: $checkbox-size;
+      height: $checkbox-size;
+    }
+
+    &.small {
+      $checkbox-size: calc(1rem + 2px);
+      width: $checkbox-size;
+      height: $checkbox-size;
+    }
+
+    .icon {
+      color: var(--text-white);
+      opacity: 0;
+      transition: opacity $transition;
+    }
+
+    &.checked {
+      .icon {
+        opacity: 1;
+      }
+    }
+  }
+}
