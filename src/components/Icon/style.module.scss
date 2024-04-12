@@ -1,6 +1,8 @@
 .icon {
   --icon-size: 1.5rem;
 
+  width: fit-content;
+  height: fit-content;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -14,8 +16,8 @@
     height: inherit;
 
     svg {
-      width: 100%;
-      height: 100%;
+      width: --icon-size;
+      height: --icon-size;
       display: block;
       pointer-events: none;
     }
