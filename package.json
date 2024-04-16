@@ -9,9 +9,9 @@
   "packageManager": "pnpm@8.15.4",
   "scripts": {
     "ci": "pnpm i --frozen-lockfile",
+    "dev": "storybook dev -p 6006",
     "lint": "eslint src/*",
     "prettier": "prettier --write '{src}/*.tsx'",
-    "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "prepublish": "node scripts/checklist.cjs && pnpm build",
     "postpublish": "git push && git push --tags",
