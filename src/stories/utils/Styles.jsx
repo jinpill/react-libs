@@ -31,18 +31,6 @@ const Styles = () => (
       color: #404040;
       font-size: 0.875rem;
     }
-
-    pre {
-      padding: 1rem 0.75rem 1.25rem !important;
-
-      border-radius: 0.25rem !important;
-      border: 1px solid rgba(38, 85, 115, 0.15) !important;
-      background-color: #ffffff !important;
-      box-shadow: rgba(0, 0, 0, 0.1) 0 0.0625rem 0.1875rem 0;
-
-      color: #404040 !important;
-      font-size: 0.875rem !important;
-    }
     `}
   </style>
 );
