@@ -34,11 +34,13 @@
   --gray-1000: #121212;
   --gray-black: #000000;
 
+  --border-black: var(--gray-black);
   --border-white: var(--gray-white);
   --border-primary: var(--gray-400);
   --border-secondary: var(--gray-300);
   --border-disabled: var(--gray-200);
 
+  --bg-black: var(--gray-black);
   --bg-white: var(--gray-white);
   --bg-primary: var(--gray-100);
   --bg-secondary: var(--gray-200);

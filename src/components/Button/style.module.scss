@@ -185,9 +185,31 @@ $transition: 0.2s ease-in-out;
     transform: translate(-50%, -50%);
 
     border-radius: 50%;
-    border: 0.25rem solid rgba($border-white, 0.5);
-    border-right-color: rgba($border-white, 0.15);
-    border-bottom-color: rgba($border-white, 0.15);
+    border: 0.25rem solid;
+
+    .button.primary & {
+      border-color: rgba($border-white, 0.5);
+      border-right-color: rgba($border-white, 0.25);
+      border-bottom-color: rgba($border-white, 0.25);
+    }
+
+    .button.secondary & {
+      border-color: rgba($border-black, 0.25);
+      border-right-color: rgba($border-black, 0.125);
+      border-bottom-color: rgba($border-black, 0.125);
+    }
+
+    .button.tertiary & {
+      border-color: rgba($border-white, 1);
+      border-right-color: rgba($border-white, 0.5);
+      border-bottom-color: rgba($border-white, 0.5);
+    }
+
+    .button.danger & {
+      border-color: rgba($border-white, 0.5);
+      border-right-color: rgba($border-white, 0.25);
+      border-bottom-color: rgba($border-white, 0.25);
+    }
 
     @keyframes spin {
       0% {

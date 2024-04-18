@@ -183,6 +183,12 @@
     "description": "#000000",
   },
 
+  "--border-black": {
+    "prefix": "--border-black",
+    "body": "var(--border-black)",
+    "scope": "css,scss",
+    "description": "#000000",
+  },
   "--border-white": {
     "prefix": "--border-white",
     "body": "var(--border-white)",
@@ -208,6 +214,12 @@
     "description": "#e9ecef",
   },
 
+  "--bg-black": {
+    "prefix": "--bg-black",
+    "body": "var(--bg-black)",
+    "scope": "css,scss",
+    "description": "#000000",
+  },
   "--bg-white": {
     "prefix": "--bg-white",
     "body": "var(--bg-white)",
