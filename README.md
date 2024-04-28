@@ -44,8 +44,9 @@ Import and use the components or hooks in your project.
 
 ## Hooks
 
-| Name            | Usage                                                 |
-| :-------------- | :---------------------------------------------------- |
-| **useStateRef** | This hook returns a ref object refering to the state. |
-| **useTimeout**  | This hook helps manage setTimeout easily in React.    |
-| **useInterval** | This hook helps manage setInterval easily in React.   |
+| Name               | Usage                                                    |
+| :----------------- | :------------------------------------------------------- |
+| **useStateRef**    | This hook returns a ref object refering to the state.    |
+| **useTimeout**     | This hook helps manage setTimeout easily in React.       |
+| **useInterval**    | This hook helps manage setInterval easily in React.      |
+| **useMountEffect** | This hook helps animate components on mount and unmount. |

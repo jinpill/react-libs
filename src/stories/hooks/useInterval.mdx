@@ -20,7 +20,7 @@ This is a bad example because the interval is not cleared when the component is 
 
 The alert message will be displayed regardless of whether the component is unmounted or not.
 
-```tsx
+```jsx
 const SomeComponent = () => {
   useEffect(() => {
     setInterval(() => {
@@ -34,7 +34,7 @@ export default SomeComponent;
 
 So you have to clear the interval when the component is unmounted.
 
-```tsx
+```jsx
 const SomeComponent = () => {
   useEffect(() => {
     const intervalId = setInterval(() => {

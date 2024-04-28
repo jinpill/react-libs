@@ -1,5 +1,6 @@
-import React, { useImperativeHandle, useLayoutEffect, useRef } from "react";
+import React, { useImperativeHandle, useRef } from "react";
 import classNames from "classnames";
+import useMountEffect from "@/hooks/useMountEffect";
 import style from "./style.module.scss";
 
 export type ScrimProps = {
@@ -18,28 +19,12 @@ const Scrim = React.forwardRef<HTMLDivElement, ScrimProps>((props, ref) => {
   const opacity = props.opacity ?? 0.5;
   const duration = Number(props.duration ?? 300);
 
-  useLayoutEffect(() => {
-    const $scrim = scrimRef.current;
-    const $parent = $scrim?.parentElement;
-    if (!$scrim || !$parent) return;
-    setTimeout(() => $scrim.classList.add(style.visible), 0);
-
-    return () => {
-      const $clone = $scrim.cloneNode(true) as HTMLDivElement;
-
-      const removeClone = () => {
-        clearTimeout(timeoutId);
-        $clone.removeEventListener("transitionend", removeClone);
-        $clone.remove();
-      };
-
-      $clone.addEventListener("transitionend", removeClone, { once: true });
-      const timeoutId = setTimeout(removeClone, duration + 100);
-
-      $parent.insertBefore($clone, $scrim);
-      setTimeout(() => $clone.classList.remove(style.visible), 0);
-    };
-  }, [duration]);
+  useMountEffect({
+    init: () => scrimRef.current,
+    onMounted: ($scrim) => $scrim.classList.add(style.visible),
+    onUnmounted: ($scrim) => $scrim.classList.remove(style.visible),
+    timeout: duration + 100,
+  });
 
   return (
     <div

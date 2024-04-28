@@ -1,0 +1,50 @@
+import { Meta } from "@storybook/blocks";
+import Styles from "../utils/Styles";
+
+<Meta title="Hooks/useMountEffect" />
+<Styles />
+
+# useMountEffect
+
+This hook helps animate components on mount and unmount.
+
+## Usage
+
+It is quite common to apply unmount animations to components. However, React immediately removes the component from the DOM when it is unmounted. Therefore, animating the unmounted component is difficult and cumbersome.
+
+If you use this hook, it will be very easy to apply animations when the component is mounted or unmounted.
+
+### Example
+
+Firstly, add styles to animate the component in your CSS file.
+
+And then, refer to the example code below to add or remove classes to apply animations.
+
+```jsx
+import { useMountEffect } from "@jinpill/react-libs";
+import style from "./style.module.css";
+
+const SomeComponent = () => {
+  const ref = useRef(null);
+
+  useMountEffect({
+    // Return the element to be animated.
+    init: () => ref.current,
+    // Apply animations by adding or removing classes, or changing inline styles directly.
+    onMounted: (element) => {
+      element.classList.add(style["component--mount-animation"]);
+    },
+    // Apply animations by adding or removing classes, or changing inline styles directly.
+    onUnmounted: (element) => {
+      element.classList.add(style["component--unmount-animation"]);
+    },
+    // This hook will removes the clone element after the animation is completed.
+    // However, it is recommended to set a timeout in case the clone remains.
+    timeout: 500,
+  });
+
+  return <div ref={ref}>{/* Contents */}</div>;
+};
+
+export default SomeComponent;
+```

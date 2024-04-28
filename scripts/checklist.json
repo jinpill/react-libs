@@ -1,14 +1,10 @@
 [
   {
-    "question": "Did you update the package version?",
-    "feedback": "You need to update the package version"
+    "question": "Did you write explanation for the component?",
+    "feedback": "You need to write explanation in the README.md, Introduction.mdx, and storybook files."
   },
   {
-    "question": "Did you update the README.md file?",
-    "feedback": "You need to update the README.md file"
-  },
-  {
-    "question": "Did you update the Introduction.mdx file?",
-    "feedback": "You need to update the Introduction.mdx file"
+    "question": "Did you add the export statement in the index.tsx file?",
+    "feedback": "You need to add the export statement in the index.tsx file."
   }
 ]
