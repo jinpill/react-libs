@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import classNames from "classnames";
 import Button from "@/components/Button";
 import Icon from "@/components/Icon";
@@ -8,42 +8,42 @@ export type CheckboxSize = "large" | "medium" | "small";
 
 export type CheckboxProps = {
   size?: CheckboxSize;
-  isChecked?: boolean;
-  onChange?: (checked: boolean) => void;
+  value?: boolean;
+  onChange?: (value: boolean) => void;
 
   className?: string;
 };
 
-const Checkbox = (props: CheckboxProps) => {
-  const [isChecked, setIsChecked] = useState(props.isChecked ?? false);
+const Checkbox = React.forwardRef<HTMLButtonElement, CheckboxProps>(
+  (props, ref) => {
+    const [value, setValue] = useState(props.value);
+    const currentValue = props.value ?? value;
 
-  const handleClick = () => {
-    const newIsChecked = !isChecked;
-    setIsChecked(newIsChecked);
-    props.onChange?.(newIsChecked);
-  };
+    const handleClick = () => {
+      const nextValue = !currentValue;
+      setValue(nextValue);
+      props.onChange?.(nextValue);
+    };
 
-  useEffect(() => {
-    setIsChecked(props.isChecked ?? false);
-  }, [props.isChecked]);
-
-  return (
-    <Button
-      className={classNames(
-        style.checkbox,
-        style.button,
-        props.className,
-        style[props.size ?? "medium"],
-        {
-          [style.checked]: isChecked,
-        },
-      )}
-      role={isChecked ? "primary" : "secondary"}
-      onClick={handleClick}
-    >
-      <Icon className={style.icon} preset="check" />
-    </Button>
-  );
-};
+    return (
+      <Button
+        ref={ref}
+        className={classNames(
+          style.checkbox,
+          style.button,
+          props.className,
+          style[props.size ?? "medium"],
+          {
+            [style.checked]: currentValue,
+          },
+        )}
+        role={currentValue ? "primary" : "secondary"}
+        onClick={handleClick}
+      >
+        <Icon className={style.icon} preset="check" />
+      </Button>
+    );
+  },
+);
 
 export default Checkbox;

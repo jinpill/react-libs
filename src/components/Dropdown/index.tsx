@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useMemo, useState } from "react";
 import classNames from "classnames";
 
 import Ellipsis from "@/components/Ellipsis";
@@ -26,7 +26,9 @@ export type DropdownProps = {
 };
 
 const Dropdown = (props: DropdownProps) => {
-  const [value, setValue] = useState(props.value ?? "");
+  const [value, setValue] = useState("");
+  const currentValue = props.value ?? value;
+
   const placeholder = props.placeholder ?? DEFAULT_PLACEHOLDER;
   const [isExpanded, setIsExpanded] = useState(false);
 
@@ -49,8 +51,8 @@ const Dropdown = (props: DropdownProps) => {
   }, [props.options, props.isDeselectable]);
 
   const option = useMemo(() => {
-    return options.find((option) => option.value === value) ?? null;
-  }, [value, options, placeholder]);
+    return options.find((option) => option.value === currentValue) ?? null;
+  }, [currentValue, options, placeholder]);
 
   const handleClickButton = () => {
     if (options.length === 0) return;
@@ -65,10 +67,6 @@ const Dropdown = (props: DropdownProps) => {
   const hideOptions = () => {
     setIsExpanded(false);
   };
-
-  useEffect(() => {
-    setValue(props.value ?? "");
-  }, [props.value]);
 
   return (
     <div
@@ -91,7 +89,7 @@ const Dropdown = (props: DropdownProps) => {
       >
         <div
           className={classNames(style.display, {
-            [style.placeholder]: !option || !value,
+            [style.placeholder]: !option || !currentValue,
           })}
         >
           <Ellipsis className={style.text}>
@@ -107,7 +105,7 @@ const Dropdown = (props: DropdownProps) => {
       <div className={style.options}>
         <Options
           size={props.size}
-          value={value}
+          value={currentValue}
           options={options}
           isVisible={isExpanded}
           onClick={hideOptions}

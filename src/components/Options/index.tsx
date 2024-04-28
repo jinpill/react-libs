@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect, useRef } from "react";
+import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import classNames from "classnames";
 
 import Scrollbar, {
@@ -33,10 +33,13 @@ export type OptionsProps = {
 };
 
 export const Options = (props: OptionsProps) => {
+  const [value, setValue] = useState("");
+  const currentValue = props.value ?? value;
+
   const scrollbarRef = useRef<HTMLDivElement>(null);
   const listRef = useRef<HTMLUListElement>(null);
 
-  const valueRef = useStateRef(props.value);
+  const valueRef = useStateRef(currentValue);
   const optionsRef = useStateRef(props.options);
   const onClickRef = useStateRef(props.onClick);
   const onChangeRef = useStateRef(props.onChange);
@@ -82,12 +85,13 @@ export const Options = (props: OptionsProps) => {
       const option = optionsRef.current[i];
 
       $child.addEventListener("click", (event) => {
-        const value = option?.value ?? "";
-        onClickRef.current?.(value);
+        const nextValue = option?.value ?? "";
+        onClickRef.current?.(nextValue);
         event.stopPropagation();
 
-        if (valueRef.current !== value) {
-          onChangeRef.current?.(value);
+        if (valueRef.current !== nextValue) {
+          onChangeRef.current?.(nextValue);
+          setValue(nextValue);
         }
       });
     }
@@ -158,7 +162,7 @@ export const Options = (props: OptionsProps) => {
           <li
             key={option.value}
             className={classNames(style.option, {
-              [style.active]: option.value === props.value,
+              [style.active]: option.value === currentValue,
             })}
           >
             <Ellipsis className={style.label}>{option.label}</Ellipsis>
