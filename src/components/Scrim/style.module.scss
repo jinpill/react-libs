@@ -1,0 +1,9 @@
+.scrim {
+  position: absolute;
+  inset: 0;
+
+  &:not(.visible) {
+    opacity: 0;
+    pointer-events: none;
+  }
+}

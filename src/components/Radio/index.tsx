@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import classNames from "classnames";
 import Button from "@/components/Button";
 import style from "./style.module.scss";
@@ -7,22 +7,20 @@ export type RadioSize = "small" | "medium" | "large";
 
 export type RadioProps = {
   size?: RadioSize;
-  isChecked?: boolean;
-  onChange?: (isChecked: boolean) => void;
+  value?: boolean;
+  onChange?: (value: boolean) => void;
   className?: string;
 };
 
 const Radio = React.forwardRef<HTMLButtonElement, RadioProps>((props, ref) => {
-  const [isChecked, setIsChecked] = useState(props.isChecked ?? false);
+  const [value, setValue] = useState(false);
+  const currentValue = props.value ?? value;
 
   const handleClick = () => {
-    setIsChecked(!isChecked);
-    props.onChange?.(!isChecked);
+    const nextValue = !currentValue;
+    setValue(nextValue);
+    props.onChange?.(nextValue);
   };
-
-  useEffect(() => {
-    setIsChecked(props.isChecked ?? false);
-  }, [props.isChecked]);
 
   return (
     <Button
@@ -33,7 +31,7 @@ const Radio = React.forwardRef<HTMLButtonElement, RadioProps>((props, ref) => {
         style[props.size ?? "medium"],
         props.className,
         {
-          [style.checked]: isChecked,
+          [style.checked]: currentValue,
         },
       )}
       role="secondary"

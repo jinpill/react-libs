@@ -12,7 +12,7 @@
       "import classNames from \"classnames\";",
       "import style from \"./style.module.scss\";",
       "",
-      "type ${1:${TM_FILENAME_BASE}}Props = {",
+      "export type ${1:${TM_FILENAME_BASE}}Props = {",
       "  ${2}",
       "}",
       "",
