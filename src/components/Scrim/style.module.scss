@@ -1,5 +1,5 @@
 .scrim {
-  position: absolute;
+  position: fixed;
   inset: 0;
 
   &:not(.visible) {

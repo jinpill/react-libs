@@ -25,7 +25,7 @@ const Story = () => {
  * This component is a simple scrim UI.
  */
 const meta: Meta<typeof Scrim> = {
-  title: "Components/Interactive/Scrim",
+  title: "Components/Basic/Scrim",
   component: Story,
   parameters: {
     layout: "fullscreen",
