@@ -1,7 +1,15 @@
 .bottomSheet {
   position: fixed;
   inset: 0;
+
   overflow: hidden;
+
+  pointer-events: none;
+  transition: opacity 0.3s ease-in-out;
+
+  &:not(.visible) {
+    opacity: 0;
+  }
 }
 
 .container {
@@ -16,10 +24,12 @@
   border-end-start-radius: 0;
   border-end-end-radius: 0;
   background-color: var(--bg-white);
+  box-shadow: var(--elevation-4);
 
+  pointer-events: all;
   transition: transform 0.3s ease-in-out;
 
-  &:not(.visible) {
+  .bottomSheet:not(.visible) & {
     transform: translate(-50%, 100%);
   }
 }

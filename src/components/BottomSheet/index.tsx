@@ -5,6 +5,8 @@ import useMountEffect from "@/hooks/useMountEffect";
 import style from "./style.module.scss";
 
 export type BottomSheetProps = {
+  scrimOpacity?: number | `${number}`;
+  isNonModal?: boolean;
   onClickAway?: (event: React.MouseEvent<HTMLDivElement>) => void;
 
   className?: string;
@@ -13,23 +15,29 @@ export type BottomSheetProps = {
 
 const BottomSheet = React.forwardRef<HTMLDivElement, BottomSheetProps>(
   (props, ref) => {
-    const containerRef = useRef<HTMLDivElement>(null);
-    useImperativeHandle(ref, () => containerRef.current!, []);
+    const sheetRef = useRef<HTMLDivElement>(null);
+    useImperativeHandle(ref, () => sheetRef.current!, []);
 
     useMountEffect({
-      init: () => containerRef.current,
+      init: () => sheetRef.current,
       onMounted: ($sheet) => $sheet.classList.add(style.visible),
       onUnmounted: ($sheet) => $sheet.classList.remove(style.visible),
-      timeout: 2000,
+      timeout: 400,
     });
 
     return (
-      <div className={classNames(style.bottomSheet, props.className)}>
-        <Scrim onClick={props.onClickAway} />
-        {/* <div ref={containerRef} className={style.container}>
-          {props.children}
-        </div> */}
-      </div>
+      <>
+        {!props.isNonModal && (
+          <Scrim opacity={props.scrimOpacity} onClick={props.onClickAway} />
+        )}
+
+        <div
+          ref={sheetRef}
+          className={classNames(style.bottomSheet, props.className)}
+        >
+          <div className={style.container}>{props.children}</div>
+        </div>
+      </>
     );
   },
 );
