@@ -1,0 +1,25 @@
+.bottomSheet {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+}
+
+.container {
+  width: 100%;
+
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translate(-50%, 0%);
+
+  border-radius: var(--radius-large);
+  border-end-start-radius: 0;
+  border-end-end-radius: 0;
+  background-color: var(--bg-white);
+
+  transition: transform 0.3s ease-in-out;
+
+  &:not(.visible) {
+    transform: translate(-50%, 100%);
+  }
+}
