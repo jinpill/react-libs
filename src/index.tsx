@@ -12,6 +12,7 @@ export { default as Dropdown } from "@/components/Dropdown";
 export { default as Checkbox } from "@/components/Checkbox";
 export { default as Radio } from "@/components/Radio";
 export { default as ToggleButton } from "@/components/ToggleButton";
+export { default as ToggleSwitch } from "@/components/ToggleSwitch";
 export { default as Options } from "@/components/Options";
 export { default as OptionsArea } from "@/components/Options/OptionsArea";
 export { default as Scrollbar } from "@/components/Scrollbar";

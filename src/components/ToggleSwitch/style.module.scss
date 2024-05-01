@@ -1,0 +1,58 @@
+@use "sass:math";
+
+.toggleSwitch {
+  &.button {
+    min-width: auto;
+    position: relative;
+
+    @mixin set-size($height, $inset) {
+      $width: $height * 1.75;
+      $knob-size: calc($height - $inset * 2 - 2px);
+
+      width: $width;
+      height: $height;
+      border-radius: math.div($height, 2);
+
+      .knobArea {
+        inset: $inset;
+      }
+
+      .knob {
+        width: $knob-size;
+        height: $knob-size;
+      }
+
+      &.active .knob {
+        left: calc($width - 2px - $knob-size - $inset * 2);
+      }
+    }
+
+    &.large {
+      @include set-size(2rem, 0.25rem);
+    }
+
+    &.medium {
+      @include set-size(1.75rem, 0.1875rem);
+    }
+
+    &.small {
+      @include set-size(1.5rem, 0.125rem);
+    }
+  }
+}
+
+.knobArea {
+  position: absolute;
+}
+
+.knob {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  border-radius: 50%;
+  background-color: var(--bg-white);
+  box-shadow: var(--elevation-2);
+
+  transition: left 0.2s ease-in-out;
+}
