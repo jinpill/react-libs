@@ -17,7 +17,7 @@ export type ToggleOption = {
   value: string;
 };
 
-export type ToggleSwitchProps = {
+export type ToggleButtonProps = {
   size?: ToggleSize;
   options: ToggleOption[];
   value?: string;
@@ -31,10 +31,10 @@ export type ToggleSwitchProps = {
   className?: string;
 };
 
-const ToggleSwitch = React.forwardRef<HTMLDivElement, ToggleSwitchProps>(
+const ToggleButton = React.forwardRef<HTMLDivElement, ToggleButtonProps>(
   (props, ref) => {
-    const toggleSwitchRef = useRef<HTMLDivElement>(null);
-    useImperativeHandle(ref, () => toggleSwitchRef.current!, []);
+    const toggleButtonRef = useRef<HTMLDivElement>(null);
+    useImperativeHandle(ref, () => toggleButtonRef.current!, []);
     const backgroundWrapperRef = useRef<HTMLDivElement>(null);
 
     const [value, setValue] = useState("");
@@ -61,8 +61,8 @@ const ToggleSwitch = React.forwardRef<HTMLDivElement, ToggleSwitchProps>(
     };
 
     const handleKeyDown = (event: React.KeyboardEvent) => {
-      const $toggleSwitch = toggleSwitchRef.current;
-      const $options = $toggleSwitch?.querySelectorAll(`.${style.option}`);
+      const $toggleButton = toggleButtonRef.current;
+      const $options = $toggleButton?.querySelectorAll(`.${style.option}`);
       if (!$options || $options.length === 0) return;
 
       let nextIndex = -1;
@@ -95,8 +95,8 @@ const ToggleSwitch = React.forwardRef<HTMLDivElement, ToggleSwitchProps>(
         return;
       }
 
-      const $toggleSwitch = toggleSwitchRef.current;
-      const $options = $toggleSwitch?.querySelectorAll(`.${style.option}`);
+      const $toggleButton = toggleButtonRef.current;
+      const $options = $toggleButton?.querySelectorAll(`.${style.option}`);
       const $backgroundWrapper = backgroundWrapperRef.current;
       if (!$options || $options.length === 0 || !$backgroundWrapper) return;
 
@@ -115,9 +115,9 @@ const ToggleSwitch = React.forwardRef<HTMLDivElement, ToggleSwitchProps>(
 
     return (
       <div
-        ref={toggleSwitchRef}
+        ref={toggleButtonRef}
         className={classNames(
-          style.toggleSwitch,
+          style.toggleButton,
           props.className,
           style[props.size ?? "medium"],
           {
@@ -153,4 +153,4 @@ const ToggleSwitch = React.forwardRef<HTMLDivElement, ToggleSwitchProps>(
   },
 );
 
-export default ToggleSwitch;
+export default ToggleButton;

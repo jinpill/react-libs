@@ -1,4 +1,4 @@
-import ToggleSwitch, { ToggleOption } from "@/components/ToggleSwitch";
+import ToggleButton, { ToggleOption } from "@/components/ToggleButton";
 import type { Meta, StoryObj } from "@storybook/react";
 
 const OPTIONS: ToggleOption[] = [
@@ -21,11 +21,11 @@ const OPTIONS: ToggleOption[] = [
 ];
 
 /**
- * This component is a simple toggle switch UI.
+ * This component is a simple toggle button UI.
  */
-const meta: Meta<typeof ToggleSwitch> = {
-  title: "Components/Interactive/ToggleSwitch",
-  component: ToggleSwitch,
+const meta: Meta<typeof ToggleButton> = {
+  title: "Components/Interactive/ToggleButton",
+  component: ToggleButton,
   parameters: {},
   tags: ["autodocs"],
   argTypes: {},
@@ -35,7 +35,7 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 /**
- * This is a toggle switch with large size.
+ * This is a toggle button with large size.
  */
 export const Large: Story = {
   args: {
@@ -45,7 +45,7 @@ export const Large: Story = {
 };
 
 /**
- * This is a toggle switch with medium size.
+ * This is a toggle button with medium size.
  */
 export const Medium: Story = {
   args: {
@@ -55,7 +55,7 @@ export const Medium: Story = {
 };
 
 /**
- * This is a toggle switch with small size.
+ * This is a toggle button with small size.
  */
 export const Small: Story = {
   args: {
@@ -65,7 +65,7 @@ export const Small: Story = {
 };
 
 /**
- * Set the `isDisabled` prop to `true` to disable the toggle switch.
+ * Set the `isDisabled` prop to `true` to disable the toggle button.
  */
 export const Disabled: Story = {
   args: {
@@ -77,7 +77,7 @@ export const Disabled: Story = {
 };
 
 /**
- * Set the `isFullWidth` prop to `true` to make the toggle switch full width.
+ * Set the `isFullWidth` prop to `true` to make the toggle button full width.
  */
 export const FullWidth: Story = {
   args: {
@@ -88,7 +88,7 @@ export const FullWidth: Story = {
 };
 
 /**
- * Set the `isUniformWidth` prop to `true` to make the toggle switch options uniform width.
+ * Set the `isUniformWidth` prop to `true` to make the toggle button options uniform width.
  */
 export const UniformWidth: Story = {
   args: {
