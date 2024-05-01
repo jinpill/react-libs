@@ -344,4 +344,23 @@
     "scope": "css,scss",
     "description": "0.125rem (2px)",
   },
+
+  "--height-large": {
+    "prefix": "--height-large",
+    "body": "var(--height-large)",
+    "scope": "css,scss",
+    "description": "3.125rem",
+  },
+  "--height-medium": {
+    "prefix": "--height-medium",
+    "body": "var(--height-medium)",
+    "scope": "css,scss",
+    "description": "2.25rem",
+  },
+  "--height-small": {
+    "prefix": "--height-small",
+    "body": "var(--height-small)",
+    "scope": "css,scss",
+    "description": "1.75rem",
+  },
 }

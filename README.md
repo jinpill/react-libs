@@ -33,15 +33,16 @@ Import and use the components or hooks in your project.
 
 ### Interactive Components
 
-| Name          | Usage                                                                                      |
-| :------------ | :----------------------------------------------------------------------------------------- |
-| **Chip**      | This component is a simple chip UI.                                                        |
-| **Button**    | This component is a simple button UI.                                                      |
-| **Dropdown**  | This component is a simple dropdown UI.                                                    |
-| **Checkbox**  | This component is a simple checkbox UI.                                                    |
-| **Radio**     | This component is a simple radio UI.                                                       |
-| **Options**   | This component displays a selectable options list at the top of the screen.                |
-| **Scrollbar** | This component displays the same appearance of scrollbar regardless of the browser and OS. |
+| Name             | Usage                                                                                      |
+| :--------------- | :----------------------------------------------------------------------------------------- |
+| **Chip**         | This component is a simple chip UI.                                                        |
+| **Button**       | This component is a simple button UI.                                                      |
+| **Dropdown**     | This component is a simple dropdown UI.                                                    |
+| **Checkbox**     | This component is a simple checkbox UI.                                                    |
+| **Radio**        | This component is a simple radio UI.                                                       |
+| **ToggleSwitch** | This component is a simple toggle switch UI.                                               |
+| **Options**      | This component displays a selectable options list at the top of the screen.                |
+| **Scrollbar**    | This component displays the same appearance of scrollbar regardless of the browser and OS. |
 
 ## Hooks
 

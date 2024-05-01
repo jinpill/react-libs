@@ -10,7 +10,7 @@ $transition: 0.2s ease-in-out;
 
   position: relative;
 
-  border-radius: 0.25rem;
+  border-radius: var(--radius-medium);
   border: 1px solid;
   outline: 0.1875rem solid transparent;
 
@@ -95,19 +95,19 @@ $transition: 0.2s ease-in-out;
 
   &.small {
     min-width: 4.625rem;
-    height: 1.75rem;
+    height: var(--height-small);
     font-size: var(--text-small);
   }
 
   &.medium {
     min-width: 5.625rem;
-    height: 2.25rem;
+    height: var(--height-medium);
     font-size: var(--text-medium);
   }
 
   &.large {
     min-width: 6.875rem;
-    height: 3.125rem;
+    height: var(--height-large);
     font-size: var(--text-large);
   }
 

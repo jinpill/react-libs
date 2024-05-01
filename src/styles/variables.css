@@ -65,4 +65,8 @@
   --radius-large: 0.5rem;
   --radius-medium: 0.25rem;
   --radius-small: 0.125rem;
+
+  --height-large: 3.125rem;
+  --height-medium: 2.25rem;
+  --height-small: 1.75rem;
 }
