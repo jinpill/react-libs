@@ -97,3 +97,11 @@ export const Small: Story = {
     options: OPTIONS,
   },
 };
+
+export const Disabled: Story = {
+  args: {
+    size: "medium",
+    options: OPTIONS,
+    isDisabled: true,
+  },
+};

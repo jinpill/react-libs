@@ -20,6 +20,12 @@ $transition: 0.2s ease-in-out;
     }
   }
 
+  &.disabled {
+    .placeholder {
+      color: var(--text-disabled);
+    }
+  }
+
   .options {
     height: 0;
 

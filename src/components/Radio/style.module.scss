@@ -12,7 +12,10 @@
 
     &.checked {
       border-color: var(--primary-1);
-      outline-color: rgba($primary-1, 0.33);
+
+      &:focus {
+        outline-color: rgba($primary-1, 0.33);
+      }
 
       &::after {
         transform: scale(1);
@@ -23,6 +26,21 @@
     &:not(.checked)::after {
       transform: scale(0.75);
       opacity: 0;
+    }
+
+    &:disabled {
+      &.checked {
+        border-color: var(--primary-3);
+
+        &::after {
+          background-color: var(--primary-3);
+        }
+      }
+
+      &:not(.checked) {
+        border-color: var(--border-disabled);
+        background-color: var(--bg-disabled);
+      }
     }
   }
 

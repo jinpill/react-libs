@@ -9,6 +9,7 @@ export type RadioProps = {
   size?: RadioSize;
   value?: boolean;
   tabIndex?: number;
+  isDisabled?: boolean;
   onChange?: (value: boolean) => void;
   className?: string;
 };
@@ -37,6 +38,7 @@ const Radio = React.forwardRef<HTMLButtonElement, RadioProps>((props, ref) => {
       )}
       role="secondary"
       tabIndex={props.tabIndex}
+      isDisabled={props.isDisabled}
       onClick={handleClick}
     />
   );

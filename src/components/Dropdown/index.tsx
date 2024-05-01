@@ -77,6 +77,7 @@ const Dropdown = (props: DropdownProps) => {
         style[props.size ?? "medium"],
         {
           [style.fullWidth]: props.isFullWidth,
+          [style.disabled]: props.isDisabled,
         },
       )}
     >

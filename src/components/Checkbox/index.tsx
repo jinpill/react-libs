@@ -10,6 +10,7 @@ export type CheckboxProps = {
   size?: CheckboxSize;
   value?: boolean;
   tabIndex?: number;
+  isDisabled?: boolean;
   onChange?: (value: boolean) => void;
 
   className?: string;
@@ -40,6 +41,7 @@ const Checkbox = React.forwardRef<HTMLButtonElement, CheckboxProps>(
         )}
         role={currentValue ? "primary" : "secondary"}
         tabIndex={props.tabIndex}
+        isDisabled={props.isDisabled}
         onClick={handleClick}
       >
         <Icon className={style.icon} preset="check" />
