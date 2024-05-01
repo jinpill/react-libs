@@ -32,7 +32,11 @@ const Chip = (props: ChipProps) => {
     >
       <Ellipsis className={style.label}>{props.label}</Ellipsis>
       {props.onClear && (
-        <button className={style.clearButton} onClick={handleClear}>
+        <button
+          className={style.clearButton}
+          tabIndex={-1}
+          onClick={handleClear}
+        >
           <Icon className={style.icon} preset="close" />
         </button>
       )}

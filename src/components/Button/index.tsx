@@ -10,6 +10,7 @@ export type ButtonProps = {
   size?: ButtonSize;
   text?: string;
   href?: string;
+  tabIndex?: number;
   isDisabled?: boolean;
   isFullWidth?: boolean;
   isProcessing?: boolean;
@@ -47,6 +48,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
             [style.processing]: props.isProcessing,
           },
         )}
+        tabIndex={props.tabIndex}
         disabled={props.isDisabled || props.isProcessing}
         onClick={handleClick}
         onPointerEnter={props.onPointerEnter}

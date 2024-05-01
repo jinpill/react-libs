@@ -17,6 +17,7 @@ export type DropdownProps = {
   placeholder?: string;
   options?: Option[];
   value?: string;
+  tabIndex?: number;
   isDisabled?: boolean;
   isFullWidth?: boolean;
   isDeselectable?: boolean;
@@ -83,6 +84,7 @@ const Dropdown = (props: DropdownProps) => {
         className={style.button}
         role="secondary"
         size={props.size}
+        tabIndex={props.tabIndex}
         isDisabled={props.isDisabled}
         isFullWidth
         onClick={handleClickButton}
