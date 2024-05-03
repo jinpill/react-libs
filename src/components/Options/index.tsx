@@ -79,12 +79,36 @@ export const Options = (props: OptionsProps) => {
     $areaScrollbar.style.top = `${top}px`;
     $areaScrollbar.style.width = `${scrollbarRect.width}px`;
 
+    const getButton = (index: number) => {
+      const $button = $clone.children[index]?.children[0];
+      if ($button?.tagName !== "BUTTON") return null;
+      return $button as HTMLButtonElement;
+    };
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      let nextIndex = -1;
+
+      if (event.key === "ArrowUp") {
+        nextIndex = optionsRef.current.length - 1;
+      } else if (event.key === "ArrowDown") {
+        nextIndex = 0;
+      }
+
+      const $button = getButton(nextIndex);
+      if (!$button) return;
+
+      event.preventDefault();
+      event.stopPropagation();
+      $button.focus();
+    };
+
     // Add event listeners to the clone.
     for (let i = 0; i < $clone.children.length; i++) {
-      const $child = $clone.children[i];
+      const $button = getButton(i);
       const option = optionsRef.current[i];
+      if (!$button || !option) return;
 
-      $child.addEventListener("click", (event) => {
+      $button.addEventListener("click", (event) => {
         const nextValue = option?.value ?? "";
         onClickRef.current?.(nextValue);
         event.stopPropagation();
@@ -94,16 +118,57 @@ export const Options = (props: OptionsProps) => {
           setValue(nextValue);
         }
       });
+
+      $button.addEventListener("keydown", (event) => {
+        let nextIndex = -1;
+
+        if (event.key === "ArrowUp") {
+          nextIndex = i - 1;
+        } else if (event.key === "ArrowDown") {
+          nextIndex = i + 1;
+        }
+
+        if (nextIndex < 0) return;
+        if (nextIndex > optionsRef.current.length - 1) return;
+
+        event.preventDefault();
+        event.stopPropagation();
+
+        const $nextButton = getButton(nextIndex);
+        $nextButton?.focus();
+      });
+
+      $button.addEventListener("blur", () => {
+        setTimeout(() => {
+          const $activeElement = document.activeElement;
+          if ($activeElement && $area.contains($activeElement)) return;
+          onClickAwayRef.current?.();
+        }, 0);
+      });
     }
 
     // Append the clone to the area.
     $areaScrollbarContents.appendChild($clone);
+
+    // Add an event listener.
+    window.addEventListener("keydown", handleKeyDown);
+
+    const index = optionsRef.current.findIndex(
+      (option) => option.value === valueRef.current,
+    );
+    if (index !== -1) {
+      const $button = getButton(index);
+      $button?.focus();
+    }
 
     return () => {
       // Reset the class names.
       $area.classList.remove(style.active);
       $areaScrollbar.classList.remove(style.fadeIn);
       $areaScrollbar.classList.add(style.fadeOut);
+
+      // Remove an event listener.
+      window.removeEventListener("keydown", handleKeyDown);
 
       // Remove the clone from the area.
       setTimeout(() => $areaScrollbarContents.removeChild($clone), 200);
@@ -165,10 +230,12 @@ export const Options = (props: OptionsProps) => {
               [style.active]: option.value === currentValue,
             })}
           >
-            <Ellipsis className={style.label}>{option.label}</Ellipsis>
-            {option.description && (
-              <div className={style.description}>{option.description}</div>
-            )}
+            <button tabIndex={-1}>
+              <Ellipsis className={style.label}>{option.label}</Ellipsis>
+              {option.description && (
+                <div className={style.description}>{option.description}</div>
+              )}
+            </button>
           </li>
         ))}
       </ul>
