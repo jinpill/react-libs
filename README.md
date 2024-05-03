@@ -27,6 +27,7 @@ Import and use the components or hooks in your project.
 | :-------------- | :----------------------------------------------------------------------------------- |
 | **Card**        | This component is a simple card UI.                                                  |
 | **Scrim**       | This component is a simple scrim UI.                                                 |
+| **Skeleton**    | This component is a simple and customisable skeleton UI.                             |
 | **Icon**        | This component displays SVG icons based on the inputted source or preset name.       |
 | **Ellipsis**    | This component truncates and displays content based on the length of the child text. |
 | **BottomSheet** | The mobile-style popup UI that comes up from the bottom of the screen.               |

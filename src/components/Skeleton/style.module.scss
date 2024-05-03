@@ -1,0 +1,16 @@
+.skeleton {
+  border-radius: var(--radius-medium);
+  background-color: var(--bg-disabled);
+
+  @keyframes loading {
+    from {
+      filter: brightness(0.95);
+    }
+
+    to {
+      filter: brightness(1.05);
+    }
+  }
+
+  animation: loading 1s infinite alternate;
+}
