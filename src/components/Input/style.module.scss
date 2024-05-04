@@ -1,0 +1,23 @@
+.input {
+  box-sizing: border-box;
+
+  border-radius: var(--radius-medium);
+  border: 1px solid var(--border-primary);
+  background-color: var(--bg-white);
+  color: var(--text-secondary);
+}
+
+.small {
+  width: 8.75rem;
+  height: var(--height-small);
+}
+
+.medium {
+  width: 12.5rem;
+  height: var(--height-medium);
+}
+
+.large {
+  width: 15rem;
+  height: var(--height-large);
+}

@@ -2,7 +2,7 @@ import React, { useRef } from "react";
 import useMountEffect from "@/hooks/useMountEffect";
 import style from "./style.module.scss";
 
-export type BackgroundProps = {
+type BackgroundProps = {
   width: number;
   left: number;
 };
