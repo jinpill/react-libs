@@ -8,6 +8,7 @@ export { default as BottomSheet } from "@/components/BottomSheet";
 // Interactive Components
 export { default as Chip } from "@/components/Chip";
 export { default as Button } from "@/components/Button";
+export { default as Input } from "@/components/Input";
 export { default as Dropdown } from "@/components/Dropdown";
 export { default as Checkbox } from "@/components/Checkbox";
 export { default as Radio } from "@/components/Radio";
