@@ -52,6 +52,7 @@ $transition: 0.2s ease-in-out;
 
     &::placeholder {
       color: var(--text-tertiary);
+      user-select: none;
     }
   }
 }

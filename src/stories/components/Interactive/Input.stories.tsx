@@ -3,6 +3,9 @@ import Input from "@/components/Input";
 import BaseInput from "@/components/Input/BaseInput";
 import type { Meta, StoryObj } from "@storybook/react";
 
+/**
+ * This component is a simple input UI.
+ */
 const meta: Meta<typeof BaseInput> = {
   title: "Components/Interactive/Input",
   parameters: {},
@@ -28,6 +31,9 @@ const meta: Meta<typeof BaseInput> = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
+/**
+ * An input component with text type.
+ */
 export const TextInput: Story = {
   render: (props) => <Input.Text {...props} />,
   args: {
@@ -41,6 +47,9 @@ export const TextInput: Story = {
   },
 };
 
+/**
+ * An input component with password type.
+ */
 export const PasswordInput: Story = {
   render: (props) => <Input.Password {...props} />,
   args: {
@@ -54,6 +63,9 @@ export const PasswordInput: Story = {
   },
 };
 
+/**
+ * An input component with number type.
+ */
 export const NumberInput: Story = {
   render: (props) => {
     const { value: _, onChange: __, ...restProps } = props;
@@ -70,6 +82,9 @@ export const NumberInput: Story = {
   },
 };
 
+/**
+ * An input component with number type using additional props.
+ */
 export const NumberInputProps: Story = {
   render: (props) => {
     const { value: _, onChange: __, ...restProps } = props;
@@ -87,5 +102,50 @@ export const NumberInputProps: Story = {
     isFullWidth: false,
     isDisabled: false,
     className: undefined,
+  },
+};
+
+/**
+ * An disabled input component.
+ */
+export const Disabled: Story = {
+  render: (props) => <Input.Text {...props} />,
+  args: {
+    size: "large",
+    value: "Disabled",
+    isDisabled: true,
+  },
+};
+
+/**
+ * An input component with small size.
+ */
+export const Small: Story = {
+  render: (props) => <Input.Text {...props} />,
+  args: {
+    size: "small",
+    placeholder: "Small size text input",
+  },
+};
+
+/**
+ * An input component with medium size.
+ */
+export const Medium: Story = {
+  render: (props) => <Input.Text {...props} />,
+  args: {
+    size: "medium",
+    placeholder: "Medium size text input",
+  },
+};
+
+/**
+ * An input component with large size.
+ */
+export const Large: Story = {
+  render: (props) => <Input.Text {...props} />,
+  args: {
+    size: "large",
+    placeholder: "Large size text input",
   },
 };
