@@ -36,6 +36,18 @@ export const TextInput: Story = {
   },
 };
 
+export const PasswordInput: Story = {
+  render: (props) => <Input.Password {...props} />,
+  args: {
+    size: "large",
+    placeholder: "Enter password here",
+    useImmediateChangeEffect: false,
+    isFullWidth: false,
+    isDisabled: false,
+    className: undefined,
+  },
+};
+
 export const NumberInput: Story = {
   render: (props) => {
     const { value: _, onChange: __, ...restProps } = props;
