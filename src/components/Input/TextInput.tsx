@@ -1,7 +1,10 @@
 import React from "react";
 import BaseInput, { BaseInputProps } from "./BaseInput";
 
-export type TextInputProps = {} & Omit<BaseInputProps, "type">;
+export type TextInputProps = {} & Omit<
+  BaseInputProps,
+  "type" | "min" | "max" | "step" | "unit"
+>;
 
 const TextInput = React.forwardRef<HTMLDivElement, TextInputProps>(
   (props, ref) => <BaseInput ref={ref} type="text" {...props} />,

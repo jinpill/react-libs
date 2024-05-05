@@ -14,6 +14,10 @@ const meta: Meta<typeof BaseInput> = {
         value: ["small", "medium", "large"],
       },
     },
+    tabIndex: {
+      type: "number",
+      required: false,
+    },
     className: {
       type: "string",
       required: false,
@@ -29,6 +33,7 @@ export const TextInput: Story = {
   args: {
     size: "large",
     placeholder: "Enter text here",
+    tabIndex: undefined,
     useImmediateChangeEffect: false,
     isFullWidth: false,
     isDisabled: false,
@@ -41,6 +46,7 @@ export const PasswordInput: Story = {
   args: {
     size: "large",
     placeholder: "Enter password here",
+    tabIndex: undefined,
     useImmediateChangeEffect: false,
     isFullWidth: false,
     isDisabled: false,
@@ -56,6 +62,27 @@ export const NumberInput: Story = {
   args: {
     size: "large",
     placeholder: "Enter number here",
+    tabIndex: undefined,
+    useImmediateChangeEffect: false,
+    isFullWidth: false,
+    isDisabled: false,
+    className: undefined,
+  },
+};
+
+export const NumberInputProps: Story = {
+  render: (props) => {
+    const { value: _, onChange: __, ...restProps } = props;
+    return <Input.Number {...restProps} />;
+  },
+  args: {
+    size: "large",
+    placeholder: "Enter number here",
+    tabIndex: undefined,
+    min: -100,
+    max: 100,
+    step: 10,
+    float: 1,
     useImmediateChangeEffect: false,
     isFullWidth: false,
     isDisabled: false,

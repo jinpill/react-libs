@@ -17,7 +17,7 @@ const NumberInput = React.forwardRef<HTMLDivElement, NumberInputProps>(
     }, [_value]);
 
     const handleChange = (value: string) => {
-      const nextValue = value === "" ? null : parseInt(value, 10);
+      const nextValue = value === "" ? null : Number(value);
       onChange?.(nextValue);
     };
 

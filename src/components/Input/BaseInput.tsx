@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import classNames from "classnames";
 import type { InputSize } from "./index";
 import style from "./style.module.scss";
@@ -11,9 +11,16 @@ export type BaseInputProps = {
   placeholder?: string;
   tabIndex?: number;
   value?: string;
+
+  min?: number | `${number}`;
+  max?: number | `${number}`;
+  step?: number | `${number}`;
+  float?: number | `${number}`;
+
   useImmediateChangeEffect?: boolean;
   isFullWidth?: boolean;
   isDisabled?: boolean;
+
   onChange?: (value: string) => void;
   onKeyDown?: (event: React.KeyboardEvent<HTMLInputElement>) => void;
   onFocus?: (event: React.FocusEvent<HTMLInputElement>) => void;
@@ -31,6 +38,22 @@ const BaseInput = React.forwardRef<HTMLDivElement, BaseInputProps>(
     const [value, setValue] = useState("");
     const currentValue = props.value ?? value;
     const prevValueRef = useRef(currentValue);
+
+    const min = useMemo(() => Number(props.min ?? -Infinity), [props.min]);
+    const max = useMemo(() => Number(props.max ?? Infinity), [props.max]);
+    const step = useMemo(() => Number(props.step ?? 1), [props.step]);
+    const float = useMemo(() => {
+      if (!props.float) return;
+      const float = Number(props.float);
+
+      if (isNaN(float)) return;
+      if (float < 0) {
+        console.warn("`float` should be greater than or equal to 0.");
+        return;
+      }
+
+      return float;
+    }, [props.float]);
 
     const handleClickContainer = () => {
       inputRef.current?.focus();
@@ -64,7 +87,7 @@ const BaseInput = React.forwardRef<HTMLDivElement, BaseInputProps>(
         let nextValue = 0;
 
         if (currentValue !== "") {
-          nextValue = parseInt(currentValue, 10);
+          nextValue = Number(currentValue);
           nextValue += direction;
         }
 
@@ -87,13 +110,13 @@ const BaseInput = React.forwardRef<HTMLDivElement, BaseInputProps>(
         case "ArrowUp":
           if (!isNumberType) break;
           stopAndPrevent();
-          addDirectionToValue(+1);
+          addDirectionToValue(+step);
           break;
 
         case "ArrowDown":
           if (!isNumberType) break;
           stopAndPrevent();
-          addDirectionToValue(-1);
+          addDirectionToValue(-step);
           break;
       }
 
@@ -106,6 +129,7 @@ const BaseInput = React.forwardRef<HTMLDivElement, BaseInputProps>(
     };
 
     const applyCurrentValue = () => {
+      console.warn("apply");
       if (prevValueRef.current === currentValue) return;
       let nextValue = currentValue;
 
@@ -116,9 +140,22 @@ const BaseInput = React.forwardRef<HTMLDivElement, BaseInputProps>(
         }
 
         if (nextValue !== "") {
-          nextValue = parseInt(nextValue, 10).toString();
+          nextValue = Number(nextValue).toString();
           if (nextValue !== currentValue) setValue(nextValue);
         }
+
+        const numberValue = Number(nextValue);
+        if (numberValue < min) {
+          nextValue = min.toString();
+        } else if (numberValue > max) {
+          nextValue = max.toString();
+        } else if (typeof float === "number") {
+          nextValue = numberValue.toFixed(float);
+          nextValue = Number(nextValue).toString();
+        }
+
+        if (numberValue.toString() !== nextValue) setValue(nextValue);
+        if (prevValueRef.current === nextValue) return;
       }
 
       props.onChange?.(nextValue);
@@ -129,6 +166,12 @@ const BaseInput = React.forwardRef<HTMLDivElement, BaseInputProps>(
       if (prevValueRef.current === currentValue) return;
       setValue(prevValueRef.current);
     };
+
+    useEffect(() => {
+      if (min > max) {
+        console.warn("`min` should be less than or equal to `max`.");
+      }
+    }, [min, max]);
 
     return (
       <div
