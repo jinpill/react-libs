@@ -1,23 +1,91 @@
+@import "../../styles//variables.scss";
+
+$transition: 0.2s ease-in-out;
+
 .input {
+  display: flex;
   box-sizing: border-box;
 
   border-radius: var(--radius-medium);
   border: 1px solid var(--border-primary);
+  outline: 0.1875rem solid transparent;
   background-color: var(--bg-white);
-  color: var(--text-secondary);
+
+  cursor: text;
+  transition: $transition;
+  transition-property: border-color, outline-color;
+
+  &:focus-within {
+    outline-color: rgba($border-primary, 0.33);
+  }
+
+  &.disabled {
+    border-color: var(--border-disabled);
+
+    &,
+    input {
+      cursor: not-allowed;
+    }
+
+    input {
+      color: var(--text-disabled);
+    }
+  }
+
+  input {
+    width: 0;
+    height: 100%;
+
+    flex: 1 1 0;
+    padding: 0;
+    box-sizing: border-box;
+
+    border-radius: 0;
+    border: none;
+    outline: none;
+    background: none;
+
+    color: var(--text-secondary);
+
+    transition: $transition;
+    transition-property: color;
+
+    &::placeholder {
+      color: var(--text-tertiary);
+    }
+  }
 }
 
 .small {
   width: 8.75rem;
   height: var(--height-small);
+  padding: 0 0.5rem;
+
+  input {
+    font-size: var(--text-small);
+  }
 }
 
 .medium {
   width: 12.5rem;
   height: var(--height-medium);
+  padding: 0 0.75rem;
+
+  input {
+    font-size: var(--text-medium);
+  }
 }
 
 .large {
   width: 15rem;
   height: var(--height-large);
+  padding: 0 1rem;
+
+  input {
+    font-size: var(--text-large);
+  }
+}
+
+.fullWidth {
+  width: 100%;
 }
