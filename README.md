@@ -26,6 +26,7 @@ Import and use the components or hooks in your project.
 | Name            | Usage                                                                                |
 | :-------------- | :----------------------------------------------------------------------------------- |
 | **Card**        | This component is a simple card UI.                                                  |
+| **Label**       | This component is a simple label UI.                                                 |
 | **Scrim**       | This component is a simple scrim UI.                                                 |
 | **Skeleton**    | This component is a simple and customisable skeleton UI.                             |
 | **Icon**        | This component displays SVG icons based on the inputted source or preset name.       |
