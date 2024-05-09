@@ -2,4 +2,64 @@
   position: absolute;
   inset: 0;
   z-index: 1000;
+  pointer-events: none;
+}
+
+.container {
+  width: fit-content;
+  height: fit-content;
+  position: relative;
+}
+
+.tooltip {
+  width: fit-content;
+  position: absolute;
+  border-radius: var(--radius-medium);
+  background-color: rsgba(black, 0.75);
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.top {
+  bottom: calc(100% + 0.5rem);
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.bottom {
+  top: calc(100% + 0.5rem);
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.left {
+  top: 50%;
+  right: calc(100% + 0.5rem);
+  transform: translateY(-50%);
+}
+
+.right {
+  top: 50%;
+  left: calc(100% + 0.5rem);
+  transform: translateY(-50%);
+}
+
+.small {
+  padding: 0.1875rem 0.375rem 0.25rem;
+  font-size: var(--text-small);
+}
+
+.medium {
+  padding: 0.25rem 0.5rem 0.375rem;
+  font-size: var(--text-medium);
+}
+
+.large {
+  padding: 0.5rem 0.75rem 0.625rem;
+  font-size: var(--text-large);
+}
+
+.message {
+  color: var(--text-white);
+  user-select: none;
 }

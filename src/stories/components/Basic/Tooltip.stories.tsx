@@ -1,6 +1,7 @@
 import React from "react";
 import Tooltip from "@/components/Tooltip";
 import TooltipArea from "@/components/Tooltip/TooltipArea";
+import Button from "@/components/Button";
 import type { Meta, StoryObj } from "@storybook/react";
 
 const meta: Meta<typeof Tooltip> = {
@@ -8,7 +9,20 @@ const meta: Meta<typeof Tooltip> = {
   component: Tooltip,
   parameters: {},
   tags: ["autodocs"],
-  argTypes: {},
+  argTypes: {
+    size: {
+      type: {
+        name: "enum",
+        value: ["small", "medium", "large"],
+      },
+    },
+    position: {
+      type: {
+        name: "enum",
+        value: ["top", "bottom", "left", "right"],
+      },
+    },
+  },
 };
 
 export default meta;
@@ -19,8 +33,22 @@ export const Default: Story = {
     return (
       <>
         <TooltipArea />
+        <div
+          style={{
+            height: "10rem",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <Tooltip {...props}>
+            <Button text="Disabled" isDisabled />
+          </Tooltip>
+        </div>
       </>
     );
   },
-  args: {},
+  args: {
+    message: "This button is disabled",
+  },
 };

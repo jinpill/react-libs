@@ -13,7 +13,9 @@ const TooltipArea = (props: TooltipAreaProps) => {
     <div
       id={TOOLTIP_AREA_ID}
       className={classNames(style.tooltipArea, props.className)}
-    />
+    >
+      <div />
+    </div>
   );
 };
 
