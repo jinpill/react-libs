@@ -11,16 +11,15 @@ export type UseMountEffectOptions<E extends HTMLElement> = {
 const useMountEffect = <E extends HTMLElement>(
   options: UseMountEffectOptions<E>,
 ) => {
-  const initRef = useStateRef(options.init);
-  const onMountedRef = useStateRef(options.onMounted);
-  const onUnmountedRef = useStateRef(options.onUnmounted);
-  const timeoutRef = useStateRef(options.timeout ?? 1000);
+  const optionsRef = useStateRef(options);
 
   useLayoutEffect(() => {
-    const $element = initRef.current();
+    const options = optionsRef.current;
+    const $element = options.init();
     const $parent = $element?.parentElement;
+
     if (!$element || !$parent) return;
-    setTimeout(() => onMountedRef.current?.($element), 0);
+    setTimeout(() => options.onMounted?.($element), 0);
 
     return () => {
       const $clone = $element.cloneNode(true) as E;
@@ -32,12 +31,12 @@ const useMountEffect = <E extends HTMLElement>(
       };
 
       $clone.addEventListener("transitionend", removeClone, { once: true });
-      const timeoutId = setTimeout(removeClone, timeoutRef.current);
+      const timeoutId = setTimeout(removeClone, options.timeout ?? 1000);
 
       $parent.insertBefore($clone, $element);
-      setTimeout(() => onUnmountedRef.current?.($clone), 0);
+      setTimeout(() => options.onUnmounted?.($clone), 0);
     };
-  }, [initRef, onMountedRef, onUnmountedRef, timeoutRef]);
+  }, [optionsRef]);
 };
 
 export default useMountEffect;

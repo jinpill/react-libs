@@ -30,13 +30,17 @@ const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>((props, ref) => {
       const $parent = $area?.children[0] ?? null;
       return $parent as HTMLElement | null;
     },
-    onMounted: ($clone) => {
-      console.log($clone);
+    onMounted: ($tooltip) => {
+      $tooltip.style.left = "100px";
+      $tooltip.style.top = "40px";
+      $tooltip.classList.add(style.visible);
+      console.log($tooltip);
     },
-    onUnmounted: ($clone) => {
-      console.log($clone);
+    onUnmounted: ($tooltip) => {
+      $tooltip.classList.remove(style.visible);
+      console.log($tooltip);
     },
-    timeout: 1000,
+    timeout: 300,
     isVisible,
   });
 
