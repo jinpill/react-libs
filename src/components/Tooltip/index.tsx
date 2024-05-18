@@ -30,15 +30,66 @@ const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>((props, ref) => {
       const $parent = $area?.children[0] ?? null;
       return $parent as HTMLElement | null;
     },
-    onMounted: ($tooltip) => {
-      $tooltip.style.left = "100px";
-      $tooltip.style.top = "40px";
-      $tooltip.classList.add(style.visible);
-      console.log($tooltip);
+    onMounted: ($clone) => {
+      const $area = document.getElementById(TOOLTIP_AREA_ID)?.children[0];
+      const $tooltip = tooltipRef.current;
+      if (!$area || !$tooltip) return;
+
+      const areaRect = $area.getBoundingClientRect();
+      const tooltipRect = $tooltip.getBoundingClientRect();
+      const cloneRect = $clone.getBoundingClientRect();
+
+      let top = 0;
+      let left = 0;
+
+      switch (props.position) {
+        case "left":
+        case "right":
+          top =
+            tooltipRect.top -
+            areaRect.top +
+            (tooltipRect.height - cloneRect.height) / 2;
+          break;
+        case "top":
+        case "bottom":
+        default:
+          left =
+            tooltipRect.left -
+            areaRect.left +
+            (tooltipRect.width - cloneRect.width) / 2;
+          break;
+      }
+
+      switch (props.position) {
+        case "left":
+          left =
+            tooltipRect.left -
+            areaRect.left +
+            tooltipRect.width -
+            cloneRect.width;
+          break;
+        case "right":
+          left = tooltipRect.left - areaRect.left;
+          break;
+        case "top":
+          top =
+            tooltipRect.top -
+            areaRect.top +
+            tooltipRect.height -
+            cloneRect.height;
+          break;
+        case "bottom":
+        default:
+          top = tooltipRect.top - areaRect.top;
+          break;
+      }
+
+      $clone.style.top = `${top}px`;
+      $clone.style.left = `${left}px`;
+      $clone.classList.add(style.visible);
     },
-    onUnmounted: ($tooltip) => {
-      $tooltip.classList.remove(style.visible);
-      console.log($tooltip);
+    onUnmounted: ($clone) => {
+      $clone.classList.remove(style.visible);
     },
     timeout: 300,
     isVisible,
@@ -65,16 +116,18 @@ const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>((props, ref) => {
       onPointerLeave={handlePointerLeave}
     >
       {props.children}
-      <div
-        ref={tooltipRef}
-        className={classNames(
-          style.tooltip,
-          style[props.position ?? "bottom"],
-          style[props.size ?? "medium"],
-        )}
-      >
-        <div className={style.message}>{props.message}</div>
-      </div>
+      {isVisible && (
+        <div
+          ref={tooltipRef}
+          className={classNames(
+            style.tooltip,
+            style[props.position ?? "bottom"],
+            style[props.size ?? "medium"],
+          )}
+        >
+          <div className={style.message}>{props.message}</div>
+        </div>
+      )}
     </div>
   );
 });

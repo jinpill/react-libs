@@ -31,7 +31,11 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   render: (props) => {
     return (
-      <>
+      <div
+        style={{
+          position: "relative",
+        }}
+      >
         <TooltipArea />
         <div
           style={{
@@ -45,7 +49,7 @@ export const Default: Story = {
             <Button text="Disabled" isDisabled />
           </Tooltip>
         </div>
-      </>
+      </div>
     );
   },
   args: {
