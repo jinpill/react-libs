@@ -23,15 +23,17 @@ Import and use the components or hooks in your project.
 
 ### Basic Components
 
-| Name            | Usage                                                                                |
-| :-------------- | :----------------------------------------------------------------------------------- |
-| **Card**        | This component is a simple card UI.                                                  |
-| **Label**       | This component is a simple label UI.                                                 |
-| **Scrim**       | This component is a simple scrim UI.                                                 |
-| **Skeleton**    | This component is a simple and customisable skeleton UI.                             |
-| **Icon**        | This component displays SVG icons based on the inputted source or preset name.       |
-| **Ellipsis**    | This component truncates and displays content based on the length of the child text. |
-| **BottomSheet** | The mobile-style popup UI that comes up from the bottom of the screen.               |
+| Name               | Usage                                                                                |
+| :----------------- | :----------------------------------------------------------------------------------- |
+| **Card**           | This component is a simple card UI.                                                  |
+| **Label**          | This component is a simple label UI.                                                 |
+| **Tooltip**        | This component displays a tooltip when hovering over the child element.              |
+| **Scrim**          | This component is a simple scrim UI.                                                 |
+| **Skeleton**       | This component is a simple and customisable skeleton UI.                             |
+| **Icon**           | This component displays SVG icons based on the inputted source or preset name.       |
+| **TextNormalizer** | This component splits the text by breaking lines and normalizes the text alignment.  |
+| **Ellipsis**       | This component truncates and displays content based on the length of the child text. |
+| **BottomSheet**    | The mobile-style popup UI that comes up from the bottom of the screen.               |
 
 ### Interactive Components
 
@@ -50,9 +52,10 @@ Import and use the components or hooks in your project.
 
 ## Hooks
 
-| Name               | Usage                                                    |
-| :----------------- | :------------------------------------------------------- |
-| **useStateRef**    | This hook returns a ref object refering to the state.    |
-| **useTimeout**     | This hook helps manage setTimeout easily in React.       |
-| **useInterval**    | This hook helps manage setInterval easily in React.      |
-| **useMountEffect** | This hook helps animate components on mount and unmount. |
+| Name               | Usage                                                                                  |
+| :----------------- | :------------------------------------------------------------------------------------- |
+| **useStateRef**    | This hook returns a ref object refering to the state.                                  |
+| **useTimeout**     | This hook helps manage setTimeout easily in React.                                     |
+| **useInterval**    | This hook helps manage setInterval easily in React.                                    |
+| **useMountEffect** | This hook helps animate components on mount and unmount.                               |
+| **useCloneEffect** | This hook duplicates component when changing states and helps animate cloned elements. |

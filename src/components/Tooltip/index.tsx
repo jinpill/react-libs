@@ -1,7 +1,10 @@
 import React, { useLayoutEffect, useRef, useState } from "react";
 import classNames from "classnames";
-import useCloneEffect from "@/hooks/useCloneEffect";
+
+import TextNormalizer from "../TextNormalizer";
 import { TOOLTIP_AREA_ID } from "./TooltipArea";
+import useCloneEffect from "@/hooks/useCloneEffect";
+
 import style from "./style.module.scss";
 
 export type TooltipSize = "small" | "medium" | "large";
@@ -149,7 +152,9 @@ const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>((props, ref) => {
         >
           <div>
             {props.title && <div className={style.title}>{props.title}</div>}
-            <div className={style.message}>{props.message}</div>
+            <div className={style.message}>
+              <TextNormalizer text={props.message} />
+            </div>
           </div>
           {props.contents}
         </div>

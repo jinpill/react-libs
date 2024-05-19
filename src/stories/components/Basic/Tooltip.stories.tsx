@@ -4,6 +4,9 @@ import TooltipArea from "@/components/Tooltip/TooltipArea";
 import Button from "@/components/Button";
 import type { Meta, StoryObj } from "@storybook/react";
 
+/**
+ * This component displays a tooltip when hovering over the child element.
+ */
 const meta: Meta<typeof Tooltip> = {
   title: "Components/Basic/Tooltip",
   component: Tooltip,
@@ -52,7 +55,11 @@ export const Default: Story = {
   ),
   args: {
     title: "Disabled Button",
-    message: "This button is disabled",
+    message: `
+      This button is disabled
+
+      
+    `,
     contents: (
       <img
         src="https://img-prod-cms-rt-microsoft-com.akamaized.net/cms/api/am/imageFileData/RE4wyTn?ver=e56a"

@@ -1,28 +1,21 @@
 import { Meta } from "@storybook/blocks";
 import Styles from "../utils/Styles";
 
-<Meta title="Hooks/useMountEffect" />
+<Meta title="Hooks/useCloneEffect" />
 <Styles />
 
-# useMountEffect
+# useCloneEffect
 
-This hook helps animate components on mount and unmount.
+This hook duplicates component when changing states and helps animate cloned elements.
 
 ## Usage
 
-It is quite common to apply unmount animations to components. However, React immediately removes the component from the DOM when it is unmounted. Therefore, animating the unmounted component is difficult and cumbersome.
-
-If you use this hook, it will be very easy to apply animations when the component is mounted or unmounted.
-
-### Example
-
-Firstly, add styles to animate the component in your CSS file.
-
-And then, refer to the example code below to add or remove classes to apply animations.
+This hook creates a clone of the element and appends it to the desired parent element when the value of the input state becomes `true`. After adding the element, you can apply animations to the element by adding classes through the `onMounted` and `onUnmounted` options.
 
 ```jsx
 import { useMountEffect } from "@jinpill/react-libs";
-import style from "./style.module.css";
+
+const AREA_ID = "__some-area";
 
 const SomeComponent = () => {
   const ref = useRef(null);
@@ -30,6 +23,12 @@ const SomeComponent = () => {
   useMountEffect({
     // Return the element to be animated.
     init: () => ref.current,
+    // Return the parent element to append the clone element.
+    parent: () => {
+      const $area = document.getElementById(AREA_ID);
+      const $parent = $area?.children[0] ?? null;
+      return $parent as HTMLElement | null;
+    },
     // Apply animations by adding or removing classes, or changing inline styles directly.
     onMounted: (element) => {
       element.classList.add("some-component--mount-animation");
