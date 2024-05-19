@@ -3,15 +3,12 @@
   inset: 0;
   z-index: 1000;
   pointer-events: none;
-
-  padding: 1rem;
+  overflow: hidden;
 
   > div {
     width: 100%;
     height: 100%;
     position: relative;
-
-    background-color: rgba(red, 0.1);
   }
 }
 
@@ -19,14 +16,23 @@
   width: fit-content;
   height: fit-content;
   position: relative;
+  overflow: hidden;
 }
 
 .tooltip {
   width: fit-content;
+
+  display: flex;
+  flex-direction: column;
+  visibility: hidden;
+
   position: absolute;
   border-radius: var(--radius-medium);
   background-color: rgba(black, 0.75);
-  visibility: hidden;
+
+  color: var(--text-white);
+  user-select: none;
+
   opacity: 0;
   pointer-events: none;
 
@@ -110,21 +116,28 @@
 }
 
 .small {
+  gap: 0.25rem;
   padding: 0.25rem 0.375rem;
   font-size: var(--text-small);
 }
 
 .medium {
+  gap: 0.5rem;
   padding: 0.375rem 0.5rem;
   font-size: var(--text-medium);
 }
 
 .large {
+  gap: 0.5rem;
   padding: 0.625rem 0.75rem;
   font-size: var(--text-large);
 }
 
+.title {
+  font-size: 0.9em;
+  font-weight: 600;
+}
+
 .message {
-  color: var(--text-white);
-  user-select: none;
+  font-size: 1em;
 }

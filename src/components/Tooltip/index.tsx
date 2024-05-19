@@ -9,8 +9,10 @@ export type TooltipPosition = "top" | "bottom" | "left" | "right";
 
 export type TooltipProps = {
   size?: TooltipSize;
-  message: string;
   position?: TooltipPosition;
+  title?: string;
+  message: string;
+  contents?: React.ReactNode;
   isVisible?: boolean;
 
   className?: string;
@@ -84,6 +86,26 @@ const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>((props, ref) => {
           break;
       }
 
+      switch (props.position) {
+        case "left":
+        case "right":
+          if (top < 0) {
+            top = 0;
+          } else if (top + cloneRect.height > areaRect.height) {
+            top = areaRect.height - cloneRect.height;
+          }
+          break;
+        case "top":
+        case "bottom":
+        default:
+          if (left < 0) {
+            left = 0;
+          } else if (left + cloneRect.width > areaRect.width) {
+            left = areaRect.width - cloneRect.width;
+          }
+          break;
+      }
+
       $clone.style.top = `${top}px`;
       $clone.style.left = `${left}px`;
       $clone.classList.add(style.visible);
@@ -125,7 +147,11 @@ const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>((props, ref) => {
             style[props.size ?? "medium"],
           )}
         >
-          <div className={style.message}>{props.message}</div>
+          <div>
+            {props.title && <div className={style.title}>{props.title}</div>}
+            <div className={style.message}>{props.message}</div>
+          </div>
+          {props.contents}
         </div>
       )}
     </div>
