@@ -1,5 +1,6 @@
 import React from "react";
 import Panel from "@/components/Panel";
+import Button from "@/components/Button";
 import type { Meta, StoryObj } from "@storybook/react";
 
 const meta: Meta = {
@@ -20,7 +21,12 @@ export const Default: Story = {
           minWidth: "320px",
         }}
       >
-        <Panel.Header title="Panel Header" size="large" />
+        <Panel.Header title="View Options" />
+        <Panel.Section title="Point cloud">Contents</Panel.Section>
+        <Panel.Section title="Coordinate frames">Contents</Panel.Section>
+        <Panel.Section>
+          <Button role="tertiary" text="Reset View" isFullWidth />
+        </Panel.Section>
       </Panel.Container>
     );
   },

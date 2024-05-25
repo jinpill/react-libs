@@ -1,37 +1,52 @@
 .container {
+  --padding: 0.75rem;
+
   width: fit-content;
+  background-color: var(--bg-white);
 }
 
 .header {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding: var(--padding);
 
-  &.medium {
-    padding: 0.625rem;
-  }
-
-  &.large {
-    padding: 0.75rem;
+  .title,
+  .iconButton {
+    color: var(--text-tertiary);
   }
 }
 
 .title {
   display: flex;
   align-items: center;
+  gap: 0.5rem;
 
-  color: var(--text-tertiary);
+  font-size: var(--text-medium);
   font-weight: 700;
   text-transform: uppercase;
   user-select: none;
+}
 
-  .medium > & {
-    gap: 0.5rem;
-    font-size: var(--text-medium);
+.section {
+  & + & {
+    border-top: 1px solid var(--border-secondary);
   }
+}
 
-  .large > & {
-    gap: 0.625rem;
-    font-size: var(--text-large);
+.sectionTitle {
+  padding: var(--padding);
+
+  color: var(--text-primary);
+  font-size: var(--text-medium);
+  font-weight: 500;
+  user-select: none;
+}
+
+.sectionContents {
+  padding: var(--padding);
+
+  .sectionTitle + & {
+    padding-top: 0;
   }
 }

@@ -6,7 +6,7 @@
   "module": "dist/index.es.js",
   "types": "dist/index.d.ts",
   "umd": "dist/index.umd.js",
-  "packageManager": "pnpm@9.0.6",
+  "packageManager": "pnpm@9.1.2",
   "scripts": {
     "ci": "pnpm i --frozen-lockfile",
     "dev": "storybook dev -p 6006",
