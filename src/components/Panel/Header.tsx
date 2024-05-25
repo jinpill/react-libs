@@ -1,6 +1,6 @@
 import React from "react";
 import classNames from "classnames";
-import Icon from "@/components/Icon";
+import IconButton from "@/components/IconButton";
 import style from "./style.module.scss";
 
 export type PanelHeaderSize = "medium" | "large";
@@ -32,7 +32,10 @@ const PanelHeader = React.forwardRef<HTMLDivElement, PanelHeaderProps>(
         </div>
 
         <div className={style.actions}>
-          <Icon preset="close" />
+          <IconButton
+            preset="close"
+            size={props.size === "large" ? "medium" : "small"}
+          />
         </div>
       </div>
     );
