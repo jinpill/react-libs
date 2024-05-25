@@ -3,6 +3,7 @@ import classNames from "classnames";
 import style from "./style.module.scss";
 
 export type LabelSize = "small" | "medium" | "large";
+export type LabelPosition = "top" | "left" | "right";
 
 export type LabelProps = {
   name: string;
@@ -10,8 +11,8 @@ export type LabelProps = {
   size?: LabelSize;
   option?: string;
   message?: string;
+  position?: LabelPosition;
   isFullWidth?: boolean;
-  isHorizontal?: boolean;
   hasError?: boolean;
 
   className?: string;
@@ -25,9 +26,9 @@ const Label = (props: LabelProps) => {
         style.label,
         props.className,
         style[props.size ?? "medium"],
+        style[props.position ?? "top"],
         {
           [style.fullWidth]: props.isFullWidth,
-          [style.horizontal]: props.isHorizontal,
         },
       )}
     >

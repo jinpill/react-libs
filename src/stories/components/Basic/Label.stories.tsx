@@ -67,14 +67,14 @@ export const Small: Story = {
 };
 
 /**
- * Set `isHorizontal` to `true` to display contents horizontally.
+ * Set `position` to `"right"` to display contents horizontally.
  */
 export const UsingCheckbox: Story = {
   args: {
     name: "Subscribe",
     option: "optional",
     message: "Please subscribe to our newsletter",
-    isHorizontal: true,
+    position: "right",
     children: <Checkbox value={true} />,
   },
 };

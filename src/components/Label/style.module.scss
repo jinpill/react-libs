@@ -1,21 +1,32 @@
 .label {
   width: fit-content;
-  min-width: var(--min-width);
 
   display: flex;
   flex-direction: column;
   gap: var(--gap) 0;
 
-  &.horizontal {
-    min-width: auto;
+  &.top {
+    min-width: var(--min-width);
+  }
+
+  &.right {
+    .heading {
+      width: var(--min-width);
+    }
 
     .wrapper {
       flex-direction: row-reverse;
       justify-content: flex-end;
     }
+  }
 
-    .contents {
-      flex: none;
+  &.left {
+    .heading {
+      width: var(--min-width);
+    }
+
+    .wrapper {
+      flex-direction: row;
     }
   }
 }
@@ -34,7 +45,7 @@
   --gap: 0.25rem;
   --min-width: 8.75rem;
 
-  &.horizontal .wrapper {
+  &.right .wrapper {
     gap: 0 calc(var(--gap) * 4);
   }
 
@@ -51,7 +62,7 @@
   --gap: 0.25rem;
   --min-width: 12.5rem;
 
-  &.horizontal .wrapper {
+  &.right .wrapper {
     gap: 0 calc(var(--gap) * 4);
   }
 
@@ -68,7 +79,7 @@
   --gap: 0.5rem;
   --min-width: 15rem;
 
-  &.horizontal .wrapper {
+  &.right .wrapper {
     gap: 0 calc(var(--gap) * 2);
   }
 
