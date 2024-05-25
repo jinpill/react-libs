@@ -1,0 +1,33 @@
+.iconButton {
+  min-width: auto;
+  padding: 0;
+  border-color: transparent;
+  background-color: transparent;
+}
+
+.small {
+  width: 1.5rem;
+  height: 1.5rem;
+
+  .icon {
+    --icon-size: 1.25rem;
+  }
+}
+
+.medium {
+  width: 2rem;
+  height: 2rem;
+
+  .icon {
+    --icon-size: 1.5rem;
+  }
+}
+
+.large {
+  width: 2.5rem;
+  height: 2.5rem;
+
+  .icon {
+    --icon-size: 1.75rem;
+  }
+}

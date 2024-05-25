@@ -24,6 +24,7 @@ export type ButtonProps = {
   onBlur?: (event: React.FocusEvent<HTMLButtonElement>) => void;
 
   className?: string;
+  style?: React.CSSProperties;
   children?: React.ReactNode;
 };
 
@@ -38,6 +39,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     return (
       <button
         ref={ref}
+        style={props.style}
         className={classNames(
           style.button,
           props.className,

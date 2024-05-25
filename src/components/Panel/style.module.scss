@@ -1,0 +1,37 @@
+.container {
+  width: fit-content;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  &.medium {
+    padding: 0.625rem;
+  }
+
+  &.large {
+    padding: 0.75rem;
+  }
+}
+
+.title {
+  display: flex;
+  align-items: center;
+
+  color: var(--text-tertiary);
+  font-weight: 700;
+  text-transform: uppercase;
+  user-select: none;
+
+  .medium > & {
+    gap: 0.5rem;
+    font-size: var(--text-medium);
+  }
+
+  .large > & {
+    gap: 0.625rem;
+    font-size: var(--text-large);
+  }
+}
