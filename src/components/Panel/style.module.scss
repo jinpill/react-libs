@@ -13,6 +13,7 @@
 
   .title,
   .iconButton {
+    --icon-color: var(--text-tertiary);
     color: var(--text-tertiary);
   }
 }
@@ -66,10 +67,11 @@
   }
 
   .actions {
+    --icon-color: var(--text-tertiary);
+
     display: flex;
     align-items: center;
     gap: 0.25rem;
-    color: var(--text-tertiary);
   }
 }
 

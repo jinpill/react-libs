@@ -14,6 +14,7 @@ $transition: 0.2s ease-in-out;
   border: 1px solid;
   outline: 0.1875rem solid transparent;
 
+  color: var(--text-color);
   user-select: none;
 
   cursor: pointer;
@@ -43,9 +44,9 @@ $transition: 0.2s ease-in-out;
 }
 
 .primary {
+  --text-color: var(--gray-white);
   border-color: var(--primary-1);
   background-color: var(--primary-1);
-  color: var(--gray-white);
 
   &:disabled:not(.processing) {
     border-color: var(--primary-3);
@@ -59,9 +60,9 @@ $transition: 0.2s ease-in-out;
 }
 
 .secondary {
+  --text-color: var(--text-secondary);
   border-color: var(--border-primary);
   background-color: var(--bg-white);
-  color: var(--text-secondary);
 
   &:disabled:not(.processing) {
     border-color: var(--border-disabled);
@@ -75,9 +76,9 @@ $transition: 0.2s ease-in-out;
 }
 
 .tertiary {
+  --text-color: var(--text-secondary);
   border-color: var(--border-primary);
   background-color: var(--border-primary);
-  color: var(--text-secondary);
 
   &:disabled:not(.processing) {
     border-color: var(--border-disabled);
@@ -91,9 +92,9 @@ $transition: 0.2s ease-in-out;
 }
 
 .danger {
+  --text-color: var(--gray-white);
   border-color: var(--status-red-1);
   background-color: var(--status-red-1);
-  color: var(--gray-white);
 
   &:disabled:not(.processing) {
     border-color: var(--status-red-3);

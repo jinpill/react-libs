@@ -1,5 +1,6 @@
 import React from "react";
 import Panel from "@/components/Panel";
+import IconButton from "@/components/IconButton";
 import ToggleButton from "@/components/ToggleButton";
 import Input from "@/components/Input";
 import Button from "@/components/Button";
@@ -40,7 +41,10 @@ export const Default: Story = {
             <Input.Number value={9} textAlignment="center" isFullWidth />
           </Panel.Label>
         </Panel.Section>
-        <Panel.Section title="Coordinate frames"></Panel.Section>
+        <Panel.Section
+          title="Coordinate frames"
+          actions={<IconButton size="medium" preset="add" />}
+        ></Panel.Section>
         <Panel.Section title="Cad matches" isCollapsible>
           <Panel.Label name="Returned">
             <ToggleButton value="visible" options={OPTIONS} isFullWidth />

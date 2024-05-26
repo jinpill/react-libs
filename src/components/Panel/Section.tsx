@@ -7,6 +7,7 @@ import style from "./style.module.scss";
 
 export type PanelSectionProps = {
   title?: string;
+  actions?: React.ReactNode;
   isCollapsible?: boolean;
 
   className?: string;
@@ -37,6 +38,7 @@ const PanelSection = React.forwardRef<HTMLDivElement, PanelSectionProps>(
             <div>
               {props.title}
               <div className={style.actions}>
+                {props.actions}
                 {props.isCollapsible && (
                   <Icon preset={isCollapsed ? "expand_more" : "expand_less"} />
                 )}
