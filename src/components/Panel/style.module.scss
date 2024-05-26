@@ -73,6 +73,10 @@
     align-items: center;
     gap: 0.25rem;
   }
+
+  .expandIcon {
+    --icon-size: 1.25rem;
+  }
 }
 
 .sectionContents {
@@ -111,4 +115,8 @@
   &.large {
     --contents-width: 8.75rem;
   }
+}
+
+.footer {
+  padding: var(--padding);
 }

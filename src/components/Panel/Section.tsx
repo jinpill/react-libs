@@ -1,8 +1,6 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import classNames from "classnames";
-
 import Icon from "@/components/Icon";
-import useMountEffect from "@/hooks/useMountEffect";
 import style from "./style.module.scss";
 
 export type PanelSectionProps = {
@@ -17,13 +15,30 @@ export type PanelSectionProps = {
 
 const PanelSection = React.forwardRef<HTMLDivElement, PanelSectionProps>(
   (props, ref) => {
+    const contentsRef = useRef<HTMLDivElement>(null);
+
+    const [contentsHeight, setContentsHeight] = useState(0);
     const [isCollapsed, setIsCollapsed] = useState(
       props.isCollapsible ?? false,
     );
 
     const handleToggleIsCollapsed = () => {
+      if (!props.isCollapsible) return;
       setIsCollapsed((prev) => !prev);
     };
+
+    useEffect(() => {
+      if (isCollapsed || !props.children) {
+        setContentsHeight(0);
+        return;
+      }
+
+      const $contents = contentsRef.current;
+      if (!$contents) return;
+
+      const { height } = $contents.getBoundingClientRect();
+      setContentsHeight(height);
+    }, [isCollapsed && props.children]);
 
     return (
       <div
@@ -40,49 +55,25 @@ const PanelSection = React.forwardRef<HTMLDivElement, PanelSectionProps>(
               <div className={style.actions}>
                 {props.actions}
                 {props.isCollapsible && (
-                  <Icon preset={isCollapsed ? "expand_more" : "expand_less"} />
+                  <Icon
+                    className={style.expandIcon}
+                    preset={isCollapsed ? "expand_more" : "expand_less"}
+                  />
                 )}
               </div>
             </div>
           </div>
         )}
-        {!isCollapsed && props.children && (
-          <SectionContents>{props.children}</SectionContents>
-        )}
+
+        <div
+          className={style.sectionContents}
+          style={{ height: contentsHeight }}
+        >
+          <div ref={contentsRef}>{props.children}</div>
+        </div>
       </div>
     );
   },
 );
 
 export default PanelSection;
-
-type SectionContentsProps = {
-  children?: React.ReactNode;
-};
-
-const SectionContents = (props: SectionContentsProps) => {
-  const ref = useRef<HTMLDivElement>(null);
-
-  useMountEffect({
-    init: () => ref.current,
-    onMounted: ($contents) => {
-      const $child = $contents.children[0] as HTMLDivElement;
-      if (!$child) return;
-
-      const { height } = $child.getBoundingClientRect();
-      $contents.style.height = `${height}px`;
-    },
-    onUnmounted: ($contents) => {
-      const $child = $contents.children[0] as HTMLDivElement;
-      if (!$child) return;
-
-      $contents.style.height = "0px";
-    },
-  });
-
-  return (
-    <div ref={ref} className={style.sectionContents}>
-      <div>{props.children}</div>
-    </div>
-  );
-};

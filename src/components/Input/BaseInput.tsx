@@ -130,7 +130,6 @@ const BaseInput = React.forwardRef<HTMLDivElement, BaseInputProps>(
     };
 
     const applyCurrentValue = () => {
-      console.warn("apply");
       if (prevValueRef.current === currentValue) return;
       let nextValue = currentValue;
 

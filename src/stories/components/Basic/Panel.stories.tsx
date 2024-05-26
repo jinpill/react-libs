@@ -28,14 +28,11 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  render: () => {
-    return (
-      <Panel.Container
-        style={{
-          minWidth: "320px",
-        }}
-      >
-        <Panel.Header title="View Options" />
+  render: () => (
+    <Panel.Container style={{ minWidth: 320 }}>
+      <Panel.Header title="View Options" />
+
+      <Panel.Contents style={{ maxHeight: 500 }}>
         <Panel.Section title="Point cloud">
           <Panel.Label name="Point size" unit="mm" contentWidth="small">
             <Input.Number value={9} textAlignment="center" isFullWidth />
@@ -43,7 +40,7 @@ export const Default: Story = {
         </Panel.Section>
         <Panel.Section
           title="Coordinate frames"
-          actions={<IconButton size="medium" preset="add" />}
+          actions={<IconButton size="small" preset="add" />}
         ></Panel.Section>
         <Panel.Section title="Cad matches" isCollapsible>
           <Panel.Label name="Returned">
@@ -71,10 +68,11 @@ export const Default: Story = {
             <ToggleButton value="visible" options={OPTIONS} isFullWidth />
           </Panel.Label>
         </Panel.Section>
-        <Panel.Section>
-          <Button role="tertiary" text="Reset View" isFullWidth />
-        </Panel.Section>
-      </Panel.Container>
-    );
-  },
+      </Panel.Contents>
+
+      <Panel.Footer>
+        <Button role="tertiary" text="Reset View" isFullWidth />
+      </Panel.Footer>
+    </Panel.Container>
+  ),
 };
