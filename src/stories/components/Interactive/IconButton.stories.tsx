@@ -1,6 +1,9 @@
 import IconButton from "@/components/IconButton";
 import type { Meta, StoryObj } from "@storybook/react";
 
+/**
+ * This component is a simple icon button UI.
+ */
 const meta: Meta<typeof IconButton> = {
   title: "Components/Interactive/IconButton",
   component: IconButton,

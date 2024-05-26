@@ -34,6 +34,7 @@ Import and use the components or hooks in your project.
 | **TextNormalizer** | This component splits the text by breaking lines and normalizes the text alignment.  |
 | **Ellipsis**       | This component truncates and displays content based on the length of the child text. |
 | **BottomSheet**    | The mobile-style popup UI that comes up from the bottom of the screen.               |
+| **Panel**          | This component is a panel UI for options.                                            |
 
 ### Interactive Components
 
@@ -41,6 +42,7 @@ Import and use the components or hooks in your project.
 | :--------------- | :----------------------------------------------------------------------------------------- |
 | **Chip**         | This component is a simple chip UI.                                                        |
 | **Button**       | This component is a simple button UI.                                                      |
+| **IconButton**   | This component is a simple icon button UI.                                                 |
 | **Input**        | This component is a simple input UI.                                                       |
 | **Dropdown**     | This component is a simple dropdown UI.                                                    |
 | **Checkbox**     | This component is a simple checkbox UI.                                                    |

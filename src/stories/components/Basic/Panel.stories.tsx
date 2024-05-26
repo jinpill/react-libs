@@ -6,6 +6,9 @@ import Input from "@/components/Input";
 import Button from "@/components/Button";
 import type { Meta, StoryObj } from "@storybook/react";
 
+/**
+ * This component is a panel UI for options.
+ */
 const meta: Meta = {
   title: "Components/Basic/Panel",
   parameters: {},

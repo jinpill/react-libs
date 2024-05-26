@@ -9,10 +9,12 @@ export { default as Icon } from "@/components/Icon";
 export { default as TextNormalizer } from "@/components/TextNormalizer";
 export { default as Ellipsis } from "@/components/Ellipsis";
 export { default as BottomSheet } from "@/components/BottomSheet";
+export { default as Panel } from "@/components/Panel";
 
 // Interactive Components
 export { default as Chip } from "@/components/Chip";
 export { default as Button } from "@/components/Button";
+export { default as IconButton } from "@/components/IconButton";
 export { default as Input } from "@/components/Input";
 export { default as Dropdown } from "@/components/Dropdown";
 export { default as Checkbox } from "@/components/Checkbox";
