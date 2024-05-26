@@ -11,6 +11,7 @@ export type BaseInputProps = {
   placeholder?: string;
   tabIndex?: number;
   value?: string;
+  textAlignment?: "left" | "center" | "right";
 
   min?: number | `${number}`;
   max?: number | `${number}`;
@@ -180,6 +181,7 @@ const BaseInput = React.forwardRef<HTMLDivElement, BaseInputProps>(
           style.input,
           props.className,
           style[props.size ?? "medium"],
+          style[props.textAlignment ?? "left"],
           {
             [style.fullWidth]: props.isFullWidth,
             [style.disabled]: props.isDisabled,

@@ -90,3 +90,17 @@ $transition: 0.2s ease-in-out;
 .fullWidth {
   width: 100%;
 }
+
+input {
+  .left & {
+    text-align: left;
+  }
+
+  .center & {
+    text-align: center;
+  }
+
+  .right & {
+    text-align: right;
+  }
+}

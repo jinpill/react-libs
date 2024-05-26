@@ -41,7 +41,7 @@
 .sectionTitle {
   padding: 0.5rem 0.375rem;
 
-  color: var(--text-secondary);
+  color: var(--text-primary);
   font-size: var(--text-medium);
   font-weight: 500;
   line-height: 1.5rem;
@@ -88,6 +88,25 @@
   }
 
   > div {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
     padding-bottom: var(--padding);
+  }
+}
+
+.label {
+  --primary-color: var(--text-secondary);
+
+  &.small {
+    --contents-width: 3.125rem;
+  }
+
+  &.medium {
+    --contents-width: 6.25rem;
+  }
+
+  &.large {
+    --contents-width: 8.75rem;
   }
 }
