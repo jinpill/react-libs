@@ -24,29 +24,70 @@
 
   font-size: var(--text-medium);
   font-weight: 700;
+  line-height: 1.5rem;
   text-transform: uppercase;
   user-select: none;
 }
 
 .section {
-  & + & {
+  & + &::before {
+    display: block;
+    content: "";
+    margin: 0 0.5rem;
     border-top: 1px solid var(--border-secondary);
   }
 }
 
 .sectionTitle {
-  padding: var(--padding);
+  padding: 0.5rem 0.375rem;
 
-  color: var(--text-primary);
+  color: var(--text-secondary);
   font-size: var(--text-medium);
   font-weight: 500;
+  line-height: 1.5rem;
   user-select: none;
+
+  > div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: calc(var(--padding) - 0.5rem) calc(var(--padding) - 0.375rem);
+
+    border-radius: var(--radius-medium);
+
+    .collapsible & {
+      cursor: pointer;
+      transition: background-color 0.2s ease-in-out;
+
+      &:hover {
+        background-color: var(--bg-secondary);
+      }
+    }
+  }
+
+  .actions {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    color: var(--text-tertiary);
+  }
 }
 
 .sectionContents {
   padding: var(--padding);
+  padding-bottom: 0;
+  transition: height 0.2s ease-in-out;
 
   .sectionTitle + & {
     padding-top: 0;
+  }
+
+  .collapsible & {
+    height: 0;
+    overflow: hidden;
+  }
+
+  > div {
+    padding-bottom: var(--padding);
   }
 }

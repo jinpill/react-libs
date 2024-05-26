@@ -23,7 +23,19 @@ export const Default: Story = {
       >
         <Panel.Header title="View Options" />
         <Panel.Section title="Point cloud">Contents</Panel.Section>
-        <Panel.Section title="Coordinate frames">Contents</Panel.Section>
+        <Panel.Section title="Coordinate frames"></Panel.Section>
+        <Panel.Section title="Cad matches" isCollapsible>
+          Cad matches
+        </Panel.Section>
+        <Panel.Section title="Grasps" isCollapsible>
+          Cad matches
+        </Panel.Section>
+        <Panel.Section title="Gripper" isCollapsible>
+          Cad matches
+        </Panel.Section>
+        <Panel.Section title="Load Carrier" isCollapsible>
+          Cad matches
+        </Panel.Section>
         <Panel.Section>
           <Button role="tertiary" text="Reset View" isFullWidth />
         </Panel.Section>
