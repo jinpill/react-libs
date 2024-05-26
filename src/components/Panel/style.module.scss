@@ -67,6 +67,7 @@
   }
 
   .actions {
+    --text-color: var(--text-primary);
     --icon-color: var(--text-tertiary);
 
     display: flex;
