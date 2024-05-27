@@ -22,6 +22,7 @@
 
     .wrapper {
       flex-direction: row-reverse;
+      align-items: center;
       justify-content: flex-end;
     }
   }
@@ -35,6 +36,7 @@
 
     .wrapper {
       flex-direction: row;
+      align-items: center;
     }
   }
 
