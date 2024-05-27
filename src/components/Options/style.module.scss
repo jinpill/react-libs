@@ -21,34 +21,34 @@ $transition: 0.2s ease-in-out;
   &.dummy {
     height: 0;
   }
-
-  @mixin setMaxHeight($option-height) {
-    max-height: $option-height * 5;
-  }
-
-  &.large {
-    min-width: 15rem;
-    box-shadow: var(--elevation-3);
-    @include setMaxHeight($large-option-height);
-  }
-
-  &.medium {
-    min-width: 12.5rem;
-    box-shadow: var(--elevation-2);
-    @include setMaxHeight($medium-option-height);
-  }
-
-  &.small {
-    min-width: 8.75rem;
-    box-shadow: var(--elevation-1);
-    @include setMaxHeight($small-option-height);
-  }
 }
 
 .options {
   margin: 0;
   padding-left: 0;
   list-style: none;
+}
+
+@mixin setMaxHeight($option-height) {
+  max-height: $option-height * 5;
+}
+
+.large {
+  min-width: 15rem;
+  box-shadow: var(--elevation-3);
+  @include setMaxHeight($large-option-height);
+}
+
+.medium {
+  min-width: 12.5rem;
+  box-shadow: var(--elevation-2);
+  @include setMaxHeight($medium-option-height);
+}
+
+.small {
+  min-width: 8.75rem;
+  box-shadow: var(--elevation-1);
+  @include setMaxHeight($small-option-height);
 }
 
 .fullWidth {
@@ -138,6 +138,7 @@ $transition: 0.2s ease-in-out;
   }
 
   .optionsWrapper {
+    min-width: auto;
     height: auto;
     pointer-events: all;
 
