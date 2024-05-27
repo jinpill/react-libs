@@ -38,10 +38,6 @@ $transition: 0.2s ease-in-out;
     overflow: hidden;
   }
 
-  &.fullWidth {
-    width: 100%;
-  }
-
   &.large {
     min-width: 15rem;
 
@@ -76,5 +72,10 @@ $transition: 0.2s ease-in-out;
     .icon {
       --icon-size: 1rem;
     }
+  }
+
+  &.fullWidth {
+    width: 100%;
+    min-width: auto;
   }
 }
