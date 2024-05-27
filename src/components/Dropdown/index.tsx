@@ -111,6 +111,7 @@ const Dropdown = (props: DropdownProps) => {
           value={currentValue}
           options={options}
           isVisible={isExpanded}
+          isFullWidth
           onClick={hideOptions}
           onClickAway={hideOptions}
           onChange={handleChange}

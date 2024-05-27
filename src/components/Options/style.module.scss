@@ -51,6 +51,11 @@ $transition: 0.2s ease-in-out;
   list-style: none;
 }
 
+.fullWidth {
+  width: 100%;
+  min-width: auto;
+}
+
 .option {
   background-color: var(--bg-white);
   box-shadow: inset 0 0 0 0.125rem transparent;

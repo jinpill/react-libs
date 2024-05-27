@@ -25,6 +25,7 @@ export type OptionsProps = {
   size?: OptionsSize;
   options: Option[];
   isVisible: boolean;
+  isFullWidth?: boolean;
   className?: string;
   value?: string;
   onClick?: (value: string) => void;
@@ -218,6 +219,9 @@ export const Options = (props: OptionsProps) => {
         style.dummy,
         props.className,
         style[props.size ?? "medium"],
+        {
+          [style.fullWidth]: props.isFullWidth,
+        },
       )}
       direction="vertical"
       margin="4"
