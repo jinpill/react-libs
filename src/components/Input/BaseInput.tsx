@@ -92,8 +92,7 @@ const BaseInput = React.forwardRef<HTMLDivElement, BaseInputProps>(
           nextValue += direction;
         }
 
-        setValue(nextValue.toString());
-        props.onChange?.(nextValue.toString());
+        applyCurrentValue(nextValue.toString());
       };
 
       switch (event.key) {
@@ -129,9 +128,8 @@ const BaseInput = React.forwardRef<HTMLDivElement, BaseInputProps>(
       props.onBlur?.(event);
     };
 
-    const applyCurrentValue = () => {
-      if (prevValueRef.current === currentValue) return;
-      let nextValue = currentValue;
+    const applyCurrentValue = (nextValue = currentValue) => {
+      if (prevValueRef.current === nextValue) return;
 
       if (isNumberType) {
         if (isNaN(Number(nextValue))) {
