@@ -148,7 +148,6 @@ const BaseInput = React.forwardRef<HTMLDivElement, BaseInputProps>(
         }
 
         const numberValue = Number(nextValue);
-        console.log(numberValue);
         if (numberValue < min) {
           nextValue = min.toString();
         } else if (numberValue > max) {
