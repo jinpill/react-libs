@@ -89,6 +89,12 @@ const BaseInput = React.forwardRef<HTMLDivElement, BaseInputProps>(
         if (value !== "") {
           nextValue = Number(value);
           nextValue += direction * step;
+
+          if (typeof float !== "number") {
+            const decimal = step.toString().split(".")[1];
+            const float = !decimal ? 0 : decimal.length;
+            nextValue = Number(nextValue.toFixed(float));
+          }
         }
 
         applyCurrentValue(nextValue.toString());
@@ -142,6 +148,7 @@ const BaseInput = React.forwardRef<HTMLDivElement, BaseInputProps>(
         }
 
         const numberValue = Number(nextValue);
+        console.log(numberValue);
         if (numberValue < min) {
           nextValue = min.toString();
         } else if (numberValue > max) {
