@@ -36,9 +36,8 @@ const BaseInput = React.forwardRef<HTMLDivElement, BaseInputProps>(
     const inputRef = useRef<HTMLInputElement>(null);
     const isNumberType = props.type === "number";
 
-    const [value, setValue] = useState("");
-    const currentValue = props.value ?? value;
-    const prevValueRef = useRef(currentValue);
+    const [value, setValue] = useState(props.value ?? "");
+    const prevValueRef = useRef(value);
 
     const min = useMemo(() => Number(props.min ?? -Infinity), [props.min]);
     const max = useMemo(() => Number(props.max ?? Infinity), [props.max]);
@@ -84,12 +83,12 @@ const BaseInput = React.forwardRef<HTMLDivElement, BaseInputProps>(
         event.preventDefault();
       };
 
-      const addDirectionToValue = (direction: number) => {
+      const addToValue = (direction: number) => {
         let nextValue = 0;
 
-        if (currentValue !== "") {
-          nextValue = Number(currentValue);
-          nextValue += direction;
+        if (value !== "") {
+          nextValue = Number(value);
+          nextValue += direction * step;
         }
 
         applyCurrentValue(nextValue.toString());
@@ -110,13 +109,13 @@ const BaseInput = React.forwardRef<HTMLDivElement, BaseInputProps>(
         case "ArrowUp":
           if (!isNumberType) break;
           stopAndPrevent();
-          addDirectionToValue(+step);
+          addToValue(+1);
           break;
 
         case "ArrowDown":
           if (!isNumberType) break;
           stopAndPrevent();
-          addDirectionToValue(-step);
+          addToValue(-1);
           break;
       }
 
@@ -128,7 +127,7 @@ const BaseInput = React.forwardRef<HTMLDivElement, BaseInputProps>(
       props.onBlur?.(event);
     };
 
-    const applyCurrentValue = (nextValue = currentValue) => {
+    const applyCurrentValue = (nextValue = value) => {
       if (prevValueRef.current === nextValue) return;
 
       if (isNumberType) {
@@ -139,7 +138,7 @@ const BaseInput = React.forwardRef<HTMLDivElement, BaseInputProps>(
 
         if (nextValue !== "") {
           nextValue = Number(nextValue).toString();
-          if (nextValue !== currentValue) setValue(nextValue);
+          if (nextValue !== value) setValue(nextValue);
         }
 
         const numberValue = Number(nextValue);
@@ -161,7 +160,7 @@ const BaseInput = React.forwardRef<HTMLDivElement, BaseInputProps>(
     };
 
     const resetValue = () => {
-      if (prevValueRef.current === currentValue) return;
+      if (prevValueRef.current === value) return;
       setValue(prevValueRef.current);
     };
 
@@ -170,6 +169,18 @@ const BaseInput = React.forwardRef<HTMLDivElement, BaseInputProps>(
         console.warn("`min` should be less than or equal to `max`.");
       }
     }, [min, max]);
+
+    useEffect(() => {
+      if (props.type !== "number") {
+        const nextValue = props.value ?? "";
+        setValue(nextValue);
+        return;
+      }
+
+      const nextValue = Number(props.value ?? 0);
+      if (min > nextValue) applyCurrentValue(min.toString());
+      else if (max < nextValue) applyCurrentValue(max.toString());
+    }, [props.value, min, max, applyCurrentValue]);
 
     return (
       <div
@@ -192,7 +203,7 @@ const BaseInput = React.forwardRef<HTMLDivElement, BaseInputProps>(
           placeholder={props.placeholder}
           tabIndex={props.tabIndex}
           disabled={props.isDisabled}
-          value={currentValue}
+          value={value}
           onChange={handleChange}
           onKeyDown={handleKeyDown}
           onFocus={props.onFocus}
