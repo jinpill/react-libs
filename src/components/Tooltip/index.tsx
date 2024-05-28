@@ -1,7 +1,7 @@
-import React, { useLayoutEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import classNames from "classnames";
 
-import TextNormalizer from "../TextNormalizer";
+import TextNormalizer from "@/components/TextNormalizer";
 import { TOOLTIP_AREA_ID } from "./TooltipArea";
 import useCloneEffect from "@/hooks/useCloneEffect";
 
@@ -127,11 +127,6 @@ const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>((props, ref) => {
   const handlePointerLeave = () => {
     setIsMouseOver(false);
   };
-
-  useLayoutEffect(() => {
-    const $tooltip = tooltipRef.current;
-    if (!$tooltip || !isVisible) return;
-  }, [isVisible]);
 
   return (
     <div

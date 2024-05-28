@@ -1,4 +1,4 @@
-import { useLayoutEffect } from "react";
+import { useEffect } from "react";
 import useStateRef from "@/hooks/useStateRef";
 
 export type UseCloneEffectOptions<E extends HTMLElement> = {
@@ -16,7 +16,7 @@ const useCloneEffect = <E extends HTMLElement>(
   const { isVisible } = options;
   const optionsRef = useStateRef(options);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (!isVisible) return;
 
     const options = optionsRef.current;

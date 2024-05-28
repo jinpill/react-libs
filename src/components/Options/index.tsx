@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import classNames from "classnames";
 
 import Scrollbar, {
@@ -46,7 +46,7 @@ export const Options = (props: OptionsProps) => {
   const onChangeRef = useStateRef(props.onChange);
   const onClickAwayRef = useStateRef(props.onClickAway);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (!props.isVisible) return;
 
     const $scollbar = scrollbarRef.current;

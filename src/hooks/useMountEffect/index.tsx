@@ -1,4 +1,4 @@
-import { useLayoutEffect } from "react";
+import { useEffect } from "react";
 import useStateRef from "@/hooks/useStateRef";
 
 export type UseMountEffectOptions<E extends HTMLElement> = {
@@ -13,12 +13,13 @@ const useMountEffect = <E extends HTMLElement>(
 ) => {
   const optionsRef = useStateRef(options);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     const options = optionsRef.current;
     const $element = options.init();
     const $parent = $element?.parentElement;
-
     if (!$element || !$parent) return;
+
+    const index = Array.from($parent.children).indexOf($element);
     setTimeout(() => options.onMounted?.($element), 0);
 
     return () => {
@@ -33,7 +34,17 @@ const useMountEffect = <E extends HTMLElement>(
       $clone.addEventListener("transitionend", removeClone, { once: true });
       const timeoutId = setTimeout(removeClone, options.timeout ?? 1000);
 
-      $parent.insertBefore($clone, $element);
+      if ($parent.children.length === 0) {
+        $parent.appendChild($clone);
+      } else {
+        const $sibling = $parent.children[index];
+        if ($sibling) {
+          $parent.insertBefore($clone, $sibling);
+        } else {
+          $parent.appendChild($clone);
+        }
+      }
+
       setTimeout(() => options.onUnmounted?.($clone), 0);
     };
   }, [optionsRef]);
