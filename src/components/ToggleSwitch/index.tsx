@@ -29,7 +29,6 @@ const ToggleSwitch = (props: ToggleSwitchProps) => {
     <Button
       className={classNames(
         style.toggleSwitch,
-        style.button,
         props.className,
         style[props.size ?? "medium"],
         {
