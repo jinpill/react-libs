@@ -45,7 +45,7 @@ export const Default: Story = {
           title="Coordinate frames"
           actions={<IconButton size="small" preset="add" />}
         ></Panel.Section>
-        <Panel.Section title="Cad matches" isCollapsible>
+        <Panel.Section title="Cad matches" isCollapsible isSpread>
           <Panel.Label name="Returned">
             <ToggleButton value="visible" options={OPTIONS} isFullWidth />
           </Panel.Label>
