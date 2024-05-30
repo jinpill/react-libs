@@ -1,6 +1,6 @@
 {
   "name": "@jinpill/react-libs",
-  "version": "1.7.11",
+  "version": "1.7.12",
   "description": "The personal react libraries.",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
