@@ -6,7 +6,7 @@ import style from "./style.module.scss";
 const ALLOWED_CHARS = ["+", "-", "."];
 
 export type BaseInputProps = {
-  type: "text" | "password" | "number";
+  type: "text" | "password" | "number" | "color";
   size?: InputSize;
   placeholder?: string;
   tabIndex?: number;
@@ -35,9 +35,11 @@ const BaseInput = React.forwardRef<HTMLDivElement, BaseInputProps>(
   (props, ref) => {
     const inputRef = useRef<HTMLInputElement>(null);
     const isNumberType = props.type === "number";
+    const isColorType = props.type === "color";
 
-    const [value, setValue] = useState(props.value ?? "");
+    const [value, setValue] = useState(getInitialValue(props));
     const prevValueRef = useRef(value);
+    console.log(value);
 
     const min = useMemo(() => Number(props.min ?? -Infinity), [props.min]);
     const max = useMemo(() => Number(props.max ?? Infinity), [props.max]);
@@ -178,7 +180,7 @@ const BaseInput = React.forwardRef<HTMLDivElement, BaseInputProps>(
 
     useEffect(() => {
       if (props.type !== "number") {
-        const nextValue = props.value ?? "";
+        const nextValue = getInitialValue(props);
         setValue(nextValue);
         return;
       }
@@ -205,7 +207,7 @@ const BaseInput = React.forwardRef<HTMLDivElement, BaseInputProps>(
       >
         <input
           ref={inputRef}
-          type={isNumberType ? "text" : props.type}
+          type={isNumberType || isColorType ? "text" : props.type}
           placeholder={props.placeholder}
           tabIndex={props.tabIndex}
           disabled={props.isDisabled}
@@ -222,3 +224,9 @@ const BaseInput = React.forwardRef<HTMLDivElement, BaseInputProps>(
 );
 
 export default BaseInput;
+
+const getInitialValue = (props: BaseInputProps) => {
+  if (props.value) return props.value;
+  if (props.type === "color") return "#FFFFFF";
+  return "";
+};

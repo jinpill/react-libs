@@ -105,6 +105,17 @@ export const NumberInputProps: Story = {
   },
 };
 
+export const ColorInput: Story = {
+  render: (props) => <Input.Color {...props} />,
+  args: {
+    size: "large",
+    tabIndex: undefined,
+    isFullWidth: false,
+    isDisabled: false,
+    className: undefined,
+  },
+};
+
 /**
  * An disabled input component.
  */
