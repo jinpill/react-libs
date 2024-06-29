@@ -59,6 +59,7 @@
     "@storybook/test": "^8.0.8",
     "@types/inquirer": "^9.0.7",
     "@types/react": "^18.2.46",
+    "@typescript-eslint/eslint-plugin": "^6.21.0",
     "@typescript-eslint/parser": "^6.16.0",
     "classnames": "^2.5.1",
     "cli-color": "^2.0.3",
