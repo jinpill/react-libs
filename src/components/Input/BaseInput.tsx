@@ -92,6 +92,20 @@ const BaseInput = React.forwardRef<HTMLDivElement, BaseInputProps>(
         }
       }
 
+      if (isColorType) {
+        const hasHash = newValue[0] === "#";
+        let isInvalid = false;
+
+        isInvalid ||= hasHash && newValue.length > 7;
+        isInvalid ||= !hasHash && newValue.length > 6;
+        isInvalid ||= hasHash && newValue.slice(1).includes("#");
+
+        if (isInvalid) {
+          event.preventDefault();
+          return;
+        }
+      }
+
       setValue(newValue);
 
       if (props.useImmediateChangeEffect) {
@@ -165,6 +179,7 @@ const BaseInput = React.forwardRef<HTMLDivElement, BaseInputProps>(
       (nextValue = valueRef.current) => {
         if (prevValueRef.current === nextValue) return;
 
+        // number type validation
         if (isNumberType) {
           if (isNaN(Number(nextValue))) {
             resetValue();
@@ -190,10 +205,42 @@ const BaseInput = React.forwardRef<HTMLDivElement, BaseInputProps>(
           if (prevValueRef.current === nextValue) return;
         }
 
+        // color type validation
+        if (isColorType) {
+          let isInvalid = false;
+
+          if (nextValue.length === 7) {
+            isInvalid ||= nextValue[0] !== "#";
+            isInvalid ||= !/^[0-9A-Fa-f]+$/.test(nextValue.slice(1));
+          } else if (nextValue.length === 6) {
+            isInvalid ||= !/^[0-9A-Fa-f]+$/.test(nextValue);
+            if (!isInvalid) nextValue = `#${nextValue}`;
+          } else {
+            isInvalid = true;
+          }
+
+          if (isInvalid) {
+            resetValue();
+            return;
+          }
+
+          nextValue = nextValue.toUpperCase();
+          setValue(nextValue);
+        }
+
         onChangeRef.current?.(nextValue);
         prevValueRef.current = nextValue;
       },
-      [isNumberType, decimal, min, max, onChangeRef, resetValue, valueRef],
+      [
+        isNumberType,
+        isColorType,
+        decimal,
+        min,
+        max,
+        onChangeRef,
+        resetValue,
+        valueRef,
+      ],
     );
 
     useEffect(() => {
