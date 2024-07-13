@@ -61,7 +61,7 @@ const Scrollbar = React.forwardRef<HTMLDivElement, ScrollbarProps>(
       } else {
         updateHorizontalScrollbar($contents, $container);
       }
-    }, []);
+    }, [props.direction]);
 
     const updateVerticalScrollbar = (
       $contents: HTMLElement,
@@ -258,4 +258,5 @@ const Scrollbar = React.forwardRef<HTMLDivElement, ScrollbarProps>(
   },
 );
 
+Scrollbar.displayName = "Scrollbar";
 export default Scrollbar;

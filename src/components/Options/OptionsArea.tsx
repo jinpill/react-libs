@@ -9,17 +9,21 @@ export type OptionsAreaProps = {
   className?: string;
 };
 
-const OptionsArea = (props: OptionsAreaProps) => (
-  <div
-    id={OPTIONS_AREA_ID}
-    className={classNames(style.optionsArea, props.className)}
-  >
-    <Scrollbar
-      className={classNames(style.optionsWrapper)}
-      direction="vertical"
-      margin="4"
-    />
-  </div>
+const OptionsArea = React.forwardRef<HTMLDivElement, OptionsAreaProps>(
+  (props, ref) => (
+    <div
+      ref={ref}
+      id={OPTIONS_AREA_ID}
+      className={classNames(style.optionsArea, props.className)}
+    >
+      <Scrollbar
+        className={classNames(style.optionsWrapper)}
+        direction="vertical"
+        margin="4"
+      />
+    </div>
+  ),
 );
 
+OptionsArea.displayName = "OptionsArea";
 export default OptionsArea;

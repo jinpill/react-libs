@@ -87,7 +87,7 @@ export const NumberInput: Story = {
  */
 export const NumberInputProps: Story = {
   render: (props) => {
-    const { value: _, onChange: __, ...restProps } = props;
+    const { value: _value, onChange: _onChange, ...restProps } = props;
     return <Input.Number {...restProps} />;
   },
   args: {
@@ -97,7 +97,7 @@ export const NumberInputProps: Story = {
     min: -100,
     max: 100,
     step: 10,
-    float: 1,
+    decimal: 1,
     useImmediateChangeEffect: false,
     isFullWidth: false,
     isDisabled: false,

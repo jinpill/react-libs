@@ -153,4 +153,5 @@ const ToggleButton = React.forwardRef<HTMLDivElement, ToggleButtonProps>(
   },
 );
 
+ToggleButton.displayName = "ToggleButton";
 export default ToggleButton;

@@ -7,13 +7,14 @@ export type ColorInputProps = Omit<
   | "min"
   | "max"
   | "step"
-  | "float"
+  | "decimal"
   | "placeholder"
   | "useImmediateChangeEffect"
 >;
 
-const ColorInput = (props: ColorInputProps) => {
-  return <BaseInput type="color" {...props} />;
-};
+const ColorInput = React.forwardRef<HTMLDivElement, ColorInputProps>(
+  (props, ref) => <BaseInput ref={ref} type="color" {...props} />,
+);
 
+ColorInput.displayName = "ColorInput";
 export default ColorInput;

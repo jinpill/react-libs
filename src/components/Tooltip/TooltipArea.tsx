@@ -8,15 +8,17 @@ export type TooltipAreaProps = {
   className?: string;
 };
 
-const TooltipArea = (props: TooltipAreaProps) => {
-  return (
+const TooltipArea = React.forwardRef<HTMLDivElement, TooltipAreaProps>(
+  (props, ref) => (
     <div
+      ref={ref}
       id={TOOLTIP_AREA_ID}
       className={classNames(style.tooltipArea, props.className)}
     >
       <div />
     </div>
-  );
-};
+  ),
+);
 
+TooltipArea.displayName = "TooltipArea";
 export default TooltipArea;

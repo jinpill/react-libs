@@ -26,99 +26,103 @@ export type DropdownProps = {
   className?: string;
 };
 
-const Dropdown = (props: DropdownProps) => {
-  const [value, setValue] = useState("");
-  const currentValue = props.value ?? value;
+const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
+  (props, ref) => {
+    const [value, setValue] = useState("");
+    const currentValue = props.value ?? value;
 
-  const placeholder = props.placeholder ?? DEFAULT_PLACEHOLDER;
-  const [isExpanded, setIsExpanded] = useState(false);
+    const placeholder = props.placeholder ?? DEFAULT_PLACEHOLDER;
+    const [isExpanded, setIsExpanded] = useState(false);
 
-  const options = useMemo(() => {
-    const options: Option[] = [];
+    const options = useMemo(() => {
+      const options: Option[] = [];
 
-    if (props.isDeselectable) {
-      options.push({
-        type: "option",
-        label: placeholder,
-        value: "",
-      });
-    }
+      if (props.isDeselectable) {
+        options.push({
+          type: "option",
+          label: placeholder,
+          value: "",
+        });
+      }
 
-    if (props.options) {
-      options.push(...props.options);
-    }
+      if (props.options) {
+        options.push(...props.options);
+      }
 
-    return options;
-  }, [props.options, props.isDeselectable]);
+      return options;
+    }, [props.options, props.isDeselectable, placeholder]);
 
-  const option = useMemo(() => {
-    return options.find((option) => option.value === currentValue) ?? null;
-  }, [currentValue, options, placeholder]);
+    const option = useMemo(() => {
+      return options.find((option) => option.value === currentValue) ?? null;
+    }, [currentValue, options]);
 
-  const handleClickButton = () => {
-    if (options.length === 0) return;
-    setIsExpanded((prev) => !prev);
-  };
+    const handleClickButton = () => {
+      if (options.length === 0) return;
+      setIsExpanded((prev) => !prev);
+    };
 
-  const handleChange = (value: string) => {
-    setValue(value);
-    props.onChange?.(value);
-  };
+    const handleChange = (value: string) => {
+      setValue(value);
+      props.onChange?.(value);
+    };
 
-  const hideOptions = () => {
-    setIsExpanded(false);
-  };
+    const hideOptions = () => {
+      setIsExpanded(false);
+    };
 
-  return (
-    <div
-      className={classNames(
-        style.dropdown,
-        props.className,
-        style[props.size ?? "medium"],
-        {
-          [style.fullWidth]: props.isFullWidth,
-          [style.disabled]: props.isDisabled,
-        },
-      )}
-    >
-      <Button
-        className={style.button}
-        role="secondary"
-        size={props.size}
-        tabIndex={props.tabIndex}
-        isDisabled={props.isDisabled}
-        isFullWidth
-        onClick={handleClickButton}
+    return (
+      <div
+        ref={ref}
+        className={classNames(
+          style.dropdown,
+          props.className,
+          style[props.size ?? "medium"],
+          {
+            [style.fullWidth]: props.isFullWidth,
+            [style.disabled]: props.isDisabled,
+          },
+        )}
       >
-        <div
-          className={classNames(style.display, {
-            [style.placeholder]: !option || !currentValue,
-          })}
+        <Button
+          className={style.button}
+          role="secondary"
+          size={props.size}
+          tabIndex={props.tabIndex}
+          isDisabled={props.isDisabled}
+          isFullWidth
+          onClick={handleClickButton}
         >
-          <Ellipsis className={style.text}>
-            {option?.label ?? placeholder}
-          </Ellipsis>
-          <Icon
-            className={style.icon}
-            preset={isExpanded ? "expand_less" : "expand_more"}
+          <div
+            className={classNames(style.display, {
+              [style.placeholder]: !option || !currentValue,
+            })}
+          >
+            <Ellipsis className={style.text}>
+              {option?.label ?? placeholder}
+            </Ellipsis>
+            <Icon
+              className={style.icon}
+              preset={isExpanded ? "expand_less" : "expand_more"}
+            />
+          </div>
+        </Button>
+
+        <div className={style.options}>
+          <Options
+            size={props.size}
+            value={currentValue}
+            options={options}
+            isVisible={isExpanded}
+            isFullWidth
+            onClick={hideOptions}
+            onClickAway={hideOptions}
+            onChange={handleChange}
           />
         </div>
-      </Button>
-
-      <div className={style.options}>
-        <Options
-          size={props.size}
-          value={currentValue}
-          options={options}
-          isVisible={isExpanded}
-          isFullWidth
-          onClick={hideOptions}
-          onClickAway={hideOptions}
-          onChange={handleChange}
-        />
       </div>
-    </div>
-  );
-};
+    );
+  },
+);
 
+Dropdown.displayName = "Dropdown";
 export default Dropdown;

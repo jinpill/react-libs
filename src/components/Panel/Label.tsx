@@ -33,4 +33,5 @@ const PanelLabel = React.forwardRef<HTMLLabelElement, PanelLabelProps>(
   ),
 );
 
+PanelLabel.displayName = "PanelLabel";
 export default PanelLabel;

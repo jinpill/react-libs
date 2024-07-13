@@ -26,4 +26,5 @@ const NumberInput = React.forwardRef<HTMLDivElement, NumberInputProps>(
   },
 );
 
+NumberInput.displayName = "NumberInput";
 export default NumberInput;

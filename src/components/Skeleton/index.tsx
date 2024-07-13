@@ -8,13 +8,17 @@ export type SkeletonProps = {
   style?: React.CSSProperties;
 };
 
-const Skeleton = (props: SkeletonProps) => (
-  <div
-    className={classNames(style.skeleton, props.className)}
-    style={props.style}
-  >
-    {props.children}
-  </div>
+const Skeleton = React.forwardRef<HTMLDivElement, SkeletonProps>(
+  (props, ref) => (
+    <div
+      ref={ref}
+      className={classNames(style.skeleton, props.className)}
+      style={props.style}
+    >
+      {props.children}
+    </div>
+  ),
 );
 
+Skeleton.displayName = "Skeleton";
 export default Skeleton;

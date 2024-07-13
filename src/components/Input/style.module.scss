@@ -4,6 +4,7 @@ $transition: 0.2s ease-in-out;
 
 .input {
   display: flex;
+  align-items: center;
   box-sizing: border-box;
 
   border-radius: var(--radius-medium);
@@ -102,5 +103,30 @@ input {
 
   .right & {
     text-align: right;
+  }
+}
+
+.colorChip {
+  box-sizing: border-box;
+  border-radius: var(--radius-small);
+  border: 1px solid rgba(black, 0.2);
+  cursor: pointer;
+
+  .small & {
+    width: 1.25rem;
+    height: 1rem;
+    margin-right: 0.375rem;
+  }
+
+  .medium & {
+    width: 1.75rem;
+    height: 1.25rem;
+    margin-right: 0.5rem;
+  }
+
+  .large & {
+    width: 2.25rem;
+    height: 1.75rem;
+    margin-right: 0.75rem;
   }
 }

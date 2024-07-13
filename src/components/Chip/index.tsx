@@ -13,7 +13,7 @@ export type ChipProps = {
   className?: string;
 };
 
-const Chip = (props: ChipProps) => {
+const Chip = React.forwardRef<HTMLDivElement, ChipProps>((props, ref) => {
   const handleClick = () => {
     props.onClick?.(props.id ?? "");
   };
@@ -24,6 +24,7 @@ const Chip = (props: ChipProps) => {
 
   return (
     <div
+      ref={ref}
       className={classNames(style.chip, props.className, {
         [style.clickable]: !!props.onClick,
         [style.clearable]: !!props.onClear,
@@ -42,6 +43,7 @@ const Chip = (props: ChipProps) => {
       )}
     </div>
   );
-};
+});
 
+Chip.displayName = "Chip";
 export default Chip;

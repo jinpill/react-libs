@@ -50,4 +50,5 @@ const Checkbox = React.forwardRef<HTMLButtonElement, CheckboxProps>(
   },
 );
 
+Checkbox.displayName = "Checkbox";
 export default Checkbox;

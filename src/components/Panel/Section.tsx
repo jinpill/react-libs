@@ -43,7 +43,7 @@ const PanelSection = React.forwardRef<HTMLDivElement, PanelSectionProps>(
 
       const { height } = $contents.getBoundingClientRect();
       setContentsHeight(`${height}px`);
-    }, [isCollapsed && props.children]);
+    }, [props.isCollapsible, isCollapsed, props.children]);
 
     return (
       <div
@@ -83,6 +83,7 @@ const PanelSection = React.forwardRef<HTMLDivElement, PanelSectionProps>(
   },
 );
 
+PanelSection.displayName = "PanelSection";
 export default PanelSection;
 
 const getInitialContentsHeight = (props: PanelSectionProps) => {

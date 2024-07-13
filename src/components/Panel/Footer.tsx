@@ -20,4 +20,5 @@ const PanelFooter = React.forwardRef<HTMLDivElement, PanelFooterProps>(
   ),
 );
 
+PanelFooter.displayName = "PanelFooter";
 export default PanelFooter;

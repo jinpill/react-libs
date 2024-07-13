@@ -7,10 +7,13 @@ export type EllipsisProps = {
   children?: React.ReactNode;
 };
 
-const Ellipsis = (props: EllipsisProps) => (
-  <div className={classNames(style.ellipsis, props.className)}>
-    {props.children}
-  </div>
+const Ellipsis = React.forwardRef<HTMLDivElement, EllipsisProps>(
+  (props, ref) => (
+    <div ref={ref} className={classNames(style.ellipsis, props.className)}>
+      {props.children}
+    </div>
+  ),
 );
 
+Ellipsis.displayName = "Ellipsis";
 export default Ellipsis;

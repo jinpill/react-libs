@@ -4,7 +4,7 @@ import classNames from "classnames";
 import IconFromSource from "./IconFromSource";
 import IconFromPreset from "./IconFromPreset";
 
-import * as logger from "@/utils/logger";
+import logger from "@/utils/logger";
 
 import type { MaterialIcon } from "material-icons";
 import style from "./style.module.scss";
@@ -33,4 +33,5 @@ const Icon = React.forwardRef<HTMLDivElement, IconProps>((props, ref) => {
   );
 });
 
+Icon.displayName = "Icon";
 export default Icon;

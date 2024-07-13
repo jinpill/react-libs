@@ -44,4 +44,5 @@ const Radio = React.forwardRef<HTMLButtonElement, RadioProps>((props, ref) => {
   );
 });
 
+Radio.displayName = "Radio";
 export default Radio;

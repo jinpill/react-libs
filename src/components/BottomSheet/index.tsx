@@ -42,4 +42,5 @@ const BottomSheet = React.forwardRef<HTMLDivElement, BottomSheetProps>(
   },
 );
 
+BottomSheet.displayName = "BottomSheet";
 export default BottomSheet;

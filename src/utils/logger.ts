@@ -2,14 +2,23 @@ const getLogContents = (label: string, args: any[]) => {
   return [`[@jinpill/react-libs] ${label}:`, ...args];
 };
 
-export const log = (label: string, ...args: any[]) => {
+const log = (label: string, ...args: any[]) => {
+  // eslint-disable-next-line no-console
   console.log(...getLogContents(label, args));
 };
 
-export const warn = (label: string, ...args: any[]) => {
+const warn = (label: string, ...args: any[]) => {
+  // eslint-disable-next-line no-console
   console.warn(...getLogContents(label, args));
 };
 
-export const error = (label: string, ...args: any[]) => {
+const error = (label: string, ...args: any[]) => {
+  // eslint-disable-next-line no-console
   console.error(...getLogContents(label, args));
+};
+
+export default {
+  log,
+  warn,
+  error,
 };

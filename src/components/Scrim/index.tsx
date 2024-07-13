@@ -41,4 +41,5 @@ const Scrim = React.forwardRef<HTMLDivElement, ScrimProps>((props, ref) => {
   );
 });
 
+Scrim.displayName = "Scrim";
 export default Scrim;

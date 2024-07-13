@@ -34,4 +34,5 @@ const NullableNumberInput = React.forwardRef<
   );
 });
 
+NullableNumberInput.displayName = "NullableNumberInput";
 export default NullableNumberInput;

@@ -30,4 +30,5 @@ const PanelHeader = React.forwardRef<HTMLDivElement, PanelHeaderProps>(
   ),
 );
 
+PanelHeader.displayName = "PanelHeader";
 export default PanelHeader;

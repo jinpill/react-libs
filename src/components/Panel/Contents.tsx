@@ -21,4 +21,5 @@ const PanelContents = React.forwardRef<HTMLDivElement, PanelContentsProps>(
   ),
 );
 
+PanelContents.displayName = "PanelContents";
 export default PanelContents;

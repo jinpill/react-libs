@@ -1,6 +1,16 @@
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import React, {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import classNames from "classnames";
-import type { InputSize } from "./index";
+
+import useStateRef from "@/hooks/useStateRef";
+import logger from "@/utils/logger";
+
+import type { InputSize } from ".";
 import style from "./style.module.scss";
 
 const ALLOWED_CHARS = ["+", "-", "."];
@@ -16,7 +26,7 @@ export type BaseInputProps = {
   min?: number | `${number}`;
   max?: number | `${number}`;
   step?: number | `${number}`;
-  float?: number | `${number}`;
+  decimal?: number | `${number}`;
 
   useImmediateChangeEffect?: boolean;
   isFullWidth?: boolean;
@@ -33,29 +43,40 @@ export type BaseInputProps = {
 
 const BaseInput = React.forwardRef<HTMLDivElement, BaseInputProps>(
   (props, ref) => {
+    const onChangeRef = useStateRef(props.onChange);
+
     const inputRef = useRef<HTMLInputElement>(null);
     const isNumberType = props.type === "number";
     const isColorType = props.type === "color";
 
-    const [value, setValue] = useState(getInitialValue(props));
+    const getInitialValue = useCallback(() => {
+      if (props.type === "color") {
+        if (props.value) return props.value.toUpperCase();
+        return "#FFFFFF";
+      }
+
+      return props.value ?? "";
+    }, [props.type, props.value]);
+
+    const [value, setValue] = useState(getInitialValue());
+    const valueRef = useStateRef(value);
     const prevValueRef = useRef(value);
-    console.log(value);
 
     const min = useMemo(() => Number(props.min ?? -Infinity), [props.min]);
     const max = useMemo(() => Number(props.max ?? Infinity), [props.max]);
     const step = useMemo(() => Number(props.step ?? 1), [props.step]);
-    const float = useMemo(() => {
-      if (!props.float) return;
-      const float = Number(props.float);
+    const decimal = useMemo(() => {
+      if (!props.decimal) return;
+      const decimal = Number(props.decimal);
 
-      if (isNaN(float)) return;
-      if (float < 0) {
-        console.warn("`float` should be greater than or equal to 0.");
+      if (isNaN(decimal)) return;
+      if (decimal < 0) {
+        logger.warn("Input", "`decimal` should be greater than or equal to 0.");
         return;
       }
 
-      return float;
-    }, [props.float]);
+      return decimal;
+    }, [props.decimal]);
 
     const handleClickContainer = () => {
       inputRef.current?.focus();
@@ -92,10 +113,10 @@ const BaseInput = React.forwardRef<HTMLDivElement, BaseInputProps>(
           nextValue = Number(value);
           nextValue += direction * step;
 
-          if (typeof float !== "number") {
+          if (typeof decimal !== "number") {
             const decimal = step.toString().split(".")[1];
-            const float = !decimal ? 0 : decimal.length;
-            nextValue = Number(nextValue.toFixed(float));
+            const decimalPlace = !decimal ? 0 : decimal.length;
+            nextValue = Number(nextValue.toFixed(decimalPlace));
           }
         }
 
@@ -135,60 +156,62 @@ const BaseInput = React.forwardRef<HTMLDivElement, BaseInputProps>(
       props.onBlur?.(event);
     };
 
-    const applyCurrentValue = (nextValue = value) => {
-      if (prevValueRef.current === nextValue) return;
-
-      if (isNumberType) {
-        if (isNaN(Number(nextValue))) {
-          resetValue();
-          return;
-        }
-
-        if (nextValue !== "") {
-          nextValue = Number(nextValue).toString();
-          if (nextValue !== value) setValue(nextValue);
-        }
-
-        const numberValue = Number(nextValue);
-        if (numberValue < min) {
-          nextValue = min.toString();
-        } else if (numberValue > max) {
-          nextValue = max.toString();
-        } else if (typeof float === "number") {
-          nextValue = numberValue.toFixed(float);
-          nextValue = Number(nextValue).toString();
-        }
-
-        if (numberValue.toString() !== nextValue) setValue(nextValue);
-        if (prevValueRef.current === nextValue) return;
-      }
-
-      props.onChange?.(nextValue);
-      prevValueRef.current = nextValue;
-    };
-
-    const resetValue = () => {
-      if (prevValueRef.current === value) return;
+    const resetValue = useCallback(() => {
+      if (prevValueRef.current === valueRef.current) return;
       setValue(prevValueRef.current);
-    };
+    }, [valueRef]);
+
+    const applyCurrentValue = useCallback(
+      (nextValue = valueRef.current) => {
+        if (prevValueRef.current === nextValue) return;
+
+        if (isNumberType) {
+          if (isNaN(Number(nextValue))) {
+            resetValue();
+            return;
+          }
+
+          if (nextValue !== "") {
+            nextValue = Number(nextValue).toString();
+            if (nextValue !== valueRef.current) setValue(nextValue);
+          }
+
+          const numberValue = Number(nextValue);
+          if (numberValue < min) {
+            nextValue = min.toString();
+          } else if (numberValue > max) {
+            nextValue = max.toString();
+          } else if (typeof decimal === "number") {
+            nextValue = numberValue.toFixed(decimal);
+            nextValue = Number(nextValue).toString();
+          }
+
+          if (numberValue.toString() !== nextValue) setValue(nextValue);
+          if (prevValueRef.current === nextValue) return;
+        }
+
+        onChangeRef.current?.(nextValue);
+        prevValueRef.current = nextValue;
+      },
+      [isNumberType, decimal, min, max, onChangeRef, resetValue, valueRef],
+    );
 
     useEffect(() => {
-      if (min > max) {
-        console.warn("`min` should be less than or equal to `max`.");
-      }
+      if (min <= max) return;
+      logger.warn("Input", "`min` should be less than or equal to `max`.");
     }, [min, max]);
 
     useEffect(() => {
-      if (props.type !== "number") {
-        const nextValue = getInitialValue(props);
-        setValue(nextValue);
+      if (props.type === "number") {
+        const nextValue = Number(props.value ?? 0);
+        if (min > nextValue) applyCurrentValue(min.toString());
+        else if (max < nextValue) applyCurrentValue(max.toString());
         return;
       }
 
-      const nextValue = Number(props.value ?? 0);
-      if (min > nextValue) applyCurrentValue(min.toString());
-      else if (max < nextValue) applyCurrentValue(max.toString());
-    }, [props.value, min, max, applyCurrentValue]);
+      const nextValue = getInitialValue();
+      setValue(nextValue);
+    }, [props.value, props.type, min, max, getInitialValue, applyCurrentValue]);
 
     return (
       <div
@@ -205,6 +228,14 @@ const BaseInput = React.forwardRef<HTMLDivElement, BaseInputProps>(
         )}
         onClick={handleClickContainer}
       >
+        {isColorType && (
+          <button
+            className={style.colorChip}
+            style={{
+              backgroundColor: value,
+            }}
+          />
+        )}
         <input
           ref={inputRef}
           type={isNumberType || isColorType ? "text" : props.type}
@@ -223,10 +254,5 @@ const BaseInput = React.forwardRef<HTMLDivElement, BaseInputProps>(
   },
 );
 
+BaseInput.displayName = "BaseInput";
 export default BaseInput;
-
-const getInitialValue = (props: BaseInputProps) => {
-  if (props.value) return props.value;
-  if (props.type === "color") return "#FFFFFF";
-  return "";
-};
