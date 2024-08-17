@@ -9,7 +9,12 @@ const meta: Meta<typeof Button> = {
   component: Button,
   parameters: {},
   tags: ["autodocs"],
-  argTypes: {},
+  argTypes: {
+    isProcessing: {
+      type: "boolean",
+      defaultValue: undefined,
+    },
+  },
 };
 
 export default meta;
