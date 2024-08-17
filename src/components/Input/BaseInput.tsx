@@ -266,6 +266,7 @@ const BaseInput = React.forwardRef<HTMLDivElement, BaseInputProps>(
         className={classNames(
           style.input,
           props.className,
+          style[props.type],
           style[props.size ?? "medium"],
           style[props.textAlignment ?? "left"],
           {
